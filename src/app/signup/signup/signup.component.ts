@@ -160,14 +160,14 @@ export class SignupComponent implements OnInit {
     this.loginForm = new FormGroup({
       userid: new FormControl('', [Val.Required]),
       email: new FormControl('', [Val.Required, Val.ValidEmail]),
-      password: new FormControl('', [Val.Required,]),
-      confirm: new FormControl('', [Val.Required,]),
-      first: new FormControl('', [Val.Required, Val.cannotContainSpace,Val.minLength(4), Val.maxLength(30)]),
+      password: new FormControl('', [Val.Required, Val.PasswordStrengthValidator, Val.minLength(6)]),
+      confirm: new FormControl('', [Val.Required,Val.PasswordStrengthValidator]),
+      first: new FormControl('', [Val.Required, Val.Alphabet,Val.minLength(4), Val.maxLength(25)]),
       last: new FormControl('', [Val.Required]),
       dob: new FormControl('', [Val.Required]),
       address: new FormControl('', [Val.Required]),
       mobile: new FormControl('', [Val.Required, Val.minLength(10)]),
-      pincode: new FormControl('', [Val.Required, Val.minLength(6)]),
+      pincode: new FormControl('', [Val.Required, Val.maxLength(6)]),
       tin: new FormControl('', [Val.Required]),
       answer: new FormControl('', [Val.Required]),
     });

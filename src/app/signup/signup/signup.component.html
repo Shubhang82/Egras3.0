@@ -217,7 +217,7 @@
                                 <!-- <mat-error>
                                     Username is required field
                                 </mat-error> -->
-                                <div *ngIf="userid && userid.invalid &&  userid.touched" class="text-danger">
+                                <div *ngIf="userid && userid.invalid &&  userid.touched" class="text-danger error_msg">
                                     <div *ngIf="userid.errors?.['Required'] as error">
                                         {{error}}
                                     </div>
@@ -239,7 +239,7 @@
                                 <!-- <mat-error>
                                     Email ID is required field
                                 </mat-error> -->
-                                <div *ngIf="email && email.invalid &&  email.touched" class="text-danger">
+                                <div *ngIf="email && email.invalid &&  email.touched" class="text-danger error_msg">
                                     <div *ngIf="email.errors?.['Required'] as error">
                                         {{error}}
                                     </div>
@@ -260,13 +260,16 @@
                                 <!-- <mat-error>
                                     Password is required field
                                 </mat-error> -->
-                                <div *ngIf="password && password.invalid &&  password.touched" class="text-danger">
+                                <div *ngIf="password && password.invalid &&  password.touched" class="text-danger error_msg">
                                     <div *ngIf="password.errors?.['Required'] as error">
                                         {{error}}
                                     </div>
-                                    <!-- <div *ngIf="Password.errors?.['ValidEmail'] as error">
+                                    <div *ngIf="password.errors?.['PasswordStrengthValidator'] as error">
                                         {{error}}
-                                    </div> -->
+                                    </div>
+                                    <div *ngIf="password.errors?.['minLength'] as error">
+                                        {{error}}
+                                    </div>
                                 </div>
                             </mat-form-field>
                         </div>
@@ -276,9 +279,24 @@
                             <mat-form-field floatLabel="never" appearance="outline">
                                 <input matInput class="form-control" type="password" placeholder="Confirm Password"
                                     name="confirm" required formControlName="confirm" />
-                                <mat-error>
+                                <!-- <mat-error>
                                     Confirm Password is required field
-                                </mat-error>
+                                </mat-error> -->
+                                <div *ngIf="confirm && confirm.invalid &&  confirm.touched" class="text-danger error_msg">
+                                    <div *ngIf="confirm.errors?.['Required'] as error">
+                                        {{error}}
+                                    </div>
+
+                                    <!-- <div *ngIf="confirm.errors?.['minLength'] as error">
+                                        {{error}}
+                                    </div>
+                                    <div *ngIf="confirm.errors?.['cannotContainSpace'] as error">
+                                        {{error}}
+                                    </div>
+                                    <div *ngIf="confirm.errors?.['maxLength'] as error">
+                                        {{error}}
+                                    </div> -->
+                                </div>
                             </mat-form-field>
                         </div>
                     </div>
@@ -293,15 +311,15 @@
                                 <!-- <mat-error>
                                     First Name is required field
                                 </mat-error> -->
-                                <div *ngIf="first && first.invalid &&  first.touched" class="text-danger">
+                                <div *ngIf="first && first.invalid &&  first.touched" class="text-danger error_msg">
                                     <div *ngIf="first.errors?.['Required'] as error">
                                         {{error}}
                                     </div>
-                                    
+
                                     <div *ngIf="first.errors?.['minLength'] as error">
                                         {{error}}
                                     </div>
-                                    <div *ngIf="first.errors?.['cannotContainSpace'] as error">
+                                    <div *ngIf="first.errors?.['Alphabet'] as error">
                                         {{error}}
                                     </div>
                                     <div *ngIf="first.errors?.['maxLength'] as error">
@@ -316,9 +334,17 @@
                             <mat-form-field floatLabel="never" appearance="outline">
                                 <input matInput class="form-control" type="text" placeholder="Last Name" name="last"
                                     required formControlName="last" />
-                                <mat-error>
+                                <!-- <mat-error>
                                     Last Name is required field
-                                </mat-error>
+                                </mat-error> -->
+                                <div *ngIf="last && last.invalid &&  last.touched" class="text-danger error_msg">
+                                    <div *ngIf="last.errors?.['Required'] as error">
+                                        {{error}}
+                                    </div>
+                                    <!-- <div *ngIf="last.errors?.['ValidEmail'] as error">
+                                        {{error}}
+                                    </div> -->
+                                </div>
                             </mat-form-field>
                         </div>
                     </div>
@@ -329,9 +355,17 @@
                             <mat-form-field floatLabel="never" appearance="outline">
                                 <input matInput class="form-control" type="date" placeholder="Dob" name="dob" required
                                     formControlName="dob" />
-                                <mat-error>
+                                <!-- <mat-error>
                                     Dob is required field
-                                </mat-error>
+                                </mat-error> -->
+                                <div *ngIf="dob && dob.invalid &&  dob.touched" class="text-danger error_msg">
+                                    <div *ngIf="dob.errors?.['Required'] as error">
+                                        {{error}}
+                                    </div>
+                                    <!-- <div *ngIf="last.errors?.['ValidEmail'] as error">
+                                        {{error}}
+                                    </div> -->
+                                </div>
                             </mat-form-field>
                         </div>
                     </div>
@@ -340,9 +374,17 @@
                             <mat-form-field floatLabel="never" appearance="outline">
                                 <input matInput class="form-control" type="text" placeholder="Address" name="address"
                                     required formControlName="address" />
-                                <mat-error>
+                                <!-- <mat-error>
                                     Address is required field
-                                </mat-error>
+                                </mat-error> -->
+                                <div *ngIf="address && address.invalid &&  address.touched" class="text-danger error_msg">
+                                    <div *ngIf="address.errors?.['Required'] as error">
+                                        {{error}}
+                                    </div>
+                                    <!-- <div *ngIf="last.errors?.['ValidEmail'] as error">
+                                        {{error}}
+                                    </div> -->
+                                </div>
                             </mat-form-field>
                         </div>
                     </div>
@@ -356,7 +398,7 @@
                                 <!-- <mat-error>
                                     Mobile Number is required field
                                 </mat-error> -->
-                                <div *ngIf="mobile && mobile.invalid &&  mobile.touched" class="text-danger">
+                                <div *ngIf="mobile && mobile.invalid &&  mobile.touched" class="text-danger error_msg">
                                     <div *ngIf="mobile.errors?.['Required'] as error">
                                         {{error}}
                                     </div>
@@ -375,9 +417,17 @@
                             <mat-form-field floatLabel="never" appearance="outline">
                                 <input matInput class="form-control" type="tel" placeholder="PinCode" name="pincode"
                                     maxlength="6" required formControlName="pincode" />
-                                <mat-error>
+                                <!-- <mat-error>
                                     Pincode is required field
-                                </mat-error>
+                                </mat-error> -->
+                                <div *ngIf="pincode && pincode.invalid &&  pincode.touched" class="text-danger error_msg">
+                                    <div *ngIf="pincode.errors?.['Required'] as error">
+                                        {{error}}
+                                    </div>
+                                    <div *ngIf="last.errors?.['maxLength'] as error">
+                                        {{error}}
+                                    </div>
+                                </div>
                             </mat-form-field>
                         </div>
                     </div>
@@ -388,9 +438,17 @@
                             <mat-form-field floatLabel="never" appearance="outline">
                                 <input matInput class="form-control" type="text" placeholder="TIN/Actt.No./VehicleNo"
                                     name="tin" required formControlName="tin" />
-                                <mat-error>
+                                <!-- <mat-error>
                                     Tin is required field
-                                </mat-error>
+                                </mat-error> -->
+                                <div *ngIf="tin && tin.invalid &&  tin.touched" class="text-danger error_msg">
+                                    <div *ngIf="tin.errors?.['Required'] as error">
+                                        {{error}}
+                                    </div>
+                                    <!-- <div *ngIf="last.errors?.['ValidEmail'] as error">
+                                        {{error}}
+                                    </div> -->
+                                </div>
                             </mat-form-field>
                         </div>
                     </div>
@@ -473,9 +531,17 @@
                             <mat-form-field floatLabel="never" appearance="outline">
                                 <input matInput class="form-control" type="text" placeholder="Answer" name="answer"
                                     required formControlName="answer" />
-                                <mat-error>
+                                <!-- <mat-error>
                                     Answer is required field
-                                </mat-error>
+                                </mat-error> -->
+                                <div *ngIf="answer && answer.invalid &&  answer.touched" class="text-danger error_msg">
+                                    <div *ngIf="answer.errors?.['Required'] as error">
+                                        {{error}}
+                                    </div>
+                                    <!-- <div *ngIf="last.errors?.['ValidEmail'] as error">
+                                        {{error}}
+                                    </div> -->
+                                </div>
                             </mat-form-field>
                         </div>
                     </div>
