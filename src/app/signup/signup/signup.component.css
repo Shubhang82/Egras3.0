@@ -1,0 +1,103 @@
+/* ....................singup page css.......*/
+
+.login .loginimg {
+  height: 100%;
+  width: 100%;
+}
+
+.user {
+  font-family: "Montserrat", sans-serif;
+  color: #051B77;
+  font-size: 50pt;
+  font-weight: 800;
+  padding-top: 30px;
+}
+
+mat-form-field {
+  display: block;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  background: #DEE5FC;
+  font-size: 15pt;
+  font-family: "Montserrat", sans-serif;
+  border-color: #DEE5FC;
+  border-radius: 59px;
+  justify-content: center;
+}
+.container{
+  /* height: 30rem; */
+  width: 100%;
+  background: #DEE5FC;
+  margin-top: 5px;
+  border-radius: 59px;
+  padding: 10px;
+}
+
+::ng-deep .mat-form-field-outline-start {
+  border-radius: 40px 0 0 40px !important;
+  min-width: 40px !important;
+}
+
+::ng-deep .mat-form-field-outline-end {
+  border-radius: 0 40px 40px 0 !important;
+}
+
+::ng-deep .mat-form-field input {
+  background-color: #DEE5FC;
+  font-size: 25pt;
+  padding-left: 2%;
+  width: 100%;
+  border: #DEE5FC;
+}
+
+::ng-deep .mat-form-field-flex>.mat-form-field-infix {
+  padding: 3% 0px !important;
+}
+
+.form-control {
+  background-color: #DEE5FC;
+
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 0;
+}
+ input, optgroup, select, textarea {
+  background: border-box !important; 
+
+  border: aliceblue !important;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  width: 100% !important;
+}
+
+.error-msg {
+  color: red;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+
+.bt {
+  background-color: #051B77;
+  color: #DEE5FC;
+  border: none;
+  padding: 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 12px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 30pt;
+}
+.errordrop {
+  color: red;
+  margin-left: 10px;
+}
+
