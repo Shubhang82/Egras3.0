@@ -1,38 +1,61 @@
-
 <div class="row">
   <div class="col-md-6 ">
     <img src="../../../assets/Images/B (1000X1000)-01.jpg" alt="login" class="loginimg">
   </div>
-  <div class="col-md-6 col-sm-12 "> 
+  <div class="col-md-6 col-sm-12 ">
     <form [formGroup]="loginForm">
       <p class="user text-center">User login</p>
       <div class="inputs">
         <div class="row justify-content-md-center">
           <div class="col-md-9">
-        <mat-form-field floatLabel="never" appearance="outline">
-                <!-- <mat-icon matSuffix>person</mat-icon> -->
+            <mat-form-field floatLabel="never" appearance="outline">
+              <!-- <mat-icon matSuffix>person</mat-icon> -->
               <i class="material-icons">account_circle</i>
-              <input matInput class="form-control" type="text" placeholder="UserName" name="username" required formControlName="userid"  />
-              <mat-error>
-          Username is required field
-        </mat-error> 
-      </mat-form-field>
-    </div>
-  </div>
-  <div class="row justify-content-md-center">
-    <div class="col-md-9">
-        <mat-form-field floatLabel="never" appearance="outline">
-        
+              <input matInput class="form-control" type="text" placeholder="UserName" name="username" required
+                formControlName="userid" />
+              <!-- <mat-error>
+                Username is required field
+              </mat-error>  -->
+              <div *ngIf="userid && userid.invalid &&  userid.touched" class="text-danger error_msg" >
+                <div *ngIf="userid.errors?.['Required'] as error">
+                  {{error}}
+                </div>
+                <!-- <div *ngIf="userid.errors?.['Numeric'] as error">
+                    {{error}}
+                </div>
+                <div *ngIf="userid.errors?.['minLength'] as error">
+                    {{error}}
+                </div> -->
+              </div>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row justify-content-md-center">
+          <div class="col-md-9">
+            <mat-form-field floatLabel="never" appearance="outline">
+
               <i class="material-icons">
                 lock
               </i>
-              <input matInput class="form-control" type="password" placeholder="Password" name="password" required formControlName="password" />
-              <mat-error>
+              <input matInput class="form-control" type="password" placeholder="Password" name="password" required
+                formControlName="password" />
+              <!-- <mat-error>
                 Username is required field
-              </mat-error> 
-      </mat-form-field>
-    </div>
-  </div>
+              </mat-error> -->
+              <div *ngIf="password && password.invalid &&  password.touched" class="text-danger error_msg" >
+                <div *ngIf="password.errors?.['Required'] as error">
+                  {{error}}
+                </div>
+                <div *ngIf="password.errors?.['PasswordStrengthValidator'] as error">
+                    {{error}}
+                </div>
+                <div *ngIf="password.errors?.['minLength'] as error">
+                    {{error}}
+                </div>
+              </div>
+            </mat-form-field>
+          </div>
+        </div>
         <div class="row justify-content-md-center">
           <div class="col-md-10">
             <div class="keepME">
@@ -47,23 +70,23 @@
             </div>
           </div>
         </div>
-       
+
         <div class="row justify-content-md-center">
           <div class="col-md-9 ">
-              <input class="cap" style="text-align: center; width: 100%;" name="captcha" placeholder="Enter Captcha" />
+            <input class="cap" style="text-align: center; width: 100%;" name="captcha" placeholder="Enter Captcha" />
           </div>
         </div>
         <br>
         <br>
         <div class="row justify-content-md-center">
           <div class="col-md-9">
-              <input id="Captcha" style="text-align: center; width: 100%;" class="cap" readonly >
+            <input id="Captcha" style="text-align: center; width: 100%;" class="cap" readonly>
           </div>
         </div>
         <!-- <re-captcha (resolved)="resolved($event)" (error)="onError($event)"
         siteKey="6LesEcsgAAAAAD96gzkRGicq9ORAwChW6L-DVHVm"></re-captcha> -->
-      <br>
-      <br>
+        <br>
+        <br>
       </div>
       <div class="row justify-content-md-center">
         <div class="col-md-6 text-center">
@@ -71,76 +94,11 @@
             type="button" class="bt">LOGIN</button>
         </div>
       </div>
-      <div class="text-center">
-        <p>New User? <a routerLink="/Signup" routerLinkActive="active">Sign Up</a></p>
+      <div class="text-center navlink">
+        <h3>
+          <p>New User? <a routerLink="/Signup" routerLinkActive="active">SignUp</a></p>
+        </h3>
       </div>
     </form>
   </div>
 </div>
-
-<!-- <br>
-<div class="container ">
-
-   <div *ngIf="errormessage" class="alert alert-danger; fade-out" role="alert">
-      <strong class="text-danger"> {{errormessage}} </strong> 
-    </div> 
-
-</div>
-
- <div class="loader-container">
-   <mat-progress-bar mode="indeterminate"></mat-progress-bar> 
-    <mat-spinner mode="indeterminate"  [diameter]="50"></mat-spinner>
-  </div> 
-<mat-card>
-  <mat-card-title>Login</mat-card-title>
-  <mat-card-content>
-
-    <div>
-      <form [formGroup]="loginForm" >
-  
-        <mat-form-field>
-          <input matInput class="form-control" type="text" placeholder="UserName" name="username" required
-            formControlName="userid">
-          <mat-icon matSuffix>person</mat-icon>
-          <object data="" type=""></object><mat-error>
-          Please provide a valid email address
-        </mat-error> 
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput class="form-control" type="password" placeholder="Password" name="password" required
-            formControlName="password">
-          <mat-icon matSuffix>key</mat-icon>
-          <mat-error>
-          Please provide a valid password
-        </mat-error>
-        </mat-form-field>
-        <re-captcha (resolved)="resolved($event)" (error)="onError($event)"
-          siteKey="6LesEcsgAAAAAD96gzkRGicq9ORAwChW6L-DVHVm"></re-captcha>
-         
-        <br>
-        <br>
-
-       
-        <div class="container">
-          <div class="row">
-            <div class="col-6">
-              <button mat-raised-button color="primary" [disabled]="loginForm.invalid" (click)="onsubmit()"
-                type="button">Login</button>
-            </div>
-            <div class="col-6">
-              <button mat-raised-button type="button" class="btn btn-light">Reset</button>
-            </div>
-          </div>
-        </div>
-        <br>
-        <div class="text-center">
-          <a href="#!">Forgot password?</a>
-        </div>
-        <br>
-        <div class="text-center">
-          <p>New User? <a routerLink="/Signup" routerLinkActive="active">Sign Up</a></p>
-        </div>
-      </form>
-    </div>
-  </mat-card-content>
-</mat-card>  -->

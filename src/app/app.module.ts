@@ -19,6 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from "@angular/material/form-field";
+import { ChangePasswordComponent } from './ChangePassword/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
     ChallanComponent,
     TesttestComponent,
     SignupComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,

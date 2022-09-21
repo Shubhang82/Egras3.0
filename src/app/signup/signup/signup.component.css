@@ -79,6 +79,14 @@ mat-form-field {
   margin-bottom: 10px;
   text-align: center;
 }
+.navlink
+{
+  font-family: "Montserrat", sans-serif;
+  color: black;
+  font-size: 18.28pt;
+  margin-block: 10px;
+}
+
 
 
 .bt {
@@ -103,4 +111,9 @@ mat-form-field {
 .error_msg {
   margin-left: 5px;
 }
-
+.checkuser {
+  padding-left: 80px;
+  cursor: pointer;
+  color: blue;
+  text-underline-position: under;
+}

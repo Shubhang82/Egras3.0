@@ -11,7 +11,7 @@ const STORE_KEY = 'lastAction';
 @Injectable({
   providedIn: 'root'
 })
-export class SignupService {
+export class ApiMethods {
 
   public getLastAction() {
     return parseInt(localStorage.getItem(STORE_KEY) || '{}');
@@ -25,7 +25,7 @@ export class SignupService {
       'Content-Type': 'application/json',
     }),
   };
-  // loginurl = "http://10.130.34.224/APITreasLoginPublish/Login";
+  loginurl = "http://10.130.34.224/APITreasLoginPublish/Login";
   hash: any;
   public loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public user: BehaviorSubject<string> = new BehaviorSubject<string>(sessionStorage.getItem('token') || '{}');
@@ -82,8 +82,6 @@ export class SignupService {
   //  }
 
   postresultservice(loginurl: any, data: any) {
-    console.log("apidetails__",loginurl,data);
-    
 
     //return this.http.post(this.loginurl,data,this.httpOptions).pipe(catchError(this.handleError));//('postresultservice',data)
     return this.http.post(loginurl, data, this.httpOptions).
@@ -111,21 +109,34 @@ export class SignupService {
 
   ///*** Error Handel ***///   
   private handleError(error: HttpErrorResponse) {
-    console.log("erorr have",error);
+    console.log("eroroomessage__", error.error.result.ErrorCode);
+    var result = error.error.result.ErrorCode
 
     let errormessage = ''
-    if (error.status === 0) {
+    if (result === 0) {
       // A client-side or network error occurred  . Handle it accordingly.
       console.error('An error occurred:', error.error);
       return throwError(() => new Error('Sorry some technical issuse , please try again !'))
     }
-    else if (error.status === 2) {
-      errormessage += 'User ID Blocked , please try again after 30 Minutes or contact to Administrator !'
+    else if (result === 1) {
+      errormessage += 'User not found !'
       return throwError(() => new Error(errormessage));
     }
-    else if (error.status == 400) {
-      errormessage += JSON.stringify(error.error.message);
-      return throwError(() => new Error("invalid username or password"));
+    else if (result === 2) {
+      errormessage += 'Login attempt more than 5 !'
+      return throwError(() => new Error(errormessage));
+    }
+    else if (result === 3) {
+      errormessage += 'Password not match !'
+      return throwError(() => new Error(errormessage));
+    }
+    else if (result == -1) {
+      // errormessage += JSON.stringify(error.error.message);
+      return throwError(() => new Error(result));
+    }
+    else if (result == -2) {
+      // errormessage += JSON.stringify(error.error.message);
+      return throwError(() => new Error(result));
     }
     else {
       errormessage += 'Sorry some technical issuse , please try again !'
