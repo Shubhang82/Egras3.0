@@ -33,10 +33,12 @@ export const PasswordStrengthValidator = function (control: AbstractControl): Va
   let upperCaseCharacters = /[A-Z]+/g;
   let lowerCaseCharacters = /[a-z]+/g;
   let numberCharacters = /[0-9]+/g;
-  let specialCharacters = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
-  if (upperCaseCharacters.test(value) === false || lowerCaseCharacters.test(value) === false || numberCharacters.test(value) === false || specialCharacters.test(value) === false) {
+  let specialCharacters = /[!@#$*_-~=()_+\-=\[\]{};':"\\|,.<>\/?]+/g;
+  // let specialCharacters = /[!@#$*_-~=]+/;
+
+  if (upperCaseCharacters.test(value) === false || specialCharacters.test(value) === false || numberCharacters.test(value) === false) {
     return {
-      'PasswordStrengthValidator': 'Password must contain numbers, lowercase letters, uppercase letters and special characters.'
+      'PasswordStrengthValidator': 'Password must contain numbers, uppercase letters and special characters.'
     };
 
   }

@@ -114,8 +114,14 @@ export class SignupComponent implements OnInit {
   // valError: boolean = false;
   State: any = []
   Question: any = []
+  displayStyle = "none";
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private ApiMethods: ApiMethods, private ApiService: ApiService, private List: List) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private ApiMethods: ApiMethods, private ApiService: ApiService, private List: List) {
+    history.pushState(null, '', location.href);
+    window.onpopstate = function () {
+      history.go(1);
+    };
+  }
   ngOnInit() {
     // try {
     // console.log(sessionStorage.getItem('loc'));
@@ -158,7 +164,7 @@ export class SignupComponent implements OnInit {
     // });
 
     this.loginForm = new FormGroup({
-      userid: new FormControl('', [Val.Required]),
+      userid: new FormControl('', [Val.Required, Val.SpecialChar,]),
       email: new FormControl('', [Val.Required, Val.ValidEmail]),
       password: new FormControl('', [Val.Required, Val.PasswordStrengthValidator, Val.minLength(6)]),
       confirm: new FormControl('', [Val.Required, Val.PasswordStrengthValidator]),
@@ -166,11 +172,11 @@ export class SignupComponent implements OnInit {
       last: new FormControl('', [Val.Required, Val.Alphabet, Val.maxLength(25)]),
       dob: new FormControl('', [Val.Required]),
       address: new FormControl('', [Val.Required, Val.maxLength(30)]),
-      mobile: new FormControl('', [Val.Required, Val.Numeric, Val.minLength(10), Val.maxLength(10)]),
-      pincode: new FormControl('', [Val.Required, Val.minLength(6), Val.maxLength(6)]),
+      mobile: new FormControl('', [Val.Required, Val.Numeric, Val.minLength(10), Val.maxLength(10), Val.StartWith0]),
+      pincode: new FormControl('', [Val.Required, Val.minLength(6), Val.Numeric, Val.maxLength(6), Val.StartWith0]),
       tin: new FormControl('', [Val.Required]),
       answer: new FormControl('', [Val.Required, Val.maxLength(30)]),
-      city: new FormControl('', [Val.Required, Val.maxLength(20), Val.minLength(4)])
+      city: new FormControl('', [Val.Required, Val.maxLength(20), Val.minLength(4), Val.Alphabet])
     });
   }
   public getRandomInt(min: any, max: any) {
@@ -183,18 +189,21 @@ export class SignupComponent implements OnInit {
     this.model.country = data.target.value;
     this.valError.country = false;
   }
+  onpress() {
+    alert('helloo')
+  }
   selectState(data: any) {
     console.log("state__", data.target.value);
     this.model.state = data.target.value;
     this.valError.state = false;
 
   }
-  // selectCity(data: any) {
-  //   console.log("city___", data.target.value);
-  //   this.model.city = data.target.value;
-  //   this.valError.city = false;
-
-  // }
+  openPopup() {
+    this.displayStyle = "block";
+  }
+  closePopup() {
+    this.displayStyle = "none";
+  }
   selectQuestion(data: any) {
     console.log("question___", data.target.value);
     this.model.question = data.target.value;
@@ -208,28 +217,18 @@ export class SignupComponent implements OnInit {
     if (this.model.country === "Select Country") {
       this.valError.country = true
       this.valError.state = false
-      // this.valError.city = false
       this.valError.question = false
       this.valErrorM.country = "Please Select Country"
     }
     else if (this.model.state === "Select State") {
       this.valError.country = false
       this.valError.state = true
-      // this.valError.city = false
       this.valError.question = false
       this.valErrorM.state = "Please Select State"
     }
-    // else if (this.model.city === "Select City") {
-    //   this.valError.country = false
-    //   this.valError.state = false
-    //   this.valError.city = true
-    //   this.valError.question = false
-    //   this.valErrorM.city = "Please Select City"
-    // }
     else if (this.model.question === "Select Your Security Question") {
       this.valError.country = false
       this.valError.state = false
-      // this.valError.city = false
       this.valError.question = true
       this.valErrorM.question = "Please Select Your Security Question"
     }
@@ -332,17 +331,6 @@ export class SignupComponent implements OnInit {
 
 
   }
-
-  // public resolved(captchaResponse: string) {
-  //   try {
-  //     this.loginflag = true;
-  //   }
-  //   catch (expect) {
-  //     alert('web service error');
-  //   }
-  //   //console.log(`Resolved captcha with response: ${captchaResponse}`); // Write your logic here about once human verified what action you want to perform 
-  // }
-
 
 
   // public onError(errorDetails: RecaptchaErrorParameters): void {

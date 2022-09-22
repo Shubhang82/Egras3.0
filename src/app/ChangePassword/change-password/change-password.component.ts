@@ -12,22 +12,8 @@ import * as Val from '../../Component/Utility/Validators/ValBarrel'
 import { MatTableDataSource } from '@angular/material/table';
 
 export interface PDAcc {
-  userid: string;
-  first: string;
-  last: string;
-  dob: string;
-  address: string;
-  confirm: string;
-  city: string;
-  state: string;
-  country: string;
-  mobile: string;
-  pincode: string;
-  email: string;
-  tin: string;
   password: string;
-  question: string;
-  answer: string;
+  confirm: string;
 }
 @Component({
   selector: 'app-change-password',
@@ -57,22 +43,33 @@ export class ChangePasswordComponent implements OnInit {
   loc: any;
   // errorM: boolean = false;
   randum!: string;
-
-  constructor(private formBuilder: FormBuilder, private router: Router, private ApiMethods: ApiMethods, private ApiService: ApiService, private List: List) { }
+  displayStyle = "none";
+  constructor(private formBuilder: FormBuilder, private router: Router, private ApiMethods: ApiMethods, private ApiService: ApiService, private List: List) {
+    history.pushState(null, '', location.href);
+    window.onpopstate = function () {
+      history.go(1);
+    };
+  }
   ngOnInit() {
 
     this.ChangePwdForm = new FormGroup({
       password: new FormControl('', [Val.Required, Val.PasswordStrengthValidator, Val.minLength(6)]),
       confirm: new FormControl('', [Val.Required]),
     }
-    // Val.mustMatch('password', 'confirmPassword') // insert here
-    // , {
-    //   validators: this.MustMatch('password', 'confirm')
-    // }
+      // Val.mustMatch('password', 'confirmPassword') // insert here
+      // , {
+      //   validators: this.MustMatch('password', 'confirm')
+      // }
     );
   }
   public getRandomInt(min: any, max: any) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+  openPopup() {
+    this.displayStyle = "block";
+  }
+  closePopup() {
+    this.displayStyle = "none";
   }
 
   checkUser() {
