@@ -19,6 +19,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from "@angular/material/form-field";
+import { PasswordRecoveryComponent } from './PasswordRecovery/password-recovery/password-recovery.component';
+ 
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
     ChallanComponent,
     TesttestComponent,
     SignupComponent,
+    PasswordRecoveryComponent,
   ],
   imports: [
     BrowserModule,

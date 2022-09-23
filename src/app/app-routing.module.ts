@@ -4,7 +4,7 @@ import { ChallanComponent } from './challan/challan.component';
 import { RegisterComponent } from './register/register.component';
 import { SignupComponent } from './signup/signup/signup.component';
 import { TesttestComponent } from './testtest/testtest.component';
-import { ForgotPasswordComponent } from './password-recovery/forgot-password/forgot-password.component';
+import { PasswordRecoveryComponent } from './PasswordRecovery/password-recovery/password-recovery.component';
 
 const routes: Routes = [
   { path: '', loadChildren: () => import('./login/login/login-routing.module').then(m => m.LoginRoutingModule) },
@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'Test', component: TesttestComponent },
   {path: 'Signup', component: SignupComponent},
   // { path: '', loadChildren: () => import('./default/default-routing.module').then(m => m.DefaultRoutingModule) },
-  {path: 'ForgotPassword', component: ForgotPasswordComponent},
+  {path: 'PasswordRecovery', component: PasswordRecoveryComponent},
   { path: '**', redirectTo: '' },
  
 
