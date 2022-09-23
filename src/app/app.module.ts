@@ -21,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { PasswordRecoveryComponent } from './PasswordRecovery/password-recovery/password-recovery.component';
  
+import { ChangePasswordComponent } from './ChangePassword/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { PasswordRecoveryComponent } from './PasswordRecovery/password-recovery/
     TesttestComponent,
     SignupComponent,
     PasswordRecoveryComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,

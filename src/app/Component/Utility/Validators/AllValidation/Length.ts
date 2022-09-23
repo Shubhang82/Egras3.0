@@ -9,7 +9,7 @@ import {
 export function minLength(minLength: number): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
     // if (Math.ceil(Math.log(control.value + 1) / Math.LN10) < minLength)
-    if (control.value != null && control.value.length >= (minLength - 1)) {
+    if (control.value != null && control.value.length < (minLength)) {
       return { 'minLength': 'Minimum Length should be ' + minLength + '.' };
     }
     return null;

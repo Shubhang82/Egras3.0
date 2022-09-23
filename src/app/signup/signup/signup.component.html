@@ -10,31 +10,39 @@
                     <div class="row justify-content-md-center col-md-6">
                         <div class="col-md-9">
                             <mat-form-field floatLabel="never" appearance="outline">
-                                <input matInput class="form-control" type="text" placeholder="UserName" name="userid"
-                                    required formControlName="userid" />
-                                <!-- <mat-error>
-                                    Username is required field
-                                </mat-error> -->
+                                <div style="display:flex ; flex-direction:row">
+                                    <input matInput class="form-control" type="text" placeholder="UserName"
+                                        name="userid" required formControlName="userid" />
+                                    <i class="material-icons" (click)="checkUser()" title="Check Availablity">
+                                        search
+                                    </i>
+                                </div>
                                 <div *ngIf="userid && userid.invalid &&  userid.touched" class="text-danger error_msg">
                                     <div *ngIf="userid.errors?.['Required'] as error">
                                         {{error}}
                                     </div>
-                                    <!-- <div *ngIf="userid.errors?.['Numeric'] as error">
+                                    <div *ngIf="userid.errors?.['SpecialChar'] as error">
                                         {{error}}
                                     </div>
-                                    <div *ngIf="userid.errors?.['minLength'] as error">
-                                        {{error}}
-                                    </div> -->
                                 </div>
                             </mat-form-field>
+
                         </div>
+                        <!-- <div class="checkuser" (click)="checkUser()">
+                            <p> <a routerLinkActive="active">Check Availablity </a></p>
+                        </div> -->
+
+
+
                     </div>
                     <div class="row justify-content-md-center col-md-6">
                         <div class="col-md-9">
                             <mat-form-field floatLabel="never" appearance="outline">
-                                <input matInput class="form-control" type="email" placeholder="Email Id" name="email"
-                                    required formControlName="email" />
-                                <!-- <mat-error>
+
+                                    <input matInput class="form-control" type="email" placeholder="Email Id"
+                                        name="email" required formControlName="email" />
+
+                                    <!-- <mat-error>
                                     Email ID is required field
                                 </mat-error> -->
                                 <div *ngIf="email && email.invalid &&  email.touched" class="text-danger error_msg">
@@ -53,12 +61,16 @@
                     <div class="row justify-content-md-center col-md-6">
                         <div class="col-md-9">
                             <mat-form-field floatLabel="never" appearance="outline">
-                                <input matInput class="form-control" type="password" placeholder="Password"
-                                    name="password" required formControlName="password" />
-                                <!-- <mat-error>
-                                    Password is required field
-                                </mat-error> -->
-                                <div *ngIf="password && password.invalid &&  password.touched" class="text-danger error_msg">
+                                <div style="display:flex ; flex-direction:row">
+
+                                    <input matInput class="form-control" type="text" placeholder="Password"
+                                        name="password" required formControlName="password" />
+                                    <i class="material-icons" (click)="openPopup()" title="Password Policy">
+                                        info
+                                    </i>
+                                </div>
+                                <div *ngIf="password && password.invalid &&  password.touched"
+                                    class="text-danger error_msg">
                                     <div *ngIf="password.errors?.['Required'] as error">
                                         {{error}}
                                     </div>
@@ -80,15 +92,16 @@
                                 <!-- <mat-error>
                                     Confirm Password is required field
                                 </mat-error> -->
-                                <div *ngIf="confirm && confirm.invalid &&  confirm.touched" class="text-danger error_msg">
+                                <div *ngIf="confirm && confirm.invalid &&  confirm.touched"
+                                    class="text-danger error_msg">
                                     <div *ngIf="confirm.errors?.['Required'] as error">
                                         {{error}}
                                     </div>
 
-                                    <!-- <div *ngIf="confirm.errors?.['minLength'] as error">
+                                    <div *ngIf="confirm.errors?.['PasswordStrengthValidator'] as error">
                                         {{error}}
                                     </div>
-                                    <div *ngIf="confirm.errors?.['cannotContainSpace'] as error">
+                                    <!-- <div *ngIf="confirm.errors?.['cannotContainSpace'] as error">
                                         {{error}}
                                     </div>
                                     <div *ngIf="confirm.errors?.['maxLength'] as error">
@@ -113,10 +126,6 @@
                                     <div *ngIf="first.errors?.['Required'] as error">
                                         {{error}}
                                     </div>
-
-                                    <div *ngIf="first.errors?.['minLength'] as error">
-                                        {{error}}
-                                    </div>
                                     <div *ngIf="first.errors?.['Alphabet'] as error">
                                         {{error}}
                                     </div>
@@ -139,9 +148,12 @@
                                     <div *ngIf="last.errors?.['Required'] as error">
                                         {{error}}
                                     </div>
-                                    <!-- <div *ngIf="last.errors?.['ValidEmail'] as error">
+                                    <div *ngIf="last.errors?.['Alphabet'] as error">
                                         {{error}}
-                                    </div> -->
+                                    </div>
+                                    <div *ngIf="last.errors?.['maxLength'] as error">
+                                        {{error}}
+                                    </div>
                                 </div>
                             </mat-form-field>
                         </div>
@@ -160,9 +172,6 @@
                                     <div *ngIf="dob.errors?.['Required'] as error">
                                         {{error}}
                                     </div>
-                                    <!-- <div *ngIf="last.errors?.['ValidEmail'] as error">
-                                        {{error}}
-                                    </div> -->
                                 </div>
                             </mat-form-field>
                         </div>
@@ -175,13 +184,14 @@
                                 <!-- <mat-error>
                                     Address is required field
                                 </mat-error> -->
-                                <div *ngIf="address && address.invalid &&  address.touched" class="text-danger error_msg">
+                                <div *ngIf="address && address.invalid &&  address.touched"
+                                    class="text-danger error_msg">
                                     <div *ngIf="address.errors?.['Required'] as error">
                                         {{error}}
                                     </div>
-                                    <!-- <div *ngIf="last.errors?.['ValidEmail'] as error">
+                                    <div *ngIf="address.errors?.['maxLength'] as error">
                                         {{error}}
-                                    </div> -->
+                                    </div>
                                 </div>
                             </mat-form-field>
                         </div>
@@ -203,9 +213,17 @@
                                     <div *ngIf="mobile.errors?.['Numeric'] as error">
                                         {{error}}
                                     </div>
+                                    <div *ngIf="mobile.errors?.['StartWith0'] as error">
+                                        {{error}}
+                                    </div>
                                     <div *ngIf="mobile.errors?.['minLength'] as error">
                                         {{error}}
                                     </div>
+                                    <div *ngIf="mobile.errors?.['maxLength'] as error">
+                                        {{error}}
+                                    </div>
+
+
                                 </div>
                             </mat-form-field>
                         </div>
@@ -214,15 +232,25 @@
                         <div class="col-md-9">
                             <mat-form-field floatLabel="never" appearance="outline">
                                 <input matInput class="form-control" type="tel" placeholder="PinCode" name="pincode"
-                                    maxlength="6" required formControlName="pincode" />
+                                    required formControlName="pincode" />
                                 <!-- <mat-error>
                                     Pincode is required field
                                 </mat-error> -->
-                                <div *ngIf="pincode && pincode.invalid &&  pincode.touched" class="text-danger error_msg">
+                                <div *ngIf="pincode && pincode.invalid &&  pincode.touched"
+                                    class="text-danger error_msg">
                                     <div *ngIf="pincode.errors?.['Required'] as error">
                                         {{error}}
                                     </div>
-                                    <div *ngIf="last.errors?.['maxLength'] as error">
+                                    <div *ngIf="pincode.errors?.['Numeric'] as error">
+                                        {{error}}
+                                    </div>
+                                    <div *ngIf="pincode.errors?.['StartWith0'] as error">
+                                        {{error}}
+                                    </div>
+                                    <div *ngIf="pincode.errors?.['minLength'] as error">
+                                        {{error}}
+                                    </div>
+                                    <div *ngIf="pincode.errors?.['maxLength'] as error">
                                         {{error}}
                                     </div>
                                 </div>
@@ -295,7 +323,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row justify-content-md-center col-md-6">
+                    <!-- <div class="row justify-content-md-center col-md-6">
                         <div class="col-md-9">
                             <div class="container">
                                 <select (change)="selectCity($event)">
@@ -307,9 +335,34 @@
                                 <label> {{valErrorM.city}}</label>
                             </div>
                         </div>
+                    </div> -->
+                    <div class="row justify-content-md-center col-md-6">
+                        <div class="col-md-9">
+                            <mat-form-field floatLabel="never" appearance="outline">
+                                <input matInput class="form-control" type="text" placeholder="CIty" name="city" required
+                                    formControlName="city" />
+                                <!-- <mat-error>
+                                    Answer is required field
+                                </mat-error> -->
+                                <div *ngIf="city && city.invalid &&  city.touched" class="text-danger error_msg">
+                                    <div *ngIf="city.errors?.['Required'] as error">
+                                        {{error}}
+                                    </div>
+                                    <div *ngIf="city.errors?.['Alphabet'] as error">
+                                        {{error}}
+                                    </div>
+                                    <div *ngIf="city.errors?.['maxLength'] as error">
+                                        {{error}}
+                                    </div>
+                                    <div *ngIf="city.errors?.['minLength'] as error">
+                                        {{error}}
+                                    </div>
+                                </div>
+                            </mat-form-field>
+                        </div>
                     </div>
                 </div>
-                <div class="row " style="margin-top:25px ;">
+                <div class="row ">
                     <div class="row justify-content-md-center col-md-6">
                         <div class="col-md-9">
                             <div class="container">
@@ -336,9 +389,9 @@
                                     <div *ngIf="answer.errors?.['Required'] as error">
                                         {{error}}
                                     </div>
-                                    <!-- <div *ngIf="last.errors?.['ValidEmail'] as error">
+                                    <div *ngIf="answer.errors?.['maxLength'] as error">
                                         {{error}}
-                                    </div> -->
+                                    </div>
                                 </div>
                             </mat-form-field>
                         </div>
@@ -366,10 +419,34 @@
                         (click)="onsubmit()" type="button" class="bt">SIGNUP</button>
                 </div>
             </div>
-            <!-- <div class="text-center">
-          <p>New User? <a routerLink="/Signup" routerLinkActive="active">Sign </a></p>
-        </div> -->
+
+            <div class="text-center navlink">
+                <h3>
+                    <p>Already have an account? <a routerLink="/" routerLinkActive="active">SignIn </a></p>
+                </h3>
+            </div>
         </form>
     </div>
+    <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Password Policy</h4>
+                </div>
+                <div class="modal-body">
+                    <li>Password should contain atleast 6 characters.</li>
+                    <li>Password should contain atleast one numeric digit.</li>
+                    <li>Password should contain atleast one Capital Letter.</li>
+                    <li>Password should contain atleast one special character from !@#$*_-~=.</li>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" (click)="closePopup()">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
- 

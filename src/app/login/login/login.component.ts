@@ -1,7 +1,7 @@
-import { LoginService } from './../Service/login.service';
+import { ApiMethods } from 'src/app/Component/Service/ApiMethods';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { RecaptchaComponent, RecaptchaErrorParameters } from 'ng-recaptcha';
 import { ILogin } from '../Interface/login';
 // import { ApiService } from '../Service/utility.service';
@@ -9,7 +9,14 @@ import { ApiService } from 'src/app/Component/Service/utility.service';
 import { Md5 } from 'node_modules/ts-md5';
 import * as shajs from 'sha.js';
 import { MatFormFieldControl } from '@angular/material/form-field';
+import { MatTableDataSource } from '@angular/material/table';
+import * as Val from '../../Component/Utility/Validators/ValBarrel'
+
 // const AUTH_API = 'http://172.22.32.105:8081/login';
+export interface LoginAcc {
+  userid: string;
+  password: string;
+}
 
 @Component({
   selector: 'app-login',
@@ -18,7 +25,11 @@ import { MatFormFieldControl } from '@angular/material/form-field';
 })
 
 export class LoginComponent implements OnInit {
-
+  Logindata: MatTableDataSource<LoginAcc> = new MatTableDataSource();
+  displayedColumns = [
+    'userid',
+    'password',
+  ];
   // model: ILogin = {
   //   employeeID: '',
   //   shaPassword: '',
@@ -45,13 +56,23 @@ export class LoginComponent implements OnInit {
   id: any;
   loc: any;
   errorM: boolean = false;
-  constructor(private formBuilder: FormBuilder, private router: Router, private LoginService: LoginService, private ApiService: ApiService) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private ApiMethods: ApiMethods, private ApiService: ApiService) {
+    history.pushState(null, '', location.href);
+    window.onpopstate = function () {
+      history.go(1);
+    };
+  }
   ngOnInit() {
 
-    console.log(sessionStorage.getItem('loc'));
-    this.loginForm = this.formBuilder.group({
-      userid: ['', [Validators.required]],
-      password: ['', [Validators.required]],
+    // console.log(sessionStorage.getItem('loc'));
+    // this.loginForm = this.formBuilder.group({
+    //   userid: ['', [Validators.required]],
+    //   password: ['', [Validators.required]],
+    // });
+
+    this.loginForm = new FormGroup({
+      userid: new FormControl('', [Val.Required]),
+      password: new FormControl('', [Val.Required, Val.PasswordStrengthValidator, Val.minLength(6)]),
     });
 
   }
@@ -89,7 +110,7 @@ export class LoginComponent implements OnInit {
 
         // this.model.ipAddress = this.LoginService.ipAddress;
         console.log("berfooooooo", this.model);
-        this.LoginService.postresultservice(this.ApiService.loginurl, this.model).subscribe(result => {
+        this.ApiMethods.postresultservice(this.ApiService.loginurl, this.model).subscribe(result => {
           console.log("resulllllttt__", result.result.token);
 
           if (result) {
@@ -149,6 +170,8 @@ export class LoginComponent implements OnInit {
   // this.router.navigate(['Challan']);
   // alert("hello")
 
+  get userid() { return this.loginForm.get('userid') }
+  get password() { return this.loginForm.get('password') }
 }
 
 
