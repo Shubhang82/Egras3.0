@@ -84,7 +84,7 @@ width: 100%;
 {
   font-family: "Montserrat", sans-serif;
   color: #051B77;
-  font-size: 50pt;
+  font-size: 40pt;
   font-weight: 800;
   padding-top: 50px;
 }
@@ -184,16 +184,16 @@ color: #DEE5FC;
   background-color: #051B77; 
   color: #DEE5FC;
   border: none;
-  padding: 15px;
+  padding: 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  /* font-size: 16px; */
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 12px;
   font-family: "Montserrat", sans-serif;
-  font-size: 30pt;
+  font-size: 22pt;
 }
 
 #Captcha

@@ -25,14 +25,14 @@ export function StartWith0(control: AbstractControl) {
     return null;
 }
 export function SpecialChar(control: AbstractControl) {
-    const regex = new RegExp(/^a-zA-Z0-9*$/);
+    // const regex = new RegExp(/@$!*#=~_-/);
+    let regex = new RegExp(/^[@$!%*#?~(=,/<>{+|}).`&^_-].*$/)
     // const regex = new RegExp(/^!@#_-~=()_+-=\[\]{};':"|,.<>\/?/);
     // const regex = new RegExp('(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!#^~%*?&,.<>"\'\\;:\{\\\}\\\[\\\]\\\|\\\+\\\-\\\=\\\_\\\)\\\(\\\)\\\`\\\/\\\\\\]])[A-Za-z0-9\d$@].{7,}');
     if (control && (control.value !== null || control.value !== undefined)) {
         if (regex.test(control.value)) {
             return { 'SpecialChar': 'Field not start with Special Character' };
         }
-
     }
     return null;
 }

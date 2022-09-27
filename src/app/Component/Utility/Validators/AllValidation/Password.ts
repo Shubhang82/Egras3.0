@@ -33,10 +33,12 @@ export const PasswordStrengthValidator = function (control: AbstractControl): Va
   let upperCaseCharacters = /[A-Z]+/g;
   let lowerCaseCharacters = /[a-z]+/g;
   let numberCharacters = /[0-9]+/g;
-  let specialCharacters = /[!@#$*_-~=()_+\-=\[\]{};':"\\|,.<>\/?]+/g;
-  // let specialCharacters = /[!@#$*_-~=]+/;
+  // let specialCharacters = /[!@#$*_-~=()_+\-=\[\]{};':"\\|,.<>\/?]+/g;
+  let specialCharacters = /[!@#$*_-~=]+/;
 
-  if (upperCaseCharacters.test(value) === false || specialCharacters.test(value) === false || numberCharacters.test(value) === false) {
+  // if (upperCaseCharacters.test(value) === false || specialCharacters.test(value) === false || numberCharacters.test(value) === false) {
+  if (specialCharacters.test(value) === false) {
+
     return {
       'PasswordStrengthValidator': 'Password must contain numbers, uppercase letters and special characters.'
     };
@@ -46,6 +48,8 @@ export const PasswordStrengthValidator = function (control: AbstractControl): Va
 }
 
 export function passwordMatch(password: string, confirmPassword: string): ValidatorFn {
+  console.log("passworddd___mathc", password, confirmPassword);
+
   return (formGroup: AbstractControl): { [key: string]: any } | null => {
     const passwordControl = formGroup.get(password);
     const confirmPasswordControl = formGroup.get(confirmPassword);

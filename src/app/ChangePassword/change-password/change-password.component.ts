@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
 // import { RecaptchaComponent, RecaptchaErrorParameters } from 'ng-recaptcha';
 import { IChangePassword } from '../Interface/changepassword';
 import { ApiService } from 'src/app/Component/Service/utility.service';
@@ -53,13 +53,16 @@ export class ChangePasswordComponent implements OnInit {
   ngOnInit() {
 
     this.ChangePwdForm = new FormGroup({
-      password: new FormControl('', [Val.Required, Val.PasswordStrengthValidator, Val.minLength(6)]),
+      // password: new FormControl('', [Val.Required, Val.PasswordStrengthValidator, Val.minLength(6)]),
+      password: new FormControl(null, [
+        (c: AbstractControl) => Validators.required,
+          Validators.pattern(
+            /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!*#=~_-])/
+            ), Val.minLength(6),
+        // Val.Required,
+      ]),
       confirm: new FormControl('', [Val.Required]),
     }
-      // Val.mustMatch('password', 'confirmPassword') // insert here
-      // , {
-      //   validators: this.MustMatch('password', 'confirm')
-      // }
     );
   }
   public getRandomInt(min: any, max: any) {
@@ -73,7 +76,7 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   checkUser() {
-    alert('hello')
+    alert('User Available') 
   }
 
 
