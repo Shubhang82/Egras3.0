@@ -23,3 +23,7 @@ export class ISignup {
     attemptNumber!:number;
     userId!: null;
 }
+export class Icheckuser {
+    userId!: string;
+    mobileNo!: string;
+}

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, ValidatorFn, AbstractControl } from '@angular/forms';
 // import { RecaptchaComponent, RecaptchaErrorParameters } from 'ng-recaptcha';
-import { ISignup } from '../Interface/signup';
+import { ISignup, Icheckuser } from '../Interface/signup';
 import { ApiService } from 'src/app/Component/Service/utility.service';
 import { ApiMethods } from 'src/app/Component/Service/ApiMethods';
 import { Md5 } from 'node_modules/ts-md5';
@@ -10,6 +10,7 @@ import * as shajs from 'sha.js';
 import { List } from '../../Component/ListDrop'
 import * as Val from '../../Component/Utility/Validators/ValBarrel'
 import { MatTableDataSource } from '@angular/material/table';
+import { passwordMatch } from '../../Component/Utility/Validators/ValBarrel';
 
 export interface PDAcc {
   userid: string;
@@ -80,6 +81,10 @@ export class SignupComponent implements OnInit {
     attemptNumber: 0,
     userId: null
   };
+  checkuser: Icheckuser = {
+    userId: "",
+    mobileNo: "",
+  };
   valErrorM = {
     country: "",
     state: "",
@@ -92,26 +97,21 @@ export class SignupComponent implements OnInit {
     // city: false,
     question: false,
   };
-  // colorControl = new FormControl('primary');
   hash: any;
   loginForm!: any;
   message!: string;
+  userflag: boolean
   New: any;
   Cflag: boolean = true;
   loginflag: boolean = true;
   errormessage: any;
   id: any;
   loc: any;
-  // errorM: boolean = false;
   randum!: string;
-  // Select_City: any;
   Select_Question: any;
   Select_State: any;
   Select_Country: any;
-  // City: any = []
   Country: any = []
-  // valErrorM: any;
-  // valError: boolean = false;
   State: any = []
   Question: any = []
   displayStyle = "none";
@@ -121,6 +121,13 @@ export class SignupComponent implements OnInit {
     window.onpopstate = function () {
       history.go(1);
     };
+
+    // State api call
+    this.ApiMethods.getservice(this.ApiService.getstate).subscribe(resp => {
+      console.log("resulllllttt__", resp.result);
+      this.State = resp.result
+    });
+
   }
   ngOnInit() {
     // try {
@@ -139,35 +146,24 @@ export class SignupComponent implements OnInit {
     this.Question = this.List.onQuestion()
 
 
-
-
-    // this.loginForm = this.formBuilder.group({
-    //   userid: ['', [Validators.required]],
-    //   email: ['', [Validators.required, Validators.email]],
-    //   password: ['', [Validators.required]],
-    //   confirm: ['', [Validators.required]],
-    //   first: ['', [Validators.required]],
-    //   last: ['', [Validators.required]],
-    //   dob: ['', [Validators.required]],
-    //   address: ['', [Validators.required]],
-    //   // city: ['', [Validators.required]],
-    //   // state: ['', [Validators.required]],
-    //   // country: ['', [Validators.required]],
-    //   mobile: ['', [Val.Required, Val.minLength(10)]],
-    //   pincode: ['', [Validators.required, Val.minLength(6)]],
-    //   tin: ['', [Validators.required]],
-    //   // question: ['', [Validators.required]],
-    //   answer: ['', [Validators.required]],
-
-
-    //   // captcha: ['', Validators.required],
-    // });
-
     this.loginForm = new FormGroup({
       userid: new FormControl('', [Val.Required, Val.SpecialChar,]),
       email: new FormControl('', [Val.Required, Val.ValidEmail]),
-      password: new FormControl('', [Val.Required, Val.PasswordStrengthValidator, Val.minLength(6)]),
-      confirm: new FormControl('', [Val.Required, Val.PasswordStrengthValidator]),
+      // password: new FormControl('', [Val.Required, Val.PasswordStrengthValidator, Val.minLength(6)]),
+      password: new FormControl(null, [
+        (c: AbstractControl) => Validators.required,
+        Validators.pattern(
+          /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!*#=~_-])/
+        ), Val.minLength(6),
+
+      ]),
+      // confirm: new FormControl('', [Val.Required, Val.PasswordStrengthValidator]),
+      confirm: new FormControl(null, [
+        (c: AbstractControl) =>
+          Validators.pattern(
+            /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!*#=~_-])/
+          ),
+      ]),
       first: new FormControl('', [Val.Required, Val.Alphabet, Val.maxLength(25)]),
       last: new FormControl('', [Val.Required, Val.Alphabet, Val.maxLength(25)]),
       dob: new FormControl('', [Val.Required]),
@@ -178,10 +174,16 @@ export class SignupComponent implements OnInit {
       answer: new FormControl('', [Val.Required, Val.maxLength(30)]),
       city: new FormControl('', [Val.Required, Val.maxLength(20), Val.minLength(4), Val.Alphabet])
     });
+    // this.loginForm.addValidators(
+    //   )
+    // );
   }
+
   public getRandomInt(min: any, max: any) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
+
+
 
   selectCountry(data: any) {
     this.Cflag = false
@@ -210,7 +212,52 @@ export class SignupComponent implements OnInit {
     this.valError.question = false;
   }
   checkUser() {
-    alert('hello')
+    console.log("userfalg hecllllll________", this.userflag);
+
+    if (!this.loginForm.controls['userid'].value) {
+      alert('Please enter LoginId to check availablity')
+    }
+    else {
+      // alert('old')
+      this.checkuser.userId = this.loginForm.controls['userid'].value;
+      console.log("berfooooooo", this.checkuser);
+
+      this.ApiMethods.postresultservice(this.ApiService.check_User, this.checkuser).subscribe(resp => {
+        console.log("resulllllttt__", resp);
+
+        if (!resp.result.User) {
+
+          this.userflag = resp.result.User
+          alert("not register")
+
+        }
+        else {
+          this.userflag = resp.result.User
+          alert("register already");
+          // this.message = 'Please check your userid and password';
+        }
+      },
+        // (error) => {
+        //   console.log("errror message___", error);
+        //   if (error.Error == -1) {
+        //     alert("-1 change password required")
+        //   }
+        //   else if (error.Error == -2) {
+        //     alert("-2 45 days exceed change password required")
+
+        //   }
+        //   else {
+        //     this.errorM = true;
+        //     this.errormessage = error;
+        //   }
+
+
+        // }
+      );
+      //   sessionStorage.setItem('token', this.loginForm.controls['userid'].value);
+
+    }
+
   }
 
   onsubmit() {
@@ -354,4 +401,14 @@ export class SignupComponent implements OnInit {
   get password() { return this.loginForm.get('password') }
   get answer() { return this.loginForm.get('answer') }
 
+}
+function matchValidator(
+  control: AbstractControl,
+  controlTwo: AbstractControl
+): ValidatorFn {
+  return () => {
+    if (control.value !== controlTwo.value)
+      return { match_error: 'Value does not match' };
+    return null;
+  };
 }

@@ -81,10 +81,22 @@ export class ApiMethods {
   //        catchError(this.handleError));//('postresultservice',data)
   //  }
 
-  postresultservice(loginurl: any, data: any) {
+  postresultservice(url: any, data: any) {
 
     //return this.http.post(this.loginurl,data,this.httpOptions).pipe(catchError(this.handleError));//('postresultservice',data)
-    return this.http.post(loginurl, data, this.httpOptions).
+    return this.http.post(url, data, this.httpOptions).
+      pipe(
+        map((data: any) => {
+
+          return data
+        }),
+        catchError(this.handleError));//('postresultservice',data)
+  }
+
+  getservice(url: any) {
+
+    //return this.http.post(this.loginurl,data,this.httpOptions).pipe(catchError(this.handleError));//('postresultservice',data)
+    return this.http.get(url).
       pipe(
         map((data: any) => {
 

@@ -13,18 +13,18 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field'
 
-import { ChangePasswordRoutingModule } from './change-password-routing.module';
-import { ChangePasswordComponent } from './change-password.component';
+import { OtpComponent } from './otp.component';
+import { OtpdRoutingModule } from './otp-routing.module';
 import { RecaptchaModule } from 'ng-recaptcha';
 
 
 @NgModule({
   declarations: [
-    ChangePasswordComponent
+    OtpComponent
   ],
   imports: [
     CommonModule,
-    ChangePasswordRoutingModule,
+    OtpdRoutingModule,
     ReactiveFormsModule,
     FormsModule,
     MatInputModule,
@@ -38,7 +38,7 @@ import { RecaptchaModule } from 'ng-recaptcha';
   ],
   providers: [AuthGuard], 
   exports: [
-    ChangePasswordComponent
+    OtpComponent
   ]
 })
-export class ChangePasswordModule { }
+export class OtpModule { }
