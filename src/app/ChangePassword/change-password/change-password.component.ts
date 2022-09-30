@@ -29,8 +29,9 @@ export class ChangePasswordComponent implements OnInit {
 
   model: IChangePassword = {
     password: "",
-    rnd: "",
-    ipAddress: ""
+    userId: "710",
+    loginId: "ramkumar"
+
   };
   hash: any;
   ChangePwdForm!: any;
@@ -56,9 +57,9 @@ export class ChangePasswordComponent implements OnInit {
       // password: new FormControl('', [Val.Required, Val.PasswordStrengthValidator, Val.minLength(6)]),
       password: new FormControl(null, [
         (c: AbstractControl) => Validators.required,
-          Validators.pattern(
-            /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!*#=~_-])/
-            ), Val.minLength(6),
+        Validators.pattern(
+          /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!*#=~_-])/
+        ), Val.minLength(6),
         // Val.Required,
       ]),
       confirm: new FormControl('', [Val.Required]),
@@ -76,7 +77,7 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   checkUser() {
-    alert('User Available') 
+    alert('User Available')
   }
 
 
@@ -132,14 +133,14 @@ export class ChangePasswordComponent implements OnInit {
 
 
     //sha256 conversion
-    this.New = (this.randum + shajs('sha256').update(this.ChangePwdForm.controls['password'].value).digest('hex'))
-    console.log("user__berfore_", this.New);
-    this.model.password = shajs('sha256').update(this.New).digest('hex')
+    // this.New = (this.randum + shajs('sha256').update(this.ChangePwdForm.controls['password'].value).digest('hex'))
+    // console.log("user__berfore_", this.New);
+    this.model.password = shajs('sha256').update(this.ChangePwdForm.controls['password'].value).digest('hex')
 
     console.log("aftervalue___", this.model);
     // this.LoginService.ipaddress();
 
-    console.log(sessionStorage.getItem('loc'));
+    // console.log(sessionStorage.getItem('loc'));
     // stop here if form is invalid
     if (this.ChangePwdForm.invalid) {
       console.log('Error');
@@ -152,31 +153,28 @@ export class ChangePasswordComponent implements OnInit {
         // this.model.ipAddress = this.LoginService.ipAddress;
         console.log("berfooooooo", this.model);
 
-        this.ApiMethods.postresultservice(this.ApiService.signupurl, this.model).subscribe(result => {
+        this.ApiMethods.postresultservice(this.ApiService.ResetPassword, this.model).subscribe(result => {
           console.log("resulllllttt__", result);
 
-          // if (result) {
-          //   this.errorM = false
-          //   //  alert(result.errorCode + ' ' + result.userID + ' ' + result.treasuryName + ' ' + result.treasurycode + ' ' + result.userMobile );
-          //   // this.id = result.userID;
+          if (result.result.flag == 3) {
+            //  alert(result.errorCode + ' ' + result.userID + ' ' + result.treasuryName + ' ' + result.treasurycode + ' ' + result.userMobile );
+            // this.id = result.userID;
 
-          //   sessionStorage.setItem('token', result.result.token);
-          //   // sessionStorage.setItem('loc', result.treasuryName);
-          //   console.log(result);
-          //   // console.log(this.model);
-          //   // this.LoginService.loggedIn.next(true);
-          //   // this.LoginService.user.next(sessionStorage.getItem('token') || '{}');
-          //   // this.LoginService.TreName.next(sessionStorage.getItem('loc') || '{}');
-          //   // this.router.navigate(['/Home']);
-          //   this.router.navigate(['Challan']);
+            // sessionStorage.setItem('loc', result.treasuryName);
+            // console.log(this.model);
+            // this.LoginService.loggedIn.next(true);
+            // this.LoginService.user.next(sessionStorage.getItem('token') || '{}');
+            // this.LoginService.TreName.next(sessionStorage.getItem('loc') || '{}');
+            // this.router.navigate(['/Home']);
+            this.router.navigate(['']);
 
-          //   //alert(result.message)
+            //alert(result.message)
 
-          // }
-          // else {
-          //   alert(result);
-          //   this.message = 'Please check your userid and password';
-          // }
+          }
+          else {
+            alert(result);
+            this.message = 'Please check your userid and password';
+          }
         },
           // (error) => {
           //   console.log("errror message___", error);

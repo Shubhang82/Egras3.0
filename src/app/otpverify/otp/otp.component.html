@@ -29,7 +29,7 @@
 
             <div class="row justify-content-md-center">
                 <div class="col-md-6 text-center">
-                    <button mat-raised-button color="primary" type="submit" [disabled]="OtpForm.invalid" routerLink="/ChangePassword"
+                    <button mat-raised-button color="primary" type="submit" [disabled]="OtpForm.invalid" (click)="onSubmit()"
                          type="button" class="bt">Submit</button>
                 </div>
                 <div class="col-md-6 text-center">

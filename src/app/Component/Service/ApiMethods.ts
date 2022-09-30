@@ -121,7 +121,7 @@ export class ApiMethods {
 
   ///*** Error Handel ***///   
   private handleError(error: HttpErrorResponse) {
-    console.log("eroroomessage__", error.error.result.ErrorCode);
+    console.log("eroroomessage__", error);
     var result = error.error.result.ErrorCode
 
     let errormessage = ''

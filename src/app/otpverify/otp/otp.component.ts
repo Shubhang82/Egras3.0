@@ -17,7 +17,7 @@ export interface OtpV {
   selector: 'app-otp',
   templateUrl: './otp.component.html',
   // styleUrls: ['./otp.component.css']
-   styleUrls: ['../../Component/style.css']
+  styleUrls: ['../../Component/style.css']
 })
 export class OtpComponent implements OnInit {
 
@@ -63,46 +63,75 @@ export class OtpComponent implements OnInit {
 
   }
 
+  // onSubmit() {
+  //   console.log(this.OtpForm.value);
+  //   this.router.navigate(['ChangePassword']);
+
+  // }
+
   onSubmit() {
-    console.log(this.OtpForm.value);
-    this.router.navigate(['ChangePassword']);
-
-  }
-
-  onBack() {
     console.log(this.OtpForm.value);
     // this.router.navigate(['Challan']);
 
-    console.log("Hello OTP_Form",this.OtpForm.value);
+    console.log("Hello OTP_Form", this.OtpForm.value.input1);
     // this.Router.navigate(['passwordrecovery']);
 
- 
-      if (this.OtpForm.invalid) {
-        console.log('Error');
-        return;
-      }
-      else {
-        // alert(this.loginForm.valid);
-        if (this.OtpForm.valid) 
-        {
 
-            // this.model.ipAddress = this.LoginService.ipAddress;
-            console.log("OTP_Form is Valid", this.OtpForm);
+    if (this.OtpForm.invalid) {
+      console.log('Error');
+      return;
+    }
+    else {
+      alert()
+      if (this.OtpForm.valid) {
 
-            this.ApiMethods.postresultservice(this.ApiService.otpurl, this.OtpForm).subscribe(result => {
-              console.log("result-OTP", result);
-             // this.router.navigate(['ChangePassword']);
-          })
-         }
-        else {
-          alert('Captcha Failed');
+        // this.model.ipAddress = this.LoginService.ipAddress;
+        console.log("berfooooooo", this.OtpForm);
+        let value = this.OtpForm.value.input1 + this.OtpForm.value.input2 + this.OtpForm.value.input3 + this.OtpForm.value.input4 + this.OtpForm.value.input5 + this.OtpForm.value.input6;
+        console.log(value);
+
+        let data = {
+          "otp": value,
+          "userId": 710
         }
+        this.ApiMethods.postresultservice(this.ApiService.Otpurl, data).subscribe(result => {
+          console.log("resulllllttt__", result);
+
+          if (result.result.User = 1) {
+            //  alert(result.errorCode + ' ' + result.userID + ' ' + result.treasuryName + ' ' + result.treasurycode + ' ' + result.userMobile );
+            // this.id = result.userID;
+
+            // sessionStorage.setItem('token', result.result.token);
+            // sessionStorage.setItem('loc', result.treasuryName);
+            // console.log(result);
+            // console.log(this.model);
+            // this.LoginService.loggedIn.next(true);
+            // this.LoginService.user.next(sessionStorage.getItem('token') || '{}');
+            // this.LoginService.TreName.next(sessionStorage.getItem('loc') || '{}');
+            // this.router.navigate(['/Home']);
+            this.router.navigate(['ChangePassword']);
+
+            //alert(result.message)
+
+          }
+          else {
+            alert(result.result.User);
+            // this.message = 'Please check your userid and password';
+          }
+        })
+
+        //   sessionStorage.setItem('token', this.loginForm.controls['userid'].value);
+
       }
+      // else {
+      //   alert('Captcha Failed');
+      // }
+    }
   }
 
-  // onBack() {
-  //   this.router.navigate(['PasswordRecovery']);
-  // }
+  onBack() {
+    this.router.navigate(['PasswordRecovery']);
+  }
 
   // PDAccdata: MatTableDataSource<OtpV> = new MatTableDataSource();
   // displayedColumns = [
