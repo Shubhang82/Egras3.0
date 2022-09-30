@@ -5,7 +5,7 @@
     </div>
     <div class="col-md-6 col-sm-6 ">
         <form [formGroup]="OtpForm">
-            <p class="user text-center">OTP Verification</p>
+            <p class="user-OTP text-center">OTP Verification</p>
             <p class="user_code text-center">Code is send on 935XXXXXXX </p>
             <div class="col-md-12 ">
                 <img src="../../../assets/Images/otp.png" alt="login" class="otpimg"
@@ -30,10 +30,11 @@
             <div class="row justify-content-md-center">
                 <div class="col-md-6 text-center">
                     <button mat-raised-button color="primary" type="submit" [disabled]="OtpForm.invalid"
-                         type="button" class="bt">Submit</button>
+                         type="button" class="bt" (click)="onSubmit()">Submit</button>
                 </div>
                 <div class="col-md-6 text-center">
-                    <button mat-raised-button color="primary" type="submit" type="button" class="bt">Back</button>
+                      <button mat-raised-button color="primary" type="submit" type="button" class="bt" (click)="onBack()">Back</button>  
+                    <!-- <p> <a routerLink="/passwordrecovery" routerLinkActive="active" class="bt" mat-raised-button color="primary">Back</a></p> -->
                 </div>
             </div>
         </form>

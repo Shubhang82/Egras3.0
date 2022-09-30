@@ -90,7 +90,7 @@ textarea {
   border: aliceblue !important;
   margin-left: 5px;
   font-family: inherit;
-  font-size: 25pt;
+  font-size: 15pt !important;
   line-height: inherit;
   /* width: 50px !important; */
 }

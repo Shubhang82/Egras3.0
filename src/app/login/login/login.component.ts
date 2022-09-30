@@ -57,10 +57,10 @@ export class LoginComponent implements OnInit {
   loc: any;
   errorM: boolean = false;
   constructor(private formBuilder: FormBuilder, private router: Router, private ApiMethods: ApiMethods, private ApiService: ApiService) {
-    history.pushState(null, '', location.href);
-    window.onpopstate = function () {
-      history.go(1);
-    };
+    // history.pushState(null, '', location.href);
+    // window.onpopstate = function () {
+    //   history.go(1);
+    // };
   }
   ngOnInit() {
 
