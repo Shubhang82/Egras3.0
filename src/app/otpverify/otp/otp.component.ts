@@ -16,7 +16,8 @@ export interface OtpV {
 @Component({
   selector: 'app-otp',
   templateUrl: './otp.component.html',
-  styleUrls: ['./otp.component.css']
+  // styleUrls: ['./otp.component.css']
+   styleUrls: ['../../Component/style.css']
 })
 export class OtpComponent implements OnInit {
 
@@ -70,9 +71,38 @@ export class OtpComponent implements OnInit {
 
   onBack() {
     console.log(this.OtpForm.value);
-    this.router.navigate(['Challan']);
+    // this.router.navigate(['Challan']);
 
+    console.log("Hello OTP_Form",this.OtpForm.value);
+    // this.Router.navigate(['passwordrecovery']);
+
+ 
+      if (this.OtpForm.invalid) {
+        console.log('Error');
+        return;
+      }
+      else {
+        // alert(this.loginForm.valid);
+        if (this.OtpForm.valid) 
+        {
+
+            // this.model.ipAddress = this.LoginService.ipAddress;
+            console.log("OTP_Form is Valid", this.OtpForm);
+
+            this.ApiMethods.postresultservice(this.ApiService.otpurl, this.OtpForm).subscribe(result => {
+              console.log("result-OTP", result);
+             // this.router.navigate(['ChangePassword']);
+          })
+         }
+        else {
+          alert('Captcha Failed');
+        }
+      }
   }
+
+  // onBack() {
+  //   this.router.navigate(['PasswordRecovery']);
+  // }
 
   // PDAccdata: MatTableDataSource<OtpV> = new MatTableDataSource();
   // displayedColumns = [

@@ -87,7 +87,18 @@ mat-form-field {
   box-shadow: 0 0 0 0;
 }
 
-
+/* 
+input,
+optgroup,
+select,
+textarea {
+  background: border-box !important;
+  border: aliceblue !important;
+  margin-left: 5px;
+  font-family: inherit;
+  font-size: 15pt !important;
+  line-height: inherit;
+} */
 
 .error-msg {
   color: red;
