@@ -1,0 +1,131 @@
+.login .loginimg {
+  height: 50%;
+  width: 50%;
+}
+
+.user {
+  font-family: "Montserrat", sans-serif;
+  color: #051B77;
+  font-size: 30pt;
+  font-weight: 600;
+  padding-top: 50px;
+}
+
+.sub-text {
+  font-family: "Montserrat", sans-serif;
+  color: black;
+  font-size: 25pt;
+  font-weight: 400;
+  padding-top: 40px;
+  margin-inline: 30px;
+
+}
+
+.sub-text-head {
+  font-family: "Montserrat", sans-serif;
+  color: black;
+  font-size: 25pt;
+  font-weight: 400;
+  margin-inline: 30px;
+  color: white;
+  padding-block: 15px;
+  padding-inline: 20px;
+  background-color: #051B77;
+}
+
+.sub-text-info {
+  font-family: "Montserrat", sans-serif;
+  color: black;
+  font-size: 15pt;
+  font-weight: 700;
+  /* margin-inline: 30px; */
+  /* padding-block: 15px; */
+  padding-inline: 20px;
+}
+
+.userimg {
+  border-radius: 50px;
+}
+
+.row1 {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.padding-col {
+  padding-block: 30px;
+}
+
+.row-prof {
+  flex-direction: row;
+  display: flex;
+}
+
+.showDiv1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-block: 30px;
+  flex-direction: row;
+}
+
+.bt {
+  background-color: #051B77;
+  color: #DEE5FC;
+  border: none;
+  padding: 10px;
+  width: 5%px;
+  padding-inline: 30px;
+  height: 5%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  /* font-size: 16px; */
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 12px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 22pt;
+  /* margin-block: 15px; */
+}
+
+/*-------------------  table css-----------*/
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  background-color: #051B77;
+  border: 1px solid #051B77;
+}
+
+td {
+  border: 1px solid #051B77;
+}
+
+td,
+th {
+  text-align: center;
+  padding: 8px;
+  color: black;
+}
+
+tr,
+th {
+  text-align: center;
+  padding: 8px;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #DEE5FC;
+}
+
+tr:nth-child(odd) {
+  background-color: #DEE5FC;
+}

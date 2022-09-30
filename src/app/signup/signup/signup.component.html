@@ -1,245 +1,63 @@
-<!-- <mat-card>
-    <mat-card-content>
-        <div class="login">
-            <div class="row">
-                <div class="col-md-6">
-                    <img src="../../assets/Images/B (1000X1000)-01.jpg" alt="login" class="loginimg">
-                </div>
-
-                <div class="col-md-6">
-                    <p class="user">User SignUp</p>
-                    <form [formGroup]="loginForm" class="row gy-2 gx-3 align-items-center">
-                        <div class="row textI">
-                            <div class="row form-inline">
-                                <div class="inputs col-md-6">
-                                    <mat-form-field class="matform-styles" >
-
-                                        <input matInput type="text" placeholder="User name" formControlName="userid"
-                                            required>
-                                        <mat-error>
-                                            UserId is <strong>required</strong>
-                                        </mat-error>
-                                    </mat-form-field>
-
-                                </div>
-                                <div class="inputs col-md-6">
-                                    <mat-form-field class="matform-styles" >
-                                        <input matInput type="email" placeholder="Email Id" formControlName="email"
-                                            required>
-                                        <mat-error>
-                                            Email Id is <strong>required</strong>
-                                        </mat-error>
-                                    </mat-form-field>
-                                </div>
-                            </div>
-
-                            <div class="inputs col-md-6">
-                                <mat-form-field class="matform-styles" >
-                                    <input matInput type="password" placeholder="Password" formControlName="password"
-                                        required>
-                                    <mat-error>
-                                        Password is <strong>required</strong>
-                                    </mat-error>
-                                </mat-form-field>
-                            </div>
-                            <div class="inputs col-md-6">
-                                <mat-form-field class="matform-styles" >
-                                    <input matInput type="password" placeholder="Confirm Password"
-                                        formControlName="confirm" required>
-                                    <mat-error>
-                                        Confirm Password is <strong>required</strong>
-                                    </mat-error>
-                                </mat-form-field>
-                            </div>
-
-
-                            <div class="inputs col-md-6">
-                                <mat-form-field class="matform-styles" >
-                                    <input matInput type="text" placeholder="First Name" formControlName="first"
-                                        required>
-                                    <mat-error>
-                                        First Name is <strong>required</strong>
-                                    </mat-error>
-                                </mat-form-field>
-                            </div>
-                            <div class="inputs col-md-6">
-                                <mat-form-field class="matform-styles" >
-                                    <input matInput type="text" placeholder="Last Name" formControlName="last" required>
-                                    <mat-error>
-                                        Last Name is <strong>required</strong>
-                                    </mat-error>
-                                </mat-form-field>
-                            </div>
-                            <div class="inputs col-md-6">
-                                <mat-form-field class="matform-styles" >
-
-                                    <input matInput type="datetime" placeholder="Dob" formControlName="dob" required>
-                                    <mat-error>
-                                        Dob is <strong>required</strong>
-                                    </mat-error>
-                                </mat-form-field>
-                            </div>
-                            <div class="inputs col-md-6">
-                                <mat-form-field class="matform-styles" >
-                                    <input matInput type="text" placeholder="Address" formControlName="address"
-                                        required>
-                                    <mat-error>
-                                        Address is <strong>required</strong>
-                                    </mat-error>
-                                </mat-form-field>
-                            </div>
-                            <div class="inputs col-md-6">
-                                <mat-form-field class="matform-styles" >
-
-                                    <input matInput type="tel" placeholder="Mobile Number" maxlength="10"
-                                        formControlName="mobile" required>
-                                    <mat-error>
-                                        Mobile Number is <strong>required</strong>
-                                    </mat-error>
-                                </mat-form-field>
-                            </div>
-                            <div class="inputs col-md-6">
-                                <mat-form-field class="matform-styles" >
-                                    <input matInput type="tel" placeholder="PinCode" maxlength="6"
-                                        formControlName="pincode" required>
-                                    <mat-error>
-                                        Pincode is <strong>required</strong>
-                                    </mat-error>
-                                </mat-form-field>
-                            </div>
-
-
-                            <div class="inputs col-md-6">
-                                <mat-form-field class="matform-styles" >
-                                    <input matInput type="text" placeholder="City" formControlName="city"
-                                        formControlName="city" required>
-                                    <mat-error>
-                                        City is <strong>required</strong>
-                                    </mat-error>
-                                </mat-form-field>
-                            </div>
-                            <div class="inputs col-md-6">
-                                <mat-form-field class="matform-styles" >
-                                    <input matInput type="text" placeholder="TIN/Actt.No./VehicleNo/Taxid"
-                                        formControlName="tin" required>
-                                    <mat-error>
-                                        Tin/Actt.No./Vechicle No/Taxid is <strong>required</strong>
-                                    </mat-error>
-                                </mat-form-field>
-                            </div>
-                            <div class="inputs col-md-6">
-                                <mat-form-field class="matform-styles" >
-                                    <input matInput type="text" placeholder="Country" formControlName="country"
-                                        required>
-                                    <mat-error>
-                                        Country is <strong>required</strong>
-                                    </mat-error>
-                                </mat-form-field>
-                            </div>
-                            <div class="inputs col-md-6">
-                                <mat-form-field class="matform-styles" >
-                                    <input matInput type="text" placeholder="State" formControlName="state" required>
-                                    <mat-error>
-                                        State is <strong>required</strong>
-                                    </mat-error>
-                                </mat-form-field>
-                            </div>
-
-                            <div class="row">
-                                <div class="inputs col-md-6">
-                                    <mat-form-field class="matform-styles" >
-                                        <input matInput type="text" placeholder="Select Your Security Question"
-                                            formControlName="question" required>
-                                        <mat-error>
-                                            Select Your Security Question is <strong>required</strong>
-                                        </mat-error>
-                                    </mat-form-field>
-                                </div>
-                                <div class="inputs col-md-6">
-                                    <mat-form-field class="matform-styles" >
-                                        <input matInput type="text" placeholder="Answer" formControlName="answer"
-                                            required>
-                                        <mat-error>
-                                            Answer is <strong>required</strong>
-                                        </mat-error>
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="inputs col-md-6">
-                                    <mat-form-field class="matform-styles" >
-                                        <input matInput type="text" placeholder="Captch Code">
-                                    </mat-form-field>
-                                </div>
-                                <div class="inputs col-md-6">
-                                    <mat-form-field class="matform-styles" >
-                                        <input matInput type="text" placeholder="Enter Captch" formControlName="captcha"
-                                            required>
-                                        <mat-error>
-                                            Captcha is <strong>required</strong>
-                                        </mat-error>
-                                    </mat-form-field>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 text-center">
-                                <button mat-raised-button color="primary" type="button" (click)="onsubmit()"
-                                    [disabled]="loginForm.invalid" class="mat-raised-button" >SIGN UP</button>
-
-                            </div>
-                        </div>
-
-                    </form>
-                </div>
-
-            </div>
-        </div>
-    </mat-card-content>
-</mat-card> -->
-
-
 <div class="row">
     <div class="col-md-6 ">
         <img src="../../../assets/Images/B (1000X1000)-01.jpg" alt="login" class="loginimg">
     </div>
     <div class="col-md-6 col-sm-12 ">
-        <form [formGroup]="loginForm">
+        <form [formGroup]="loginForm"> 
             <p class="user text-center">User Registration</p>
-            <div class="inputs">
+            <div class="inputs" style="padding-top: 30px;">
                 <div class="row">
                     <div class="row justify-content-md-center col-md-6">
                         <div class="col-md-9">
                             <mat-form-field floatLabel="never" appearance="outline">
-                                <input matInput class="form-control" type="text" placeholder="UserName" name="userid"
-                                    required formControlName="userid" />
-                                <!-- <mat-error>
-                                    Username is required field
-                                </mat-error> -->
-                                <div *ngIf="userid && userid.invalid &&  userid.touched" class="text-danger">
+                                <div style="display:flex ; flex-direction:row">
+                                    <input matInput class="form-control" type="text" placeholder="UserName"
+                                        name="userid" required formControlName="userid" />
+                                    <div *ngIf="userflag==false">
+                                        <i class="material-icons" (click)="checkUser()"
+                                            title="Check Availablity">
+                                            check_circle
+                                        </i>
+                                    </div>
+                                    <div *ngIf="userflag==true">
+                                        <i class="material-icons"  (click)="checkUser()"
+                                            title="Check Availablity">
+                                            cancel
+                                        </i>
+                                    </div>
+                                    <i class="material-icons" (click)="checkUser()" title="Check Availablity">
+                                        search
+                                    </i>
+                                </div>
+
+                                <div *ngIf="userid && userid.invalid &&  userid.touched" class="text-danger error_msg">
                                     <div *ngIf="userid.errors?.['Required'] as error">
                                         {{error}}
                                     </div>
-                                    <!-- <div *ngIf="userid.errors?.['Numeric'] as error">
+                                    <div *ngIf="userid.errors?.['SpecialChar'] as error">
                                         {{error}}
                                     </div>
-                                    <div *ngIf="userid.errors?.['minLength'] as error">
-                                        {{error}}
-                                    </div> -->
                                 </div>
                             </mat-form-field>
                         </div>
+                        <!-- <div class="checkuser" (click)="checkUser()">
+                            <p> <a routerLinkActive="active">Check Availablity </a></p>
+                        </div> -->
+
+
+
                     </div>
                     <div class="row justify-content-md-center col-md-6">
                         <div class="col-md-9">
                             <mat-form-field floatLabel="never" appearance="outline">
+
                                 <input matInput class="form-control" type="email" placeholder="Email Id" name="email"
                                     required formControlName="email" />
+
                                 <!-- <mat-error>
                                     Email ID is required field
                                 </mat-error> -->
-                                <div *ngIf="email && email.invalid &&  email.touched" class="text-danger">
+                                <div *ngIf="email && email.invalid &&  email.touched" class="text-danger error_msg">
                                     <div *ngIf="email.errors?.['Required'] as error">
                                         {{error}}
                                     </div>
@@ -255,18 +73,29 @@
                     <div class="row justify-content-md-center col-md-6">
                         <div class="col-md-9">
                             <mat-form-field floatLabel="never" appearance="outline">
-                                <input matInput class="form-control" type="password" placeholder="Password"
-                                    name="password" required formControlName="password" />
-                                <!-- <mat-error>
-                                    Password is required field
-                                </mat-error> -->
-                                <div *ngIf="password && password.invalid &&  password.touched" class="text-danger">
-                                    <div *ngIf="password.errors?.['Required'] as error">
-                                        {{error}}
+                                <div style="display:flex ; flex-direction:row">
+
+                                    <input matInput class="form-control" type="text" placeholder="Password"
+                                        name="password" required formControlName="password" />
+                                    <i class="material-icons" (click)="openPopup()" title="Password Policy">
+                                        info
+                                    </i>
+                                </div>
+                                <div *ngIf="password && password.invalid &&  password.touched"
+                                    class="text-danger error_msg">
+                                    <div *ngIf="password.errors?.['required'] as error">
+                                        This is Required Field.
                                     </div>
-                                    <!-- <div *ngIf="Password.errors?.['ValidEmail'] as error">
+                                    <!-- <div *ngIf="password.errors?.['PasswordStrengthValidator'] as error">
                                         {{error}}
                                     </div> -->
+                                    <div *ngIf="password.errors?.['pattern'] as error">
+                                        <!-- {{error}} -->
+                                        Password not match with password policy.
+                                    </div>
+                                    <div *ngIf="password.errors?.['minLength'] as error">
+                                        {{error}}
+                                    </div>
                                 </div>
                             </mat-form-field>
                         </div>
@@ -276,13 +105,28 @@
                             <mat-form-field floatLabel="never" appearance="outline">
                                 <input matInput class="form-control" type="password" placeholder="Confirm Password"
                                     name="confirm" required formControlName="confirm" />
-                                <mat-error>
+                                <!-- <mat-error>
                                     Confirm Password is required field
-                                </mat-error>
+                                </mat-error> -->
+                                <div *ngIf="confirm && confirm.invalid &&  confirm.touched"
+                                    class="text-danger error_msg">
+                                    <div *ngIf="confirm.errors?.['Required'] as error">
+                                        This is Required Field.
+                                    </div>
+                                    <div *ngIf="confirm.errors?.['pattern'] as error">
+                                        Password not match with password policy.
+                                    </div>
+
+                                    <!-- <div *ngIf="confirm.errors?.['cannotContainSpace'] as error">
+                                        {{error}}
+                                    </div>
+                                    <div *ngIf="confirm.errors?.['maxLength'] as error">
+                                        {{error}}
+                                    </div> -->
+                                </div>
                             </mat-form-field>
                         </div>
                     </div>
-
                 </div>
                 <div class="row">
                     <div class="row justify-content-md-center col-md-6">
@@ -293,15 +137,11 @@
                                 <!-- <mat-error>
                                     First Name is required field
                                 </mat-error> -->
-                                <div *ngIf="first && first.invalid &&  first.touched" class="text-danger">
+                                <div *ngIf="first && first.invalid &&  first.touched" class="text-danger error_msg">
                                     <div *ngIf="first.errors?.['Required'] as error">
                                         {{error}}
                                     </div>
-                                    
-                                    <div *ngIf="first.errors?.['minLength'] as error">
-                                        {{error}}
-                                    </div>
-                                    <div *ngIf="first.errors?.['cannotContainSpace'] as error">
+                                    <div *ngIf="first.errors?.['Alphabet'] as error">
                                         {{error}}
                                     </div>
                                     <div *ngIf="first.errors?.['maxLength'] as error">
@@ -316,9 +156,20 @@
                             <mat-form-field floatLabel="never" appearance="outline">
                                 <input matInput class="form-control" type="text" placeholder="Last Name" name="last"
                                     required formControlName="last" />
-                                <mat-error>
+                                <!-- <mat-error>
                                     Last Name is required field
-                                </mat-error>
+                                </mat-error> -->
+                                <div *ngIf="last && last.invalid &&  last.touched" class="text-danger error_msg">
+                                    <div *ngIf="last.errors?.['Required'] as error">
+                                        {{error}}
+                                    </div>
+                                    <div *ngIf="last.errors?.['Alphabet'] as error">
+                                        {{error}}
+                                    </div>
+                                    <div *ngIf="last.errors?.['maxLength'] as error">
+                                        {{error}}
+                                    </div>
+                                </div>
                             </mat-form-field>
                         </div>
                     </div>
@@ -329,9 +180,14 @@
                             <mat-form-field floatLabel="never" appearance="outline">
                                 <input matInput class="form-control" type="date" placeholder="Dob" name="dob" required
                                     formControlName="dob" />
-                                <mat-error>
+                                <!-- <mat-error>
                                     Dob is required field
-                                </mat-error>
+                                </mat-error> -->
+                                <div *ngIf="dob && dob.invalid &&  dob.touched" class="text-danger error_msg">
+                                    <div *ngIf="dob.errors?.['Required'] as error">
+                                        {{error}}
+                                    </div>
+                                </div>
                             </mat-form-field>
                         </div>
                     </div>
@@ -340,9 +196,18 @@
                             <mat-form-field floatLabel="never" appearance="outline">
                                 <input matInput class="form-control" type="text" placeholder="Address" name="address"
                                     required formControlName="address" />
-                                <mat-error>
+                                <!-- <mat-error>
                                     Address is required field
-                                </mat-error>
+                                </mat-error> -->
+                                <div *ngIf="address && address.invalid &&  address.touched"
+                                    class="text-danger error_msg">
+                                    <div *ngIf="address.errors?.['Required'] as error">
+                                        {{error}}
+                                    </div>
+                                    <div *ngIf="address.errors?.['maxLength'] as error">
+                                        {{error}}
+                                    </div>
+                                </div>
                             </mat-form-field>
                         </div>
                     </div>
@@ -356,16 +221,24 @@
                                 <!-- <mat-error>
                                     Mobile Number is required field
                                 </mat-error> -->
-                                <div *ngIf="mobile && mobile.invalid &&  mobile.touched" class="text-danger">
+                                <div *ngIf="mobile && mobile.invalid &&  mobile.touched" class="text-danger error_msg">
                                     <div *ngIf="mobile.errors?.['Required'] as error">
                                         {{error}}
                                     </div>
                                     <div *ngIf="mobile.errors?.['Numeric'] as error">
                                         {{error}}
                                     </div>
+                                    <div *ngIf="mobile.errors?.['StartWith0'] as error">
+                                        {{error}}
+                                    </div>
                                     <div *ngIf="mobile.errors?.['minLength'] as error">
                                         {{error}}
                                     </div>
+                                    <div *ngIf="mobile.errors?.['maxLength'] as error">
+                                        {{error}}
+                                    </div>
+
+
                                 </div>
                             </mat-form-field>
                         </div>
@@ -374,10 +247,28 @@
                         <div class="col-md-9">
                             <mat-form-field floatLabel="never" appearance="outline">
                                 <input matInput class="form-control" type="tel" placeholder="PinCode" name="pincode"
-                                    maxlength="6" required formControlName="pincode" />
-                                <mat-error>
+                                    required formControlName="pincode" />
+                                <!-- <mat-error>
                                     Pincode is required field
-                                </mat-error>
+                                </mat-error> -->
+                                <div *ngIf="pincode && pincode.invalid &&  pincode.touched"
+                                    class="text-danger error_msg">
+                                    <div *ngIf="pincode.errors?.['Required'] as error">
+                                        {{error}}
+                                    </div>
+                                    <div *ngIf="pincode.errors?.['Numeric'] as error">
+                                        {{error}}
+                                    </div>
+                                    <div *ngIf="pincode.errors?.['StartWith0'] as error">
+                                        {{error}}
+                                    </div>
+                                    <div *ngIf="pincode.errors?.['minLength'] as error">
+                                        {{error}}
+                                    </div>
+                                    <div *ngIf="pincode.errors?.['maxLength'] as error">
+                                        {{error}}
+                                    </div>
+                                </div>
                             </mat-form-field>
                         </div>
                     </div>
@@ -388,9 +279,17 @@
                             <mat-form-field floatLabel="never" appearance="outline">
                                 <input matInput class="form-control" type="text" placeholder="TIN/Actt.No./VehicleNo"
                                     name="tin" required formControlName="tin" />
-                                <mat-error>
+                                <!-- <mat-error>
                                     Tin is required field
-                                </mat-error>
+                                </mat-error> -->
+                                <div *ngIf="tin && tin.invalid &&  tin.touched" class="text-danger error_msg">
+                                    <div *ngIf="tin.errors?.['Required'] as error">
+                                        {{error}}
+                                    </div>
+                                    <!-- <div *ngIf="last.errors?.['ValidEmail'] as error">
+                                        {{error}}
+                                    </div> -->
+                                </div>
                             </mat-form-field>
                         </div>
                     </div>
@@ -431,7 +330,8 @@
                             <div class="container">
                                 <select (change)="selectState($event)">
                                     <option value="Select State">Select State</option>
-                                    <option *ngFor="let state of State" value="{{state.id}}">{{state.name}} </option>
+                                    <option *ngFor="let state of State" value="{{state.Id}}">{{state.StateName}}
+                                    </option>
                                 </select>
                             </div>
                             <div *ngIf="valError.state" class="errordrop">
@@ -441,23 +341,35 @@
                     </div>
                     <div class="row justify-content-md-center col-md-6">
                         <div class="col-md-9">
-                            <div class="container">
-                                <select (change)="selectCity($event)">
-                                    <option value="Select City">Select City</option>
-                                    <option *ngFor="let city of City" value="{{city.id}}">{{city.name}} </option>
-                                </select>
-                            </div>
-                            <div *ngIf="valError.city" class="errordrop">
-                                <label> {{valErrorM.city}}</label>
-                            </div>
+                            <mat-form-field floatLabel="never" appearance="outline">
+                                <input matInput class="form-control" type="text" placeholder="CIty" name="city" required
+                                    formControlName="city" />
+                                <!-- <mat-error>
+                                    Answer is required field
+                                </mat-error> -->
+                                <div *ngIf="city && city.invalid &&  city.touched" class="text-danger error_msg">
+                                    <div *ngIf="city.errors?.['Required'] as error">
+                                        {{error}}
+                                    </div>
+                                    <div *ngIf="city.errors?.['Alphabet'] as error">
+                                        {{error}}
+                                    </div>
+                                    <div *ngIf="city.errors?.['maxLength'] as error">
+                                        {{error}}
+                                    </div>
+                                    <div *ngIf="city.errors?.['minLength'] as error">
+                                        {{error}}
+                                    </div>
+                                </div>
+                            </mat-form-field>
                         </div>
                     </div>
                 </div>
-                <div class="row " style="margin-top:25px ;">
+                <div class="row ">
                     <div class="row justify-content-md-center col-md-6">
                         <div class="col-md-9">
                             <div class="container">
-                                <select (change)="selectQuestion($event)">
+                                <select (change)="selectQuestion($event)" >
                                     <option value="Select Your Security Question">Select Your Security Question</option>
                                     <option *ngFor="let question of Question" value="{{question.id}}">{{question.name}}
                                     </option>
@@ -473,9 +385,17 @@
                             <mat-form-field floatLabel="never" appearance="outline">
                                 <input matInput class="form-control" type="text" placeholder="Answer" name="answer"
                                     required formControlName="answer" />
-                                <mat-error>
+                                <!-- <mat-error>
                                     Answer is required field
-                                </mat-error>
+                                </mat-error> -->
+                                <div *ngIf="answer && answer.invalid &&  answer.touched" class="text-danger error_msg">
+                                    <div *ngIf="answer.errors?.['Required'] as error">
+                                        {{error}}
+                                    </div>
+                                    <div *ngIf="answer.errors?.['maxLength'] as error">
+                                        {{error}}
+                                    </div>
+                                </div>
                             </mat-form-field>
                         </div>
                     </div>
@@ -502,9 +422,34 @@
                         (click)="onsubmit()" type="button" class="bt">SIGNUP</button>
                 </div>
             </div>
-            <!-- <div class="text-center">
-          <p>New User? <a routerLink="/Signup" routerLinkActive="active">Sign </a></p>
-        </div> -->
+
+            <div class="text-center navlink">
+                <h3>
+                    <p>Already have an account? <a routerLink="/" routerLinkActive="active">SignIn </a></p>
+                </h3>
+            </div>
         </form>
+    </div>
+    <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Password Policy</h4>
+                </div>
+                <div class="modal-body">
+                    <li>Password should contain atleast 6 characters.</li>
+                    <li>Password should contain atleast one numeric digit.</li>
+                    <li>Password should contain atleast one Capital Letter.</li>
+                    <li>Password should contain atleast one special character from !@#$*_-~=.</li>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" (click)="closePopup()">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

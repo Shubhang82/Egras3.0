@@ -1,5 +1,31 @@
-<p>challan works!</p>
+<div style="margin: 30px">
+
+    <table>
+        <tr>
+            <th>Sr.no</th>
+            <th>Challan Date</th>
+            <th>GRN</th>
+            <th>Status</th>
+            <th>Payment Type</th>
+            <th>Amount</th>
+            <th>Repeat</th>
+            <th>View</th>
+            <th></th>
+            <th></th>
 
 
-
-test
+        </tr>
+        <tr *ngFor="let student of students">
+            <td>{{ student.id }}</td>
+            <td>{{ student.ChallanDate }}</td>
+            <td>{{ student.Grn }}</td>
+            <td>{{ student.Status }}</td>
+            <td>{{ student.PaymentType }}</td>
+            <td>{{ student.Amount }}</td>
+            <td>Repeat</td>
+            <td>View</td>
+            <td>{{student.Verify}}</td>
+            <td></td>
+        </tr>
+    </table>
+</div>

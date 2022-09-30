@@ -84,7 +84,7 @@ width: 100%;
 {
   font-family: "Montserrat", sans-serif;
   color: #051B77;
-  font-size: 50pt;
+  font-size: 40pt;
   font-weight: 800;
   padding-top: 50px;
 }
@@ -93,12 +93,13 @@ width: 100%;
 {
   display: block;
   background: #DEE5FC;
-  height: 100px;
-  width: 80%;
-  font-size: 39pt;
+  width: 100%;
+  
+  font-size: 25pt;
   font-family: "Montserrat", sans-serif;
   border-radius: 59px;
-  border-color: #DEE5FC;
+  border-color: #DEE5FC; 
+
 } 
 mat-form-field {
   display: block;
@@ -106,7 +107,7 @@ mat-form-field {
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline
 {
   background: #DEE5FC;
-   font-size: 39pt;
+   font-size: 25pt;
    font-family: "Montserrat", sans-serif;
    border-color: #DEE5FC;
    border-radius: 59px;
@@ -124,11 +125,12 @@ mat-form-field {
 }
 
 ::ng-deep .mat-form-field input  {
-   background-color: #DEE5FC;
-  font-size: 39pt;
-  padding-left: 10%;
-  width: 80%;
-  border: #DEE5FC;
+   background-color: #DEE5FC !important;
+  /* font-size: 5pt; */
+  height: 60%;
+  padding-left: 7% !important;
+  width: 80% !important;
+  border: #DEE5FC !important;
 }
 ::ng-deep .mat-form-field-flex > .mat-form-field-infix { padding: 3% 0px !important;}
 
@@ -143,8 +145,9 @@ mat-form-field {
 .material-icons
 { 
   position: absolute;
-  font-size: 350%;
+  font-size: 250%;
   color: #051B77;
+  bottom: 10px;
 }
 
 .keepME
@@ -181,16 +184,16 @@ color: #DEE5FC;
   background-color: #051B77; 
   color: #DEE5FC;
   border: none;
-  padding: 15px;
+  padding: 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  /* font-size: 16px; */
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 12px;
   font-family: "Montserrat", sans-serif;
-  font-size: 30pt;
+  font-size: 22pt;
 }
 
 #Captcha
@@ -200,6 +203,17 @@ color: #DEE5FC;
   background-repeat: no-repeat;
   background-position: center;
 }
-
+.navlink
+{
+  font-family: "Montserrat", sans-serif;
+  color: black;
+  font-size: 18.28pt;
+  margin-block: 10px;
+}
+.error_msg  {
+  /* font-size: 18px; */
+  /* top: 30px; */
+  margin-left: 45px;
+}
 
 

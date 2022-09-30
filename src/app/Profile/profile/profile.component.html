@@ -1,0 +1,165 @@
+<div>
+    <p class="user text-center">Welcome: ramkumar</p>
+    <div class="row1">
+        <div class=" row1" style="margin-left:170px ;">
+            <p class="sub-text">Date: 28-05-2012</p>
+            <p class="sub-text">Time: 3:58:02</p>
+        </div>
+        <p class="sub-text" style="cursor: pointer;">Logout</p>
+    </div>
+    <div class="row1 padding-col">
+        <p class="sub-text-head">Login Info</p>
+    </div>
+    <div class="row-prof" style="  padding-left: 30px;">
+        <img src="https://cdn-icons-png.flaticon.com/512/21/21104.png" alt="login" class="userimg"
+            style="height: 4%; width:4%">
+        <p class="sub-text">ramkumar</p>
+    </div>
+    <img src="../../../assets/Images/line.png" alt="login" class="otpimg" style="height: 100%; width:100%">
+    <div style="margin-block:20px">
+        <div class="row-prof">
+            <p class="sub-text-info">Last Successful Login:-</p>
+            <p class="sub-text-info" style="padding-inline: 32px;"> 28-05-2012</p>
+        </div>
+        <div class="row-prof">
+            <p class="sub-text-info">Last Failure Login:-</p>
+            <p class="sub-text-info" style="padding-inline: 68px;"> 28-05-2012</p>
+        </div>
+        <div class="row-prof">
+            <p class="sub-text-info">Last Change Password:-</p>
+            <p class="sub-text-info"> 28-05-2012</p>
+        </div>
+
+    </div>
+    <img src="../../../assets/Images/line.png" alt="login" class="otpimg" style="height: 100%; width:100%">
+    <div class="row1 padding-col">
+        <p class="sub-text-head">Profile</p>
+    </div>
+
+    <div style="font-size: 15pt; justify-content: space-between;align-items: center;" class="text-center">
+        <label style="margin-inline: 20px;">
+            <input [value]="1" [(ngModel)]="isVisible" [ngModelOptions]="{standalone: true}" name="isVisible"
+                type="radio" [checked]="isSelected" /> Profile Challan
+        </label>
+
+        <label style="margin-inline: 20px;">
+            <input [value]="2" [(ngModel)]="isVisible" [ngModelOptions]="{standalone: true}" name="isVisible"
+                type="radio" [checked]="!isSelected" /> Service Challan
+        </label>
+    </div>
+    <!-- <ng-select [items]="fruits" appendTo="body" formControlName="fruitNames" placeholder="Select Fruits"></ng-select> -->
+
+
+
+
+
+    <div class="showDiv1" *ngIf="isVisible == 1">
+        <div
+            style="display:flex; justify-content: center;align-items: center;margin-block: 30px; flex-direction: row;flex: 1;">
+            <label>
+                <p class="sub-text-info" style="margin-block: 30px;">Profile List:-</p>
+            </label>
+            <ng-select [items]="profile" bindLabel="name" bindValue="name" placeholder="Select Profile"
+                style="width: 20%;" [(ngModel)]="selectedCityName">
+
+                <ng-template ng-label-tmp let-item="item">
+                    <img height="15" width="15" [src]="item.avatar" />
+                    <b>{{item.name}}</b>
+                </ng-template>
+                <ng-template ng-option-tmp let-item="item" let-index="index">
+                    <img height="15" width="15" [src]="item.avatar" />
+                    <b>{{item.name}}</b>
+                </ng-template>
+
+            </ng-select>
+        </div>
+        <p class="sub-text" style="cursor: pointer;color: #051B77;   text-decoration:underline;">Create profile</p>
+
+    </div>
+    <div class="showDiv1" *ngIf="isVisible == 2">
+        <div class="showDiv1" style="margin-inline: 50px;">
+            <label>
+                <p class="sub-text-info" style="margin-block: 30px;">Department:-</p>
+            </label>
+            <ng-select [items]="Department" bindLabel="name" bindValue="name" placeholder="Select Department"
+                style="width: 200%;flex: .5; " [(ngModel)]="selectedDepartmentName">
+
+                <ng-template ng-label-tmp let-item="item">
+                    <img height="15" width="15" [src]="item.avatar" />
+                    <b>{{item.name}}</b>
+                </ng-template>
+                <ng-template ng-option-tmp let-item="item" let-index="index">
+                    <img height="15" width="15" [src]="item.avatar" />
+                    <b>{{item.name}}</b>
+                </ng-template>
+
+            </ng-select>
+        </div>
+        <div class="showDiv1">
+            <label>
+                <p class="sub-text-info" style="margin-block: 30px;">Service:-</p>
+            </label>
+            <ng-select [items]="Service" bindLabel="name" bindValue="name" placeholder="Select Service"
+                style="width: 100%; flex:.9" [(ngModel)]="selectedServiceName">
+
+                <ng-template ng-label-tmp let-item="item">
+                    <img height="15" width="15" [src]="item.avatar" />
+                    <b>{{item.name}}</b>
+                </ng-template>
+                <ng-template ng-option-tmp let-item="item" let-index="index">
+                    <img height="15" width="15" [src]="item.avatar" />
+                    <b>{{item.name}}</b>
+                </ng-template>
+
+            </ng-select>
+        </div>
+    </div>
+    <!-- <div class="row-prof">
+        <div class="row1 padding-col" style="cursor: pointer;">
+            <p class="sub-text-head">Show Last 10 Transaction</p>
+        </div>
+        <button mat-raised-button color="primary" type="submit" class="bt" 
+            type="button" class="bt">Continue</button>
+    </div> -->
+    <div style="margin-top: 100px;">
+        <div class="row1 padding-col" style="cursor: pointer;" (click)="onTransaction()">
+            <p class="sub-text-head">Show Last 10 Transaction</p>
+        </div>
+        <div *ngIf="showtrans">
+            <table>
+                <tr>
+                    <th>Sr.no</th>
+                    <th>Challan Date</th>
+                    <th>GRN</th>
+                    <th>Status</th>
+                    <th>Payment Type</th>
+                    <th>Amount</th>
+                    <th>Repeat</th>
+                    <th>View</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr *ngFor="let student of students">
+                    <td>{{ student.id }}</td>
+                    <td>{{ student.ChallanDate }}</td>
+                    <td>{{ student.Grn }}</td>
+                    <td>{{ student.Status }}</td>
+                    <td>{{ student.PaymentType }}</td>
+                    <td>{{ student.Amount }}</td>
+                    <td>Repeat</td>
+                    <td>View</td>
+                    <td>{{student.Verify}}</td>
+                    <td></td>
+                </tr>
+            </table>
+            <div style="width: 100%; " (click)="onclosetrans()">
+                <p
+                    style="cursor: pointer; text-align: center; height: 50%; font-size: 10pt; background-color: #DEE5FC;">
+                    Click here to hide</p>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>

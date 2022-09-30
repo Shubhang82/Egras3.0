@@ -8,7 +8,7 @@
 .user {
   font-family: "Montserrat", sans-serif;
   color: #051B77;
-  font-size: 50pt;
+  font-size: 40pt;
   font-weight: 800;
   padding-top: 30px;
 }
@@ -38,7 +38,14 @@ mat-form-field {
   border-radius: 40px 0 0 40px !important;
   min-width: 40px !important;
 }
-
+.material-icons
+{ 
+  /* position: absolute; */
+  /* font-size: 350%; */
+  color: #051B77;
+  cursor: pointer;
+  /* width: ; */
+}
 ::ng-deep .mat-form-field-outline-end {
   border-radius: 0 40px 40px 0 !important;
 }
@@ -79,25 +86,40 @@ mat-form-field {
   margin-bottom: 10px;
   text-align: center;
 }
+.navlink
+{
+  font-family: "Montserrat", sans-serif;
+  color: black;
+  font-size: 18.28pt;
+  margin-block: 10px;
+}
+
 
 
 .bt {
   background-color: #051B77;
   color: #DEE5FC;
   border: none;
-  padding: 15px;
+  padding: 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 12px;
   font-family: "Montserrat", sans-serif;
-  font-size: 30pt;
+  font-size: 22pt;
 }
 .errordrop {
   color: red;
   margin-left: 10px;
 }
-
+.error_msg {
+  margin-left: 5px;
+}
+.checkuser {
+  padding-left: 80px;
+  cursor: pointer;
+  color: blue;
+  text-underline-position: under;
+}

@@ -16,8 +16,9 @@ export class AppComponent {
       sessionStorage.clear();
 
       console.log("page reloadd");
-      
+
     }
+    
   }
 
 }
