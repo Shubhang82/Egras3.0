@@ -304,9 +304,9 @@ export class SignupComponent implements OnInit {
 
 
       //sha256 conversion
-      this.New = (this.randum + shajs('sha256').update(this.loginForm.controls['password'].value).digest('hex'))
-      console.log("user__berfore_", this.New);
-      this.model.password = shajs('sha256').update(this.New).digest('hex')
+      // this.New = (this.randum + shajs('sha256').update(this.loginForm.controls['password'].value).digest('hex'))
+      // console.log("user__berfore_", this.New);
+      this.model.password = shajs('sha256').update(this.loginForm.controls['password'].value).digest('hex')
 
       console.log("aftervalue___", this.model);
       // this.LoginService.ipaddress();
@@ -327,28 +327,25 @@ export class SignupComponent implements OnInit {
           this.ApiMethods.postresultservice(this.ApiService.signupurl, this.model).subscribe(result => {
             console.log("resulllllttt__", result);
 
-            // if (result) {
-            //   this.errorM = false
-            //   //  alert(result.errorCode + ' ' + result.userID + ' ' + result.treasuryName + ' ' + result.treasurycode + ' ' + result.userMobile );
-            //   // this.id = result.userID;
+            if (result) {
+              //  alert(result.errorCode + ' ' + result.userID + ' ' + result.treasuryName + ' ' + result.treasurycode + ' ' + result.userMobile );
+              // this.id = result.userID;
 
-            //   sessionStorage.setItem('token', result.result.token);
-            //   // sessionStorage.setItem('loc', result.treasuryName);
-            //   console.log(result);
-            //   // console.log(this.model);
-            //   // this.LoginService.loggedIn.next(true);
-            //   // this.LoginService.user.next(sessionStorage.getItem('token') || '{}');
-            //   // this.LoginService.TreName.next(sessionStorage.getItem('loc') || '{}');
-            //   // this.router.navigate(['/Home']);
-            //   this.router.navigate(['Challan']);
+              // sessionStorage.setItem('loc', result.treasuryName);
+              console.log(result);
+              // console.log(this.model);
+              // this.LoginService.loggedIn.next(true);
+              // this.LoginService.user.next(sessionStorage.getItem('token') || '{}');
+              // this.LoginService.TreName.next(sessionStorage.getItem('loc') || '{}');
+              this.router.navigate(['']);
 
-            //   //alert(result.message)
+              //alert(result.message)
 
-            // }
-            // else {
-            //   alert(result);
-            //   this.message = 'Please check your userid and password';
-            // }
+            }
+            else {
+              alert(result);
+              this.message = 'Please check your userid and password';
+            }
           },
             // (error) => {
             //   console.log("errror message___", error);

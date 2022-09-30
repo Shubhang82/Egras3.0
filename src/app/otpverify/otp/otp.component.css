@@ -1,7 +1,20 @@
+input,
+optgroup,
+select,
+textarea {
+  background: border-box !important;
+  border: aliceblue !important;
+  margin-left: 5px;
+  font-family: inherit;
+  font-size: 25pt !important;
+  line-height: inherit;
+  /* width: 50px !important; */
+}
 .login .loginimg {
   height: 50%;
   width: 50%;
 }
+
 
 .user {
   font-family: "Montserrat", sans-serif;
@@ -43,22 +56,14 @@ mat-form-field {
 .container {
   background: #DEE5FC;
   margin-top: 5px;
-  border-radius: 59px;
+  /* border-radius: 59px; */
   padding: 10px;
 }
 
-::ng-deep .mat-form-field-outline-start {
-  /* border-radius: 40px 0 0 40px !important; */
-  min-width: 40px !important;
-}
-
-::ng-deep .mat-form-field-outline-end {
-  /* border-radius: 0 40px 40px 0 !important; */
-}
 
 ::ng-deep .mat-form-field input {
   background-color: #DEE5FC;
-  font-size: 25pt;
+  font-size: 15pt;
   padding-left: 2%;
   width: 100%;
   border: #DEE5FC;
@@ -82,18 +87,7 @@ mat-form-field {
   box-shadow: 0 0 0 0;
 }
 
-input,
-optgroup,
-select,
-textarea {
-  background: border-box !important;
-  border: aliceblue !important;
-  margin-left: 5px;
-  font-family: inherit;
-  font-size: 25pt;
-  line-height: inherit;
-  /* width: 50px !important; */
-}
+
 
 .error-msg {
   color: red;

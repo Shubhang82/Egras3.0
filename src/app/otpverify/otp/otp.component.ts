@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChildren } from '@angular/core';
+import { Component, OnInit, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { ApiService } from 'src/app/Component/Service/utility.service';
@@ -29,8 +29,15 @@ export class OtpComponent implements OnInit {
 
   }
 
-  constructor() {
+  // constructor() {
+  // }
+  constructor(private formBuilder: FormBuilder, private router: Router, private ApiService: ApiService, private ApiMethods: ApiMethods,) {
+    history.pushState(null, '', location.href);
+    window.onpopstate = function () {
+      history.go(1);
+    };
     this.OtpForm = this.toFormGroup(this.formInput);
+
   }
 
   toFormGroup(elements) {
@@ -45,11 +52,11 @@ export class OtpComponent implements OnInit {
   keyUpEvent(event, index) {
     let pos = index;
     if (event.keyCode === 8 && event.which === 8) {
-      pos = index - 1 ;
+      pos = index - 1;
     } else {
-      pos = index + 1 ;
+      pos = index + 1;
     }
-    if (pos > -1 && pos < this.formInput.length ) {
+    if (pos > -1 && pos < this.formInput.length) {
       this.rows._results[pos].nativeElement.focus();
     }
 
@@ -57,7 +64,16 @@ export class OtpComponent implements OnInit {
 
   onSubmit() {
     console.log(this.OtpForm.value);
+    this.router.navigate(['ChangePassword']);
+
   }
+
+  onBack() {
+    console.log(this.OtpForm.value);
+    this.router.navigate(['Challan']);
+
+  }
+
   // PDAccdata: MatTableDataSource<OtpV> = new MatTableDataSource();
   // displayedColumns = [
   //   'otp',

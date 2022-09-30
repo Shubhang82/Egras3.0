@@ -21,6 +21,8 @@ import { PasswordRecoveryComponent } from './PasswordRecovery/password-recovery/
  
 import { ChangePasswordComponent } from './ChangePassword/change-password/change-password.component';
 import { OtpComponent } from './otpverify/otp/otp.component';
+import { ProfileComponent } from './Profile/profile/profile.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -30,9 +32,11 @@ import { OtpComponent } from './otpverify/otp/otp.component';
     PasswordRecoveryComponent,
     ChangePasswordComponent,
     OtpComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
+    NgSelectModule,
     AppRoutingModule,
     LoginModule,
     BrowserAnimationsModule,

@@ -5,7 +5,7 @@
     <div class="col-md-6 col-sm-12 ">
         <form [formGroup]="loginForm"> 
             <p class="user text-center">User Registration</p>
-            <div class="inputs">
+            <div class="inputs" style="padding-top: 30px;">
                 <div class="row">
                     <div class="row justify-content-md-center col-md-6">
                         <div class="col-md-9">
@@ -369,7 +369,7 @@
                     <div class="row justify-content-md-center col-md-6">
                         <div class="col-md-9">
                             <div class="container">
-                                <select (change)="selectQuestion($event)">
+                                <select (change)="selectQuestion($event)" >
                                     <option value="Select Your Security Question">Select Your Security Question</option>
                                     <option *ngFor="let question of Question" value="{{question.id}}">{{question.name}}
                                     </option>

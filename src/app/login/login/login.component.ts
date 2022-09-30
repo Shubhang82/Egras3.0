@@ -87,7 +87,11 @@ export class LoginComponent implements OnInit {
     this.randum = this.getRandomInt(1, 9999999999);
 
     // this.model.userId = this.loginForm.controls['user']
+    console.log("randommm__dd", this.randum);
+
     this.model.userId = this.loginForm.controls['userid'].value;
+    console.log("passworddd__data", this.loginForm.controls['password'].value);
+    console.log("sha_222", shajs('sha256').update(this.loginForm.controls['password'].value).digest('hex'));
 
     this.model.rnd = this.randum
     //sha256 conversion
@@ -113,7 +117,7 @@ export class LoginComponent implements OnInit {
         this.ApiMethods.postresultservice(this.ApiService.loginurl, this.model).subscribe(result => {
           console.log("resulllllttt__", result.result.token);
 
-          if (result) {
+          if (result.result.ErrorCode == 0) {
             this.errorM = false
             //  alert(result.errorCode + ' ' + result.userID + ' ' + result.treasuryName + ' ' + result.treasurycode + ' ' + result.userMobile );
             // this.id = result.userID;
@@ -126,7 +130,7 @@ export class LoginComponent implements OnInit {
             // this.LoginService.user.next(sessionStorage.getItem('token') || '{}');
             // this.LoginService.TreName.next(sessionStorage.getItem('loc') || '{}');
             // this.router.navigate(['/Home']);
-            this.router.navigate(['Challan']);
+            this.router.navigate(['Profile']);
 
             //alert(result.message)
 
