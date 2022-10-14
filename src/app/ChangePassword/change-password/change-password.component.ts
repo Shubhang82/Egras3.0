@@ -10,6 +10,7 @@ import * as shajs from 'sha.js';
 import { List } from '../../Component/ListDrop'
 import * as Val from '../../Component/Utility/Validators/ValBarrel'
 import { MatTableDataSource } from '@angular/material/table';
+import { Location } from '@angular/common'
 
 export interface PDAcc {
   password: string;
@@ -29,8 +30,8 @@ export class ChangePasswordComponent implements OnInit {
 
   model: IChangePassword = {
     password: "",
-    userId: "710",
-    loginId: "ramkumar"
+    userId: "",
+    loginId: ""
 
   };
   hash: any;
@@ -45,7 +46,7 @@ export class ChangePasswordComponent implements OnInit {
   // errorM: boolean = false;
   randum!: string;
   displayStyle = "none";
-  constructor(private formBuilder: FormBuilder, private router: Router, private ApiMethods: ApiMethods, private ApiService: ApiService, private List: List) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private ApiMethods: ApiMethods, private ApiService: ApiService, private List: List,private locat: Location) {
     history.pushState(null, '', location.href);
     window.onpopstate = function () {
       history.go(1);
@@ -79,7 +80,9 @@ export class ChangePasswordComponent implements OnInit {
   checkUser() {
     alert('User Available')
   }
-
+  back(): void {
+    this.loc.back()
+  }
 
 
   // MustMatch(controlName: string, matchingControlName: string) {
@@ -129,13 +132,16 @@ export class ChangePasswordComponent implements OnInit {
   onsubmit() {
 
     this.randum = this.getRandomInt(1, 9999999999);
-
-
-
     //sha256 conversion
-    // this.New = (this.randum + shajs('sha256').update(this.ChangePwdForm.controls['password'].value).digest('hex'))
-    // console.log("user__berfore_", this.New);
     this.model.password = shajs('sha256').update(this.ChangePwdForm.controls['password'].value).digest('hex')
+
+    //get storage data
+    let User_data = localStorage.getItem('user_ID');
+    console.log("useriddddd__", User_data);
+    this.model.userId = User_data
+    let Login_data = localStorage.getItem('Login_ID');
+    console.log("useriddd__", Login_data);
+    this.model.loginId = Login_data
 
     console.log("aftervalue___", this.model);
     // this.LoginService.ipaddress();
@@ -156,7 +162,7 @@ export class ChangePasswordComponent implements OnInit {
         this.ApiMethods.postresultservice(this.ApiService.ResetPassword, this.model).subscribe(result => {
           console.log("resulllllttt__", result);
 
-          if (result.result.flag == 3) {
+          if (result.result.flag == 2|| result.result.flag == 3) {
             //  alert(result.errorCode + ' ' + result.userID + ' ' + result.treasuryName + ' ' + result.treasurycode + ' ' + result.userMobile );
             // this.id = result.userID;
 
@@ -204,7 +210,12 @@ export class ChangePasswordComponent implements OnInit {
 
 
   }
+  onBack() {
+    // this.router.navigate(['OtpVerify']);
+    this.locat.back()
+    this.locat.back()
 
+  }
   // public resolved(captchaResponse: string) {
   //   try {
   //     this.loginflag = true;

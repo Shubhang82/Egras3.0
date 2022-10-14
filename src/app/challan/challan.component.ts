@@ -1,190 +1,117 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+// import {MatMenuTrigger} from '@angular/material'
+import { MatMenuTrigger } from '@angular/material/menu';
 import { Router } from '@angular/router';
-export interface IStudent {
-    name: string;
-    gender: string;
-    country: string;
-  }
+import { MatSidenav } from '@angular/material/sidenav';
 @Component({
-  selector: 'app-challan',
-  templateUrl: './challan.component.html',
-  styleUrls: ['./challan.component.css']
-})
+      selector: 'app-challan',
+      templateUrl: './challan.component.html',
+      styleUrls: ['./challan.component.css']
+    })
+export class ChallanComponent  {
+  name = 'Angular 6';
+  isLoggedIn = false;
+    // @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
 
-export class ChallanComponent implements OnInit {
-    students=  [
-        {
-            id: 1,
-            Grn: "25412521",
-            ChallanDate: "12/02/2022",
-            Status:"Pending",
-            PaymentType: "Online",
-            Amount: "16.00",
-            Verify:"Verify"
-        },
-        {
-            id: 2,
-            Grn: "25412522",
-            ChallanDate: "12/02/2022",
-            Status:"Pending",
-            PaymentType: "Online",
-            Amount: "16.00",
-            Verify:"Verify"
-        },
-        {
-            id: 3,
-            Grn: "25412523",
-            ChallanDate: "12/02/2022",
-            Status:"Pending",
-            PaymentType: "Online",
-            Amount: "16.00",
-            Verify:""
-        },
-        {
-            id: 4,
-            Grn: "25412524",
-            ChallanDate: "12/02/2022",
-            Status:"Pending",
-            PaymentType: "Online",
-            Amount: "16.00",
-            Verify:"Verify"
-        },
-        {
-            id: 5,
-            Grn: "25412525",
-            ChallanDate: "12/02/2022",
-            Status:"Pending",
-            PaymentType: "Online",
-            Amount: "16.00",
-            Verify:""
-        },
-        {
-            id: 6,
-            Grn: "25412526",
-            ChallanDate: "12/02/2022",
-            Status:"Pending",
-            PaymentType: "Online",
-            Amount: "16.00",
-            Verify:"Verify"
-        },
-        {
-            id: 7,
-            Grn: "25412527",
-            ChallanDate: "12/02/2022",
-            Status:"Pending",
-            PaymentType: "Online",
-            Amount: "16.00",
-            Verify:""
-        },
+    @ViewChild('menuBtn1', { read: MatMenuTrigger, static: true}) trigger: MatMenuTrigger;
+    @ViewChild('menuBtn2', { read: MatMenuTrigger, static: true}) menu2: MatMenuTrigger;
+    @ViewChild('menuBtn3', { read: MatMenuTrigger, static: true}) menu3: MatMenuTrigger;
 
-    ];
-    searchString = '';
-    searchName:''
-  
-    ngOnInit(): void {
-    //   fetch('./assets/data/students.json').then(res => res.json())
-    //     .then(json => {
-    //         console.log("djjjjj",json);
-            
-    //       this.students = json;
-    //     });
-    }
+    @ViewChild(MatSidenav)
+ sidenav!: MatSidenav;
+    constructor( private router: Router) {
+
+
+      }
+
+
+  openMyMenu() {
+    this.trigger.toggleMenu();
   }
 
+  closeMyMenu() {
+    this.trigger.closeMenu();
+    console.log('close')
+  }   
+  onchange() {
+    // this.router.navigate(['ChangePassword']);
 
-// import {Component, NgModule, ViewChild} from '@angular/core';
-// import {BrowserModule} from '@angular/platform-browser';
-// import {FormControl, FormGroup, ReactiveFormsModule, FormsModule} from '@angular/forms';
-// import {NgSelectModule, NgOption} from '@ng-select/ng-select';
+  }
 
+  // ngAfterViewInit() {
+  //   this.observer.observe(['(max-width: 800px)']).subscribe((res) => {
+  //     if (res.matches) {
+  //       this.sidenav.mode = 'over';
+  //       this.sidenav.close();
+  //     } else {
+  //       this.sidenav.mode = 'side';
+  //       this.sidenav.open();
+  //     }
+  //   });
+  // }
+}
+
+export interface Food {
+  value: string;
+  viewValue: string;
+}
+
+
+
+// import { Component, ViewChild } from '@angular/core';
+// import { MatMenuTrigger } from '@angular/material/menu';
 // @Component({
-//     selector: 'my-app',
-//     template: `
-       
-        
-//         <ng-select [items]="cities3"
-//                    bindLabel="name"
-//                    bindValue="name"
-//                    placeholder="Select city"
-//                    [(ngModel)]="selectedCityName">
-           
-//             <ng-template ng-label-tmp let-item="item">
-//                 <img height="15" width="15" [src]="item.avatar"/>
-//                 <b>{{item.name}}</b>
-//             </ng-template>
-//             <ng-template ng-option-tmp let-item="item" let-index="index">
-//                 <img height="15" width="15" [src]="item.avatar"/>
-//                 <b>{{item.name}}</b>
-//             </ng-template>
-            
-//         </ng-select>
-       
-        
-// `
+//   selector: 'app-challan',
+//   templateUrl: './challan.component.html',
+//   styleUrls: ['./challan.component.css']
 // })
 // export class ChallanComponent {
+//   name = 'Angular 6';
+//   isLoggedIn = false;
+//   @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
+//   @ViewChild(MatMenuTrigger) trigger1: MatMenuTrigger;
 
-//     cities = [
-//         {id: 1, name: 'Vilnius'},
-//         {id: 2, name: 'Kaunas'},
-//         {id: 3, name: 'Pavilnys', disabled: true},
-//         {id: 4, name: 'Pabradė'},
-//         {id: 5, name: 'Klaipėda'}
-//     ];
-    
-//     cities2 = [
-//         {id: 1, name: 'Vilnius'},
-//         {id: 2, name: 'Kaunas'},
-//         {id: 3, name: 'Pavilnys', disabled: true},
-//         {id: 4, name: 'Pabradė'},
-//         {id: 5, name: 'Klaipėda'}
-//     ];
-    
-//     cities3 = [
-//         {id: 1, name: 'Vilnius', avatar: '//www.gravatar.com/avatar/b0d8c6e5ea589e6fc3d3e08afb1873bb?d=retro&r=g&s=30 2x'},
-//         {id: 2, name: 'Kaunas', avatar: '//www.gravatar.com/avatar/ddac2aa63ce82315b513be9dc93336e5?d=retro&r=g&s=15'},
-//         {id: 3, name: 'Pavilnys', avatar: '//www.gravatar.com/avatar/6acb7abf486516ab7fb0a6efa372042b?d=retro&r=g&s=15'}
-//     ];
-    
-//     cities4 = [];
-    
-//     users = [
-//         {id: 'anjmao', name: 'Anjmao'},
-//         {id: 'varnas', name: 'Tadeus Varnas'}
-//     ];
-    
-//     selectedAccount = 'Adam'
-//     accounts = [
-//         { name: 'Adam', email: 'adam@email.com', age: 12, country: 'United States' },
-//         { name: 'Samantha', email: 'samantha@email.com', age: 30, country: 'United States' },
-//         { name: 'Amalie', email: 'amalie@email.com', age: 12, country: 'Argentina' },
-//         { name: 'Estefanía', email: 'estefania@email.com', age: 21, country: 'Argentina' },
-//         { name: 'Adrian', email: 'adrian@email.com', age: 21, country: 'Ecuador' },
-//         { name: 'Wladimir', email: 'wladimir@email.com', age: 30, country: 'Ecuador' },
-//         { name: 'Natasha', email: 'natasha@email.com', age: 54, country: 'Ecuador' },
-//         { name: 'Nicole', email: 'nicole@email.com', age: 43, country: 'Colombia' },
-//         { name: 'Michael', email: 'michael@email.com', age: 15, country: 'Colombia' },
-//         { name: 'Nicolás', email: 'nicole@email.com', age: 43, country: 'Colombia' }
-//     ];
 
-//     selectedCity: any;
-//     selectedCityIds: string[];
-//     selectedCityName = '';
-//     selectedCityId: number;
-//     selectedUserIds: number[];
+//   countries: any[] = [
+//     { value: 1, name: 'America' },
+//     { value: 2, name: 'India' },
+//   ];
+
+//   foods: any[] = [
+//     { value: 1, name: 'Pizza', state: 'California' },
+//     { value: 2, name: 'Burger', state: 'California' },
+//     { value: 3, name: 'McDonald', state: 'Missisippi' },
+//     { value: 4, name: 'Daal Baafle', state: 'Rajasthan' },
+//     { value: 5, name: 'Rice & Fish', state: 'Odisha' },
+//     { value: 6, name: 'Chicken Curry', state: 'Odisha' },
+//   ];
+
+
+//   states: any[] = [
+//     { value: 1, name: 'New York', countryId: 'America' },
+//     { value: 2, name: 'California', countryId: 'America' },
+//     { value: 3, name: 'Missisippi', countryId: 'America' },
+//     { value: 4, name: 'Nevada', countryId: 'America' },
+//     { value: 5, name: 'Maharashtra', countryId: 'India' },
+//     { value: 6, name: 'Odisha', countryId: 'India' },
+//     { value: 7, name: 'Rajasthan', countryId: 'India' },
+//     { value: 8, name: 'Madhya Pradesh', countryId: 'India' },
+
+//   ];
+
+
+
+//   openMyMenu() {
+//     this.trigger.toggleMenu();
     
-//     constructor() {
-//         this.create10kCities();
-//     }
-    
-//     addCustomUser = (term) => ({id: term, name: term});
-    
-//     private create10kCities() {
-//         this.cities4 = Array.from({length: 10000}, (value, key) => key)
-//                             .map(val => ({
-//                               id: val,
-//                               name: `city ${val}`
-//                             }));
-//     }
+//   }
+//   closeMyMenu() {
+//     this.trigger.closeMenu();
+//     console.log('close')
+//   }
 // }
 
+// export interface Food {
+//   value: string;
+//   viewValue: string;
+// }

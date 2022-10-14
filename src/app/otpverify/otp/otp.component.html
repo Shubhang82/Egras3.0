@@ -7,21 +7,23 @@
         <form [formGroup]="OtpForm">
             <p class="user-OTP text-center">OTP Verification</p>
             <p class="user_code text-center">Code is send on 935XXXXXXX </p>
+            <div *ngIf="errorM">
+                <p style="color: red;margin-block: 20px;font-size: 17pt;">*{{errormessage}}</p>
+              </div>
             <div class="col-md-12 ">
-                <img src="../../../assets/Images/otp.png" alt="login" class="otpimg"
-                    style="height: 100%; width:100%">
+                <img src="../../../assets/Images/otp.png" alt="login" class="otpimg" style="height: 100%; width:100%">
             </div>
-            <div class="inputs" >
+            <div class="inputs">
                 <div class="row" style="justify-content:center ; align-items:center; margin-top: 30px;">
                     <div class="form-group col-sm-1" *ngFor="let input of formInput;  index as i">
                         <mat-form-field floatLabel="never" appearance="outline">
-                            <input matInput type="tel" formControlName="{{input}}" class="form-control" maxlength="1" required
-                                (keyup)="keyUpEvent($event, i)">
+                            <input matInput type="tel" formControlName="{{input}}" class="form-control" maxlength="1"
+                                required (keyup)="keyUpEvent($event, i)">
                         </mat-form-field>
                     </div>
                 </div>
             </div>
-            <div class="navlink">
+            <div class="navlink" (click)="onResend_otp()">
                 <h3>
                     <p>Resend Otp</p>
                 </h3>
@@ -29,11 +31,12 @@
 
             <div class="row justify-content-md-center">
                 <div class="col-md-6 text-center">
-                    <button mat-raised-button color="primary" type="submit" [disabled]="OtpForm.invalid" (click)="onSubmit()"
-                         type="button" class="bt">Submit</button>
+                    <button mat-raised-button color="primary" type="submit" [disabled]="OtpForm.invalid"
+                        (click)="onSubmit()" type="button" class="bt">Submit</button>
                 </div>
                 <div class="col-md-6 text-center">
-                    <button mat-raised-button color="primary" type="submit" type="button" class="bt" (click)="onBack()"  >Back</button>
+                    <button mat-raised-button color="primary" type="submit" type="button" class="bt"
+                        (click)="onBack()">Back</button>
                 </div>
             </div>
         </form>

@@ -8,7 +8,7 @@ import * as shajs from 'sha.js';
 import { List } from '../../Component/ListDrop'
 import * as Val from '../../Component/Utility/Validators/ValBarrel'
 import { MatTableDataSource } from '@angular/material/table';
-import { IOtp } from '../Interface/signup';
+import { IOtp } from '../Interface/otp';
 
 export interface OtpV {
   otp: string;
@@ -23,12 +23,18 @@ export class OtpComponent implements OnInit {
 
   title = 'otp';
   OtpForm: FormGroup;
+  errormessage: any;
+  errorM: boolean = false;
   formInput = ['input1', 'input2', 'input3', 'input4', 'input5', 'input6'];
   @ViewChildren('formRow') rows: any;
-
+  model: IOtp = {
+    otp: "",
+    userId: ""
+  };
   ngOnInit() {
 
   }
+
 
   // constructor() {
   // }
@@ -63,12 +69,6 @@ export class OtpComponent implements OnInit {
 
   }
 
-  // onSubmit() {
-  //   console.log(this.OtpForm.value);
-  //   this.router.navigate(['ChangePassword']);
-
-  // }
-
   onSubmit() {
     console.log(this.OtpForm.value);
     // this.router.navigate(['Challan']);
@@ -82,19 +82,25 @@ export class OtpComponent implements OnInit {
       return;
     }
     else {
-      alert()
       if (this.OtpForm.valid) {
+        this.errorM = false;
 
         // this.model.ipAddress = this.LoginService.ipAddress;
         console.log("berfooooooo", this.OtpForm);
         let value = this.OtpForm.value.input1 + this.OtpForm.value.input2 + this.OtpForm.value.input3 + this.OtpForm.value.input4 + this.OtpForm.value.input5 + this.OtpForm.value.input6;
         console.log(value);
+        this.model.otp = value
+        let data = localStorage.getItem('user_ID');
+        console.log("useriddddd__", data);
 
-        let data = {
-          "otp": value,
-          "userId": 710
-        }
-        this.ApiMethods.postresultservice(this.ApiService.Otpurl, data).subscribe(result => {
+        this.model.userId = data
+        // let data = {
+        //   "otp": ,
+        //   "userId": 710
+        // }
+        console.log("post_Data___", this.model);
+
+        this.ApiMethods.postresultservice(this.ApiService.Otpurl, this.model).subscribe(result => {
           console.log("resulllllttt__", result);
 
           if (result.result.User = 1) {
@@ -118,7 +124,20 @@ export class OtpComponent implements OnInit {
             alert(result.result.User);
             // this.message = 'Please check your userid and password';
           }
-        })
+        },
+          (error) => {
+            console.log("errror message___", error);
+            let result = error.error.result.User
+            console.log("ffffffffff",result);
+            
+            this.errorM = true;
+            if (result == 0) {
+              this.errormessage = 'Otp invalid !'
+            }
+            else {
+              this.errormessage = 'Sorry some technical issuse , please try again !'
+            }
+          });
 
         //   sessionStorage.setItem('token', this.loginForm.controls['userid'].value);
 
@@ -127,6 +146,26 @@ export class OtpComponent implements OnInit {
       //   alert('Captcha Failed');
       // }
     }
+  }
+
+  onResend_otp() {
+    let data = localStorage.getItem('Login_ID');
+    console.log("useriddd__", data);
+
+    let formdata = {
+      userId: data
+    };
+    console.log("formmmmdd__", formdata);
+
+    this.ApiMethods.postresultservice(this.ApiService.PasswordRecoveryurl, formdata).subscribe(result => {
+      console.log("result-resend_opt", result);
+      if (result) {
+        localStorage.setItem('user_ID', result.result.UserId);
+      }
+      else {
+        alert("Something went wrong")
+      }
+    })
   }
 
   onBack() {

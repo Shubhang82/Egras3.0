@@ -2,11 +2,12 @@
     <p class="user text-center">Welcome: ramkumar</p>
     <div class="row1">
         <div class=" row1" style="margin-left:170px ;">
-            <p class="sub-text">Date: 28-05-2012</p>
-            <p class="sub-text">Time: 3:58:02</p>
+            <p class="sub-text">Date: {{todaysDate}} </p>
+            <p class="sub-text">Time: {{todaysTime}}</p>
         </div>
-        <p class="sub-text" style="cursor: pointer;">Logout</p>
+        <p (click)="onLogout()" class="sub-text" style="cursor: pointer;">Logout</p>
     </div>
+    <app-challan> </app-challan>
     <div class="row1 padding-col">
         <p class="sub-text-head">Login Info</p>
     </div>
@@ -73,7 +74,9 @@
 
             </ng-select>
         </div>
-        <p class="sub-text" style="cursor: pointer;color: #051B77;   text-decoration:underline;">Create profile</p>
+        <div (click)="OncreateP()" >
+            <p class="sub-text" style="cursor: pointer;color: #051B77;   text-decoration:underline;">Create profile</p>
+        </div>
 
     </div>
     <div class="showDiv1" *ngIf="isVisible == 2">

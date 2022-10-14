@@ -25,10 +25,16 @@ export class ApiMethods {
       'Content-Type': 'application/json',
     }),
   };
-  loginurl = "http://10.130.34.224/APITreasLoginPublish/Login";
+  Options = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization1234': '123'
+    },
+  };
+
   hash: any;
   public loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  public user: BehaviorSubject<string> = new BehaviorSubject<string>(sessionStorage.getItem('token') || '{}');
+  public auth_token: BehaviorSubject<string> = new BehaviorSubject<string>(sessionStorage.getItem('token'));
   public TreName: BehaviorSubject<string> = new BehaviorSubject<string>(sessionStorage.getItem('loc') || '{}');
   public ipAddress: any;
   constructor(private router: Router, private http: HttpClient) {
@@ -47,7 +53,6 @@ export class ApiMethods {
     document.body.addEventListener('keyup', () => this.reset());
     document.body.addEventListener('keypress', () => this.reset());
   }
-
   reset() {
     this.setLastAction(Date.now());
   }
@@ -81,6 +86,12 @@ export class ApiMethods {
   //        catchError(this.handleError));//('postresultservice',data)
   //  }
 
+  // header = new HttpHeaders().set(
+  //   "Authorization",
+  //   'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3MTAiLCJVc2VySWQiOiI3MTAiLCJleHAiOjE2NjUzODQ1NjgsIlVzZXJUeXBlIjoiMTAiLCJpYXQiOjE2NjUzODM2Njh9.CDlHZI2UpFUocny9zCyx6Wwe-bjxqaXwe-hDAPTBgjmriihVu54cHL6wAS7t_09pD5LeHP-a0eCyfQZqlmB6-Q'
+  // );
+
+
   postresultservice(url: any, data: any) {
 
     //return this.http.post(this.loginurl,data,this.httpOptions).pipe(catchError(this.handleError));//('postresultservice',data)
@@ -89,21 +100,35 @@ export class ApiMethods {
         map((data: any) => {
 
           return data
-        }),
-        catchError(this.handleError));//('postresultservice',data)
+        }))
+    // catchError(this.handleError));//('postresultservice',data)
   }
 
-  getservice(url: any) {
 
+  getservice(url: any) {
+    let headers = new HttpHeaders({
+      'Authorization': 'Bearer your_token'   //add your api token for auth
+    }).set('Content-Type', []);
+    // let token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3MTAiLCJVc2VySWQiOiI3MTAiLCJleHAiOjE2NjUzODQ1NjgsIlVzZXJUeXBlIjoiMTAiLCJpYXQiOjE2NjUzODM2Njh9.CDlHZI2UpFUocny9zCyx6Wwe-bjxqaXwe-hDAPTBgjmriihVu54cHL6wAS7t_09pD5LeHP-a0eCyfQZqlmB6-Q'
+    // let token = '123'
+    // let head_obj = new HttpHeaders().set("123", "Bearer " + token)
     //return this.http.post(this.loginurl,data,this.httpOptions).pipe(catchError(this.handleError));//('postresultservice',data)
-    return this.http.get(url).
+    // var header = {
+    //     'Authorization': 'Basic 123'
+    // }
+    return this.http.get(url, { headers: headers }).
       pipe(
         map((data: any) => {
 
           return data
-        }),
-        catchError(this.handleError));//('postresultservice',data)
+        }))
+    // catchError(this.handleError));//('postresultservice',data)
+
   }
+
+  // getcustomerservice() {
+  //   return this.http.get('http://172.22.32.105:8082/user/getProfileList/710/10')
+  // }
 
   ipaddress() {
     this.http.get("https://jsonip.com").subscribe((res: any) => {
@@ -120,53 +145,53 @@ export class ApiMethods {
   }
 
   ///*** Error Handel ***///   
-  private handleError(error: HttpErrorResponse) {
-    console.log("eroroomessage__", error);
-    var result = error.error.result.ErrorCode
+  // private handleError(error: HttpErrorResponse) {
+  //   console.log("eroroomessage__", error);
+  //   var result = error.error.result.ErrorCode
 
-    let errormessage = ''
-    if (result === 0) {
-      // A client-side or network error occurred  . Handle it accordingly.
-      console.error('An error occurred:', error.error);
-      return throwError(() => new Error('Sorry some technical issuse , please try again !'))
-    }
-    else if (result === 1) {
-      errormessage += 'User not found !'
-      return throwError(() => new Error(errormessage));
-    }
-    else if (result === 2) {
-      errormessage += 'Login attempt more than 5 !'
-      return throwError(() => new Error(errormessage));
-    }
-    else if (result === 3) {
-      errormessage += 'Password not match !'
-      return throwError(() => new Error(errormessage));
-    }
-    else if (result == -1) {
-      // errormessage += JSON.stringify(error.error.message);
-      return throwError(() => new Error(result));
-    }
-    else if (result == -2) {
-      // errormessage += JSON.stringify(error.error.message);
-      return throwError(() => new Error(result));
-    }
-    else {
-      errormessage += 'Sorry some technical issuse , please try again !'
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong.
-      //console.error(`Backend returned code ${error.status}, body was: `, error.error);
-    }
-    // Return an observable with a user-facing error message.
-    return throwError(() => new Error(errormessage));
+  //   let errormessage = ''
+  //   if (result === 0) {
+  //     // A client-side or network error occurred  . Handle it accordingly.
+  //     console.error('An error occurred:', error.error);
+  //     return throwError(() => new Error('Sorry some technical issuse , please try again !'))
+  //   }
+  //   else if (result === 1) {
+  //     errormessage += 'User not found !'
+  //     return throwError(() => new Error(errormessage));
+  //   }
+  //   else if (result === 2) {
+  //     errormessage += 'Login attempt more than 5 !'
+  //     return throwError(() => new Error(errormessage));
+  //   }
+  //   else if (result === 3) {
+  //     errormessage += 'Password not match !'
+  //     return throwError(() => new Error(errormessage));
+  //   }
+  //   else if (result == -1) {
+  //     // errormessage += JSON.stringify(error.error.message);
+  //     return throwError(() => new Error(result));
+  //   }
+  //   else if (result == -2) {
+  //     // errormessage += JSON.stringify(error.error.message);
+  //     return throwError(() => new Error(result));
+  //   }
+  //   else {
+  //     errormessage += 'Sorry some technical issuse , please try again !'
+  //     // The backend returned an unsuccessful response code.
+  //     // The response body may contain clues as to what went wrong.
+  //     //console.error(`Backend returned code ${error.status}, body was: `, error.error);
+  //   }
+  //   // Return an observable with a user-facing error message.
+  //   return throwError(() => new Error(errormessage));
 
-  }
+  // }
 
   get isLoggedIn() {
     return this.loggedIn.asObservable();
   }
-  get username() {
-    return this.user.asObservable();
-  }
+  // get username() {
+  //   return this.user.asObservable();
+  // }
   get LocName() {
     return this.TreName.asObservable();
   }

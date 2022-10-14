@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
   }
   ngOnInit() {
 
-    // console.log(sessionStorage.getItem('loc'));
+    console.log(sessionStorage.getItem('token'));
     // this.loginForm = this.formBuilder.group({
     //   userid: ['', [Validators.required]],
     //   password: ['', [Validators.required]],
@@ -109,13 +109,12 @@ export class LoginComponent implements OnInit {
       return;
     }
     else {
-      alert()
       if (this.loginflag && this.loginForm.valid) {
 
         // this.model.ipAddress = this.LoginService.ipAddress;
         console.log("berfooooooo", this.model);
         this.ApiMethods.postresultservice(this.ApiService.loginurl, this.model).subscribe(result => {
-          console.log("resulllllttt__", result.result.token);
+          console.log("resulllllttt__", result.result);
 
           if (result.result.ErrorCode == 0) {
             this.errorM = false
@@ -125,11 +124,6 @@ export class LoginComponent implements OnInit {
             sessionStorage.setItem('token', result.result.token);
             // sessionStorage.setItem('loc', result.treasuryName);
             console.log(result);
-            // console.log(this.model);
-            // this.LoginService.loggedIn.next(true);
-            // this.LoginService.user.next(sessionStorage.getItem('token') || '{}');
-            // this.LoginService.TreName.next(sessionStorage.getItem('loc') || '{}');
-            // this.router.navigate(['/Home']);
             this.router.navigate(['Profile']);
 
             //alert(result.message)
@@ -140,23 +134,31 @@ export class LoginComponent implements OnInit {
             this.message = 'Please check your userid and password';
           }
         },
-          (error) => {
-            console.log("errror message___", error);
-            if (error.Error == -1) {
+          (res) => {
+            console.log("errror message___", res);
+            let result = res.error.result.ErrorCode
+            this.errorM = true;
+            if (result === 1) {
+              this.errormessage = 'User not found !'
+            }
+            else if (result === 2) {
+              this.errormessage = 'Login attempt more than 5 !'
+            }
+            else if (result === 3) {
+              this.errormessage = 'Password not match !'
+            }
+            else if (result == -1) {
+              // errormessage += JSON.stringify(error.error.message);
               alert("-1 change password required")
             }
-            else if (error.Error == -2) {
+            else if (result == -2) {
+              // errormessage += JSON.stringify(error.error.message);
               alert("-2 45 days exceed change password required")
-
             }
             else {
-              this.errorM = true;
-              this.errormessage = error;
+              this.errormessage = 'Sorry some technical issuse , please try again !'
             }
-
-
           });
-        //   sessionStorage.setItem('token', this.loginForm.controls['userid'].value);
 
       }
       // else {

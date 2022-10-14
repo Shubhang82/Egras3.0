@@ -1,31 +1,172 @@
-<div style="margin: 30px">
+<!-- <mat-toolbar>
+  <span class="fill-remaining-space">
+    <button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger" (mouseover)="menuTrigger.openMenu()">
+      Home
+      <mat-icon>home</mat-icon>
+    </button>
+    <button [matMenuTriggerFor]="profile" #menuTrigger="matMenuTrigger" (mouseover)="menuTrigger.openMenu()">
+      Profile
+      <mat-icon>perm_identity</mat-icon>
+    </button>
+    <button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger" (mouseover)="menuTrigger.openMenu()">
+      Dept-map
+      <mat-icon>location_on</mat-icon>
+    </button>
+    <button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger" (mouseover)="menuTrigger.openMenu()">
+      Paytm Home
+      <mat-icon>home</mat-icon>
+    </button>
+    <button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger" (mouseover)="menuTrigger.openMenu()">
+      Account
+      <mat-icon>account_balance</mat-icon>
+    </button>
+    <button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger" (mouseover)="menuTrigger.openMenu()">
+      Search Record
+      <mat-icon>search</mat-icon>
+    </button>
+    <button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger" (mouseover)="menuTrigger.openMenu()">
+      Admin
+      <mat-icon>supervisor_account</mat-icon>
+    </button>
 
-    <table>
-        <tr>
-            <th>Sr.no</th>
-            <th>Challan Date</th>
-            <th>GRN</th>
-            <th>Status</th>
-            <th>Payment Type</th>
-            <th>Amount</th>
-            <th>Repeat</th>
-            <th>View</th>
-            <th></th>
-            <th></th>
+
+    <mat-menu #menu="matMenu" [overlapTrigger]="false">
+      <span (mouseleave)="menuTrigger.closeMenu()">
+        <button mat-menu-item>
+          <mat-icon>home</mat-icon>
+          <span>Home</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>people_outline</mat-icon>
+          <span>Connecting</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>videocam</mat-icon>
+          <span>Let's talk</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Logout</span>
+        </button>
+      </span>
+    </mat-menu>
+    <mat-menu #profile="matMenu" [overlapTrigger]="false">
+      <span (mouseleave)="menuTrigger.closeMenu()">
+        
+        <button mat-menu-item>
+          <mat-icon>people_outline</mat-icon>
+          <span>Connecting</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>videocam</mat-icon>
+          <span>Let's talk</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Logout</span>
+        </button>
+      </span>
+    </mat-menu>
+  </span>
+</mat-toolbar> -->
 
 
-        </tr>
-        <tr *ngFor="let student of students">
-            <td>{{ student.id }}</td>
-            <td>{{ student.ChallanDate }}</td>
-            <td>{{ student.Grn }}</td>
-            <td>{{ student.Status }}</td>
-            <td>{{ student.PaymentType }}</td>
-            <td>{{ student.Amount }}</td>
-            <td>Repeat</td>
-            <td>View</td>
-            <td>{{student.Verify}}</td>
-            <td></td>
-        </tr>
-    </table>
-</div>
+
+<!-- <mat-card>
+  <h2>Open list items on hover</h2>
+  
+  <button mat-button  (mouseenter)="openMyMenu()" [matMenuTriggerFor]="animals">Animal index</button>
+  
+  <mat-menu #animals="matMenu">
+    <button mat-menu-item [matMenuTriggerFor]="vertebrates">Vertebrates</button>
+    <button mat-menu-item [matMenuTriggerFor]="invertebrates">Invertebrates</button>
+  </mat-menu>
+  
+  <mat-menu #vertebrates="matMenu">
+    <button mat-menu-item [matMenuTriggerFor]="fish">Fishes</button>
+    <button mat-menu-item [matMenuTriggerFor]="amphibians">Amphibians</button>
+    <button mat-menu-item [matMenuTriggerFor]="reptiles">Reptiles</button>
+    <button mat-menu-item>Birds</button>
+    <button mat-menu-item>Mammals</button>
+  </mat-menu>
+  
+  <mat-menu #invertebrates="matMenu">
+    <button mat-menu-item>Insects</button>
+    <button mat-menu-item>Molluscs</button>
+    <button mat-menu-item>Crustaceans</button>
+    <button mat-menu-item>Corals</button>
+    <button mat-menu-item>Arachnids</button>
+    <button mat-menu-item>Velvet worms</button>
+    <button mat-menu-item>Horseshoe crabs</button>
+  </mat-menu>
+  
+  <mat-menu #fish="matMenu">
+    <button mat-menu-item>Baikal oilfish</button>
+    <button mat-menu-item>Bala shark</button>
+    <button mat-menu-item>Ballan wrasse</button>
+    <button mat-menu-item>Bamboo shark</button>
+    <button mat-menu-item>Banded killifish</button>
+  </mat-menu>
+  
+  <mat-menu #amphibians="matMenu">
+    <button mat-menu-item>Sonoran desert toad</button>
+    <button mat-menu-item>Western toad</button>
+    <button mat-menu-item>Arroyo toad</button>
+    <button mat-menu-item>Yosemite toad</button>
+  </mat-menu>
+  
+  <mat-menu #reptiles="matMenu">
+    <button mat-menu-item>Banded Day Gecko</button>
+    <button mat-menu-item>Banded Gila Monster</button>
+    <button mat-menu-item>Black Tree Monitor</button>
+    <button mat-menu-item>Blue Spiny Lizard</button>
+    <button mat-menu-item disabled>Velociraptor</button>
+  </mat-menu>
+  
+  </mat-card> -->
+
+
+ <div class="data">
+  <button class="back-comp">Home</button>
+  <div class="mat-menu-content">
+    <button mat-button [matMenuTriggerFor]="menu1" (mouseenter)="openMyMenu()" class="drop-head">
+      Profile
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
+    <mat-menu class="drop-container" #menu1="matMenu" overlapTrigger="false">
+      <span (mouseleave)="closeMyMenu()">
+        <button mat-menu-item>Create Profile</button>
+        <button mat-menu-item>Multiple Head</button>
+        <button mat-menu-item>Multiple Head Service For Service</button>
+        <button mat-menu-item>New Challan</button>
+      </span>
+    </mat-menu>
+  </div>
+  <button class="back-comp">Dept-Map</button>
+  <button class="back-comp">New Home Page</button>
+  <button class="back-comp">Paytm Home</button>
+
+  <div>
+    <button mat-button [matMenuTriggerFor]="menu2" (mouseenter)="openMyMenu()" class="drop-head">Account
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
+    <mat-menu #menu2="matMenu" overlapTrigger="false">
+      <span (mouseleave)="closeMyMenu()">
+        <button mat-menu-item>Profile Edit</button>
+        <button mat-menu-item (click)="onchange()">Change Password</button>
+      </span>
+    </mat-menu>
+  </div>
+  <button class="back-comp">Search Record</button>
+
+  <div>
+    <button mat-button [matMenuTriggerFor]="menu3" (mouseenter)="openMyMenu()" class="drop-head">Admin
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
+    <mat-menu #menu3="matMenu" overlapTrigger="false">
+      <span (mouseleave)="closeMyMenu()">
+        <button mat-menu-item>QR Code Demo</button>
+      </span>
+    </mat-menu>
+  </div>
+</div> 

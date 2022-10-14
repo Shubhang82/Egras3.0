@@ -1,0 +1,222 @@
+<div>
+    <p class="user text-center">Welcome: ramkumar</p>
+    <div class="row1">
+        <div class=" row1" style="margin-left:170px ;">
+            <p class="sub-text">Date: {{todaysDate}} </p>
+            <p class="sub-text">Time: {{todaysTime}}</p>
+        </div>
+        <p (click)="onLogout()" class="sub-text" style="cursor: pointer;">Logout</p>
+    </div>
+    <app-challan> </app-challan>
+    <div class="row1 padding-col">
+        <p class="sub-text-head">Payee Profile</p>
+    </div>
+
+    <div class="">
+        <div class="showDiv1">
+            <label>
+                <p class="sub-text-info" style="margin-block: 20px;">Department:-</p>
+            </label>
+            <ng-select [items]="Department" bindLabel="name" bindValue="name" placeholder="Select Department"
+                class="dropdiv" [(ngModel)]="selectedDepartmentName">
+
+                <ng-template ng-label-tmp let-item="item" style="background-color: red;">
+                    <img height="15" width="15" [src]="item.avatar" />
+                    <b>{{item.name}}</b>
+                </ng-template>
+                <ng-template ng-option-tmp let-item="item" let-index="index">
+                    <img height="15" width="15" [src]="item.avatar" />
+                    <b>{{item.name}}</b>
+                </ng-template>
+
+            </ng-select>
+        </div>
+        <div class="showDiv1">
+            <label>
+                <p class="sub-text-info" style="margin-block: 20px;">Major Head:-</p>
+            </label>
+            <ng-select [items]="Service" bindLabel="name" bindValue="name" placeholder="Select Major Head"
+                class="dropdiv" [(ngModel)]="selectedServiceName">
+
+                <ng-template ng-label-tmp let-item="item">
+                    <img height="15" width="15" [src]="item.avatar" />
+                    <b>{{item.name}}</b>
+                </ng-template>
+                <ng-template ng-option-tmp let-item="item" let-index="index">
+                    <img height="15" width="15" [src]="item.avatar" />
+                    <b>{{item.name}}</b>
+                </ng-template>
+
+            </ng-select>
+        </div>
+    </div>
+    <div class="showDiv1 col-md-12">
+        <label>
+            <p class="sub-text-info" style="margin-block: 20px;">Profile Name:-</p>
+        </label>
+        <div style="margin-inline: 5px;">
+            <mat-form-field floatLabel="never" appearance="outline">
+                <input matInput type="text" placeholder="Profile Name" name="ProfileName" required
+                    formControlName="ProfileName" />
+            </mat-form-field>
+        </div>
+        <!-- <div class="col-md-9 ">
+            <input class="cap" style=" width: 50%;" name="captcha" placeholder="Enter Captcha" />
+            <input matInput class="form-control" type="text" placeholder="Enter Captcha"
+                                        name="Captcha" required formControlName="Captcha" />
+          </div> -->
+    </div>
+    <img src="../../../assets/Images/line.png" alt="login" class="otpimg" style="height: 100%; width:100%">
+
+    <div class="showDiv1 justify">
+        <button (click)="enableDisableRule()" [ngClass]="{'green' : toggle, 'red': !toggle}" style="width: 200px;">
+            Text
+        </button>
+        <button (click)="enableDisable()" [ngClass]="{'green' : !toggle, 'red': toggle}" style="width: 200px;">
+            BudegetHead
+        </button>
+    </div>
+
+    <div class="showDiv1 justify" *ngIf="searchbox == 1">
+        <label>
+            <p class="sub-text-info" style="margin-block: 10px;">Search Text:-</p>
+        </label>
+        <input  class="cap" style=" width: 20%;" name="captcha" placeholder="Serach Text"  #box (keyup)="onSearch(box.value)"/>
+
+    </div>
+    <div class="showDiv1 justify" *ngIf="searchbox == 2">
+        <label>
+            <p class="sub-text-info" style="margin-block: 10px;">Search BudgetHead:-</p>
+        </label>
+        <input mobMask class="cap" style=" width: 20%;" name="captcha" placeholder="9999-99-999-99-99" #box (keyup)="onSearch(box.value)" type="tel"/>
+
+    </div>
+    <!-- <div class="showDiv1 justify">
+        <div class="col-md-4 mb-4">
+            <div class="card example-1 scrollbar-ripe-malinka">
+                <div class="card-body">
+                    <p>Ad leggings keytar, brunch id art party dolor labore. Pitchfork yr enim lo-fi before they sold
+                        out
+                        qui. Tumblr farm-to-table bicycle rights whatever. Anim keffiyeh carles cardigan. Velit seitan
+                        mcsweeney's photo booth 3 wolf moon irure. Cosby sweater lomo jean shorts, williamsburg hoodie
+                        minim
+                        qui you probably haven't heard of them et cardigan trust fund culpa biodiesel wes anderson
+                        aesthetic.
+                        Nihil tattooed accusamus, cred irony biodiesel keffiyeh artisan ullamco consequat.</p>
+                </div>
+            </div>
+        </div>
+        <div
+            style="margin-inline:30px ;position: absolute; right: 62rem; cursor: pointer;display: flex;flex-direction: column;">
+
+            <button mat-raised-button color="primary" type="submit" type="button" class="bt"> <img
+                    src="../../../assets/Images/create profile (arrow1)-01.png" height="40" width="40">
+
+            </button>
+            <button mat-raised-button color="primary" type="submit" type="button" class="bt"> <img
+                    src="../../../assets/Images/create profile(arrow2)-01.png" height="40" width="40">
+            </button>
+
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card example-1 scrollbar-ripe-malinka">
+                <div class="card-body" *ngFor="let student of students">
+                    <p>{{ student.Grn }}</p>
+
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <div class="showDiv1 justify">
+        <div class="col-md-9 mb-9">
+            <div class="card example-1 scrollbar-ripe-malinka">
+                <mat-selection-list>
+                    <mat-list-option *ngFor="let hero of filteredOptions" (click)="onsub(hero)" >
+                        <span>{{ hero.name }}</span>
+                    </mat-list-option>
+                </mat-selection-list>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-md-center">
+        <div class="row justify-content-md-center">
+            <div class="col-md-3 text-center">
+                <button mat-raised-button color="primary" type="submit" type="button" class="bt">Submit</button>
+            </div>
+
+            <div class="col-md-3 text-center">
+                <button mat-raised-button color="primary" type="submit"
+                    style="background-color: white;  color: #051B77; border-color: #051B77; border-width: 40px; "
+                    type="button" class="bt">Reset</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div style="margin-top: 100px;">
+
+        <div>
+            <div class="table-div">
+                <label style="margin-block: 10px;">Profile</label>
+            </div>
+            <table>
+
+                <tr *ngFor="let student of students">
+                    <td>{{ student.ChallanDate }}</td>
+                    <td>{{ student.Grn }}</td>
+                    <td>{{ student.Status }}</td>
+                </tr>
+            </table>
+            <!-- <div style="width: 100%; " (click)="onclosetrans()">
+                <p
+                    style="cursor: pointer; text-align: center; height: 50%; font-size: 10pt; background-color: #DEE5FC;">
+                    Click here to hide</p>
+            </div> -->
+        </div>
+
+    </div>
+
+    <!-- <div class="heroes">
+        <div *ngFor="let hero of Heros; let indexOfelement=index;">
+            <label [ngClass]="{'green' : selecteditem==indexOfelement, 'red': selecteditem!=indexOfelement}"
+                type="button" (click)="onSelect(hero, indexOfelement)">
+                <span class="name">{{hero.name}}</span>
+            </label>
+        </div>
+    </div> -->
+
+    <!-- <mat-selection-list [(ngModel)]="selectedOptions" [compareWith]="compareFunction">
+        <mat-list-option *ngFor="let hero of Heros" [value]="hero">
+          {{hero.name}}
+        </mat-list-option>
+      </mat-selection-list>
+      
+      <p>
+        Options selected: {{selectedOptions | json}}
+      </p> -->
+
+    <!-- <mat-selection-list id="areaListControl" name="areaListControl" (selectionChange)="onChange($event)">
+        <mat-list-option *ngFor="let hero of Heros" [selected]="hero.name" [value]="hero">
+            {{hero.name}}
+        </mat-list-option>
+    </mat-selection-list> -->
+
+    <!-- <h2>Angular material action list</h2>
+    <mat-action-list>
+        <mat-list-item *ngFor="let hero of Heros">
+
+            <a mat-list-item>{{ hero.name }}</a>
+        </mat-list-item>
+    </mat-action-list> -->
+
+    <!-- <mat-nav-list>
+        <mat-list-item *ngFor="let hero of Heros">
+            <span>{{ hero.name }}</span>
+        </mat-list-item>
+    </mat-nav-list> -->
+
+
+</div>

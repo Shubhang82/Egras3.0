@@ -6,6 +6,9 @@
     <form [formGroup]="loginForm">
       <p class="user text-center">User login</p>
       <div class="inputs" style="padding-top: 30px;">
+        <div *ngIf="errorM">
+          <p style="color: red;margin-block: 20px;font-size: 17pt;">*{{errormessage}}</p>
+        </div>
         <div class="row justify-content-md-center">
           <div class="col-md-9">
             <mat-form-field floatLabel="never" appearance="outline">
@@ -16,7 +19,7 @@
               <!-- <mat-error>
                 Username is required field
               </mat-error>  -->
-              <div *ngIf="userid && userid.invalid &&  userid.touched" class="text-danger error_msg" >
+              <div *ngIf="userid && userid.invalid &&  userid.touched" class="text-danger error_msg">
                 <div *ngIf="userid.errors?.['Required'] as error">
                   {{error}}
                 </div>
@@ -42,15 +45,15 @@
               <!-- <mat-error>
                 Username is required field
               </mat-error> -->
-              <div *ngIf="password && password.invalid &&  password.touched" class="text-danger error_msg" >
+              <div *ngIf="password && password.invalid &&  password.touched" class="text-danger error_msg">
                 <div *ngIf="password.errors?.['Required'] as error">
                   {{error}}
                 </div>
                 <div *ngIf="password.errors?.['PasswordStrengthValidator'] as error">
-                    {{error}}
+                  {{error}}
                 </div>
                 <div *ngIf="password.errors?.['minLength'] as error">
-                    {{error}}
+                  {{error}}
                 </div>
               </div>
             </mat-form-field>
@@ -61,13 +64,15 @@
             <div class="keepME">
               <div class="row">
                 <div class="col-sm-6">
-                  <input style="display:inline-block ;" type="checkbox" name="check" value="lsRememberMe"> <span
+                  <!-- <input style="display:inline-block ;" type="checkbox" name="check" value="lsRememberMe"> <span
                     class="checkmark"></span><label for="rememberMe">
-                    KEEP ME LOGGED IN</label>
+                    KEEP ME LOGGED IN</label> -->
                 </div>
                 <!-- <div class="col-sm-6" href="#">FORGOT YOUR PASSWORD?</div> -->
-            <div class="col-sm-6" href="#"><p><a routerLink="/PasswordRecovery" routerLinkActive="active">FORGOT YOUR PASSWORD ?</a></p></div>
-                
+                <div class="col-sm-6" href="#">
+                  <p><a routerLink="/PasswordRecovery" routerLinkActive="active">FORGOT YOUR PASSWORD ?</a></p>
+                </div>
+
 
               </div>
             </div>
@@ -103,5 +108,6 @@
         </h3>
       </div>
     </form>
+    
   </div>
 </div>

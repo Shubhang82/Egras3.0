@@ -6,10 +6,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { IPasswordRecovery } from '../Interface/password-recovery';
 import { ApiService } from 'src/app/Component/Service/utility.service';
 import { ApiMethods } from 'src/app/Component/Service/ApiMethods';
-
+import { Location } from '@angular/common'
 export interface PasswordRevocery {
-  // LoginIdMobile: string;
-  // Mobile: string;
   userId: string;
 }
 
@@ -25,33 +23,26 @@ export class PasswordRecoveryComponent implements OnInit {
 
   PasswordRevocerydata: MatTableDataSource<PasswordRevocery> = new MatTableDataSource();
   displayedColumns = [
-    // 'LoginIdMobile',
-    // 'Mobile' 
     'userId'
-
   ];
 
 
   model: IPasswordRecovery = {
-    // loginIdMobile: "", 
-    // Mobile: ""
     userId: ""
-
   };
 
   hash: any;
   PasswordRecoveryForm!: any;
   message!: string;
   loginflag: boolean = true;
+  errormessage: any;
+  errorM: boolean = false;
 
-  // constructor() { }
-
-  // constructor(private formBuilder: FormBuilder, private router: Router, private PasswordRecoveryService: PasswordRecoveryService, private ApiService: ApiService, private List: List) { }
-  constructor(private formBuilder: FormBuilder, private router: Router, private ApiService: ApiService, private ApiMethods: ApiMethods,) {
-    // history.pushState(null, '', location.href);
-    // window.onpopstate = function () {
-    // history.go(1);
-    // };
+  constructor(private formBuilder: FormBuilder, private router: Router, private ApiService: ApiService, private ApiMethods: ApiMethods, private loc: Location) {
+    history.pushState(null, '', location.href);
+    window.onpopstate = function () {
+      history.go(1);
+    };
   }
 
   isVisible: number = 1;
@@ -68,17 +59,13 @@ export class PasswordRecoveryComponent implements OnInit {
 
 
   }
-
+  back(): void {
+    this.loc.back()
+  }
 
   onsubmit() {
-    // this.model.loginIdMobile = this.PasswordRecoveryForm.controls['loginIdMobile'].value;
-    // this.model.loginIdMobile = this.PasswordRecoveryForm.controls['Mobile'].value;
-    // this.model.Captcha = this.PasswordRecoveryForm.controls['Captcha'].value;
-
-
     this.model.userId = this.PasswordRecoveryForm.controls['loginIdMobile'].value;
 
-    console.log(sessionStorage.getItem('loc'));
     // stop here if form is invalid
     if (this.PasswordRecoveryForm.invalid) {
       console.log('Error');
@@ -87,22 +74,40 @@ export class PasswordRecoveryComponent implements OnInit {
     else {
       // alert(this.loginForm.valid);
       if (this.loginflag && this.PasswordRecoveryForm.valid) {
+        this.errorM = false;
 
         // this.model.ipAddress = this.LoginService.ipAddress;
         console.log("PasswordRecovery_Form is Valid", this.model);
 
         this.ApiMethods.postresultservice(this.ApiService.PasswordRecoveryurl, this.model).subscribe(result => {
           console.log("result-PasswordRecovery", result);
-          this.router.navigate(['OtpVerify']);
-        })
+          if (result) {
+            localStorage.setItem('user_ID', result.result.UserId);
+            localStorage.setItem('Login_ID', this.model.userId);
+
+            this.router.navigate(['OtpVerify']);
+          }
+          else {
+            alert("Something went wrong")
+          }
+        },
+          (error) => {
+            console.log("errror message___", error);
+            let result = error.error.result.ErrorCode
+            this.errorM = true;
+            if (result === 1) {
+              this.errormessage = 'User not found !'
+            }
+            else {
+              this.errormessage = 'Sorry some technical issuse , please try again !'
+            }
+          });
       }
       else {
         alert('Captcha Failed');
       }
     }
   }
-
-
 
   get loginIdMobile() { return this.PasswordRecoveryForm.get('loginIdMobile') }
   get Mobile() { return this.PasswordRecoveryForm.get('Mobile') }
