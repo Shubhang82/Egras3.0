@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-const Baseurl = 'http://172.22.32.105:8082/';
-// const Baseurl = 'http://172.22.32.105:8081/';
+// const Baseurl = 'http://172.22.32.105:8082/';
+const Baseurl = 'http://172.22.32.105:8081/';
 
 
 @Injectable({
@@ -18,5 +18,10 @@ export class ApiService {
     // public otpurl: string = Baseurl+ "otpverify";
     public getstate: string = Baseurl + 'getState';
     public check_User: string = Baseurl + 'user/checkUserId'
-    public GetProfile_List: string = Baseurl + 'user/getProfileList/710/10'
+    public getDepartment: string = Baseurl + 'getDepart'
+
+    // public GetProfile_List: string = Baseurl + 'user/getProfileList/710/10'
+    public GetProfile_List: string = Baseurl + 'profile/list'
+    public GetMajorHead: string = Baseurl + 'getMajorHeadList/'
+    public GetBudgetHead_List: string = Baseurl + 'budgetHeadList'
 }

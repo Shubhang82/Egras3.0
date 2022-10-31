@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, throwError, Observable } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-
+import axios from 'axios';
 const MINUTES_UNITL_AUTO_LOGOUT = 10 // in mins
 const CHECK_INTERVAL = 15000 // in ms
 const STORE_KEY = 'lastAction';
@@ -20,23 +20,14 @@ export class ApiMethods {
     localStorage.setItem(STORE_KEY, lastAction.toString());
   }
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-    }),
-  };
-  Options = {
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization1234': '123'
-    },
-  };
+
 
   hash: any;
   public loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public auth_token: BehaviorSubject<string> = new BehaviorSubject<string>(sessionStorage.getItem('token'));
   public TreName: BehaviorSubject<string> = new BehaviorSubject<string>(sessionStorage.getItem('loc') || '{}');
   public ipAddress: any;
+  // public token
   constructor(private router: Router, private http: HttpClient) {
     this.check();
     this.initListener();
@@ -93,9 +84,16 @@ export class ApiMethods {
 
 
   postresultservice(url: any, data: any) {
+    let token = localStorage.getItem('token');
 
+    let Options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      }),
+    };
     //return this.http.post(this.loginurl,data,this.httpOptions).pipe(catchError(this.handleError));//('postresultservice',data)
-    return this.http.post(url, data, this.httpOptions).
+    return this.http.post(url, data, Options).
       pipe(
         map((data: any) => {
 
@@ -106,17 +104,17 @@ export class ApiMethods {
 
 
   getservice(url: any) {
-    let headers = new HttpHeaders({
-      'Authorization': 'Bearer your_token'   //add your api token for auth
-    }).set('Content-Type', []);
-    // let token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3MTAiLCJVc2VySWQiOiI3MTAiLCJleHAiOjE2NjUzODQ1NjgsIlVzZXJUeXBlIjoiMTAiLCJpYXQiOjE2NjUzODM2Njh9.CDlHZI2UpFUocny9zCyx6Wwe-bjxqaXwe-hDAPTBgjmriihVu54cHL6wAS7t_09pD5LeHP-a0eCyfQZqlmB6-Q'
-    // let token = '123'
-    // let head_obj = new HttpHeaders().set("123", "Bearer " + token)
-    //return this.http.post(this.loginurl,data,this.httpOptions).pipe(catchError(this.handleError));//('postresultservice',data)
-    // var header = {
-    //     'Authorization': 'Basic 123'
-    // }
-    return this.http.get(url, { headers: headers }).
+    // let token = sessionStorage.getItem('token');
+    let token = localStorage.getItem('token');
+
+    console.log("token_____", token);
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': 'Bearer ' + token
+      }),
+    };
+    console.log("hhhhhhhhhh__", httpOptions,url);
+    return this.http.get(url, httpOptions).
       pipe(
         map((data: any) => {
 
@@ -125,10 +123,6 @@ export class ApiMethods {
     // catchError(this.handleError));//('postresultservice',data)
 
   }
-
-  // getcustomerservice() {
-  //   return this.http.get('http://172.22.32.105:8082/user/getProfileList/710/10')
-  // }
 
   ipaddress() {
     this.http.get("https://jsonip.com").subscribe((res: any) => {

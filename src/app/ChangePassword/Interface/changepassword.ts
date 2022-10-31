@@ -1,5 +1,6 @@
 export class IChangePassword {
-  password!: string
+  password!: string;
+  oldpassword!:string;
   userId!: string;
   loginId!: string;
 }

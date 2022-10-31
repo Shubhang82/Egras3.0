@@ -13,23 +13,26 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Location } from '@angular/common'
 
 export interface PDAcc {
+  oldpassword: string;
   password: string;
   confirm: string;
 }
 @Component({
   selector: 'app-change-password',
   templateUrl: './change-password.component.html',
-  styleUrls: ['./change-password.component.css']
+  styleUrls: ['./change-password.component.css', '../../Component/style.css']
 })
 export class ChangePasswordComponent implements OnInit {
   PDAccdata: MatTableDataSource<PDAcc> = new MatTableDataSource();
   displayedColumns = [
+    'oldpassword',
     'password',
     'confirm',
   ];
 
   model: IChangePassword = {
     password: "",
+    oldpassword: "",
     userId: "",
     loginId: ""
 
@@ -46,7 +49,7 @@ export class ChangePasswordComponent implements OnInit {
   // errorM: boolean = false;
   randum!: string;
   displayStyle = "none";
-  constructor(private formBuilder: FormBuilder, private router: Router, private ApiMethods: ApiMethods, private ApiService: ApiService, private List: List,private locat: Location) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private ApiMethods: ApiMethods, private ApiService: ApiService, private List: List, private locat: Location) {
     history.pushState(null, '', location.href);
     window.onpopstate = function () {
       history.go(1);
@@ -55,7 +58,13 @@ export class ChangePasswordComponent implements OnInit {
   ngOnInit() {
 
     this.ChangePwdForm = new FormGroup({
-      // password: new FormControl('', [Val.Required, Val.PasswordStrengthValidator, Val.minLength(6)]),
+      oldpassword: new FormControl(null, [
+        (c: AbstractControl) => Validators.required,
+        Validators.pattern(
+          /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!*#=~_-])/
+        ), Val.minLength(6),
+        // Val.Required,
+      ]),
       password: new FormControl(null, [
         (c: AbstractControl) => Validators.required,
         Validators.pattern(
@@ -75,10 +84,6 @@ export class ChangePasswordComponent implements OnInit {
   }
   closePopup() {
     this.displayStyle = "none";
-  }
-
-  checkUser() {
-    alert('User Available')
   }
   back(): void {
     this.loc.back()
@@ -162,7 +167,7 @@ export class ChangePasswordComponent implements OnInit {
         this.ApiMethods.postresultservice(this.ApiService.ResetPassword, this.model).subscribe(result => {
           console.log("resulllllttt__", result);
 
-          if (result.result.flag == 2|| result.result.flag == 3) {
+          if (result.result.flag == 2 || result.result.flag == 3) {
             //  alert(result.errorCode + ' ' + result.userID + ' ' + result.treasuryName + ' ' + result.treasurycode + ' ' + result.userMobile );
             // this.id = result.userID;
 
@@ -233,6 +238,7 @@ export class ChangePasswordComponent implements OnInit {
   //   alert('error');
   //   //console.log(`Recaptcha error encountered; details:`, errorDetails);
   // }
+  get oldpassword() { return this.ChangePwdForm.get('oldpassword') }
   get password() { return this.ChangePwdForm.get('password') }
   get confirm() { return this.ChangePwdForm.get('confirm') }
 

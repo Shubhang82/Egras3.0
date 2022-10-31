@@ -125,7 +125,7 @@
   
   </mat-card> -->
 
-
+<!-- 
  <div class="data">
   <button class="back-comp">Home</button>
   <div class="mat-menu-content">
@@ -169,4 +169,61 @@
       </span>
     </mat-menu>
   </div>
-</div> 
+</div>  -->
+
+<div>
+  <p class="user ">Hi,ramkumar</p>
+  <!-- <div class="">
+    <p class="sub-text">{{todaysDate}} </p>
+    <p class="sub-text"> {{todaysTime}}</p>
+  </div> -->
+  <div class=" btnrow " style="justify-content:flex-end; ">
+    <button mat-raised-button type="submit" type="button" class="logout-btn" title="SignOut" (click)="onLogout()">
+      <mat-icon>power_settings_new</mat-icon>
+    </button>
+  </div>
+  <div class="data">
+    <button class="back-comp" (click)="onclick('Profile')">Home</button>
+    <div class="mat-menu-content">
+      <button mat-button [matMenuTriggerFor]="menu1" (mouseenter)="openMyMenu()" class="drop-head">
+        Profile
+        <mat-icon>keyboard_arrow_down</mat-icon>
+      </button>
+      <mat-menu class="drop-container" #menu1="matMenu" overlapTrigger="false">
+        <span (mouseleave)="closeMyMenu()">
+          <button mat-menu-item (click)="onclick('CProfile')" >Create Profile</button>
+          <button mat-menu-item>Multiple Head</button>
+          <button mat-menu-item>Multiple Head Service For Service</button>
+          <button mat-menu-item>New Challan</button>
+        </span>
+      </mat-menu>
+    </div>
+    <button class="back-comp">Dept-Map</button>
+    <button class="back-comp">New Home Page</button>
+    <button class="back-comp">Paytm Home</button>
+
+    <div>
+      <button mat-button [matMenuTriggerFor]="menu2" (mouseenter)="openMyMenu()" class="drop-head">Account
+        <mat-icon>keyboard_arrow_down</mat-icon>
+      </button>
+      <mat-menu #menu2="matMenu" overlapTrigger="false">
+        <span (mouseleave)="closeMyMenu()">
+          <button mat-menu-item>Profile Edit</button>
+          <button mat-menu-item (click)="onclick('ChangePassword')">Change Password</button>
+        </span>
+      </mat-menu>
+    </div>
+    <button class="back-comp">Search Record</button>
+
+    <div>
+      <button mat-button [matMenuTriggerFor]="menu3" (mouseenter)="openMyMenu()" class="drop-head">Admin
+        <mat-icon>keyboard_arrow_down</mat-icon>
+      </button>
+      <mat-menu #menu3="matMenu" overlapTrigger="false">
+        <span (mouseleave)="closeMyMenu()">
+          <button mat-menu-item>QR Code Demo</button>
+        </span>
+      </mat-menu>
+    </div>
+  </div>
+</div>

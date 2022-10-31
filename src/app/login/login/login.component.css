@@ -1,221 +1,76 @@
-/* mat-card {
-    max-width: 400px;
-    margin: 2em auto;
-    text-align: center;
-    
-  }
-   */
-  /* mat-form-field {
-    display: block;
-  }
 
-  .fade-out {
-    animation: fadeOut ease 5s;
-    -webkit-animation: fadeOut ease 5s;
-    -moz-animation: fadeOut ease 5s;
-    -o-animation: fadeOut ease 5s;
-    -ms-animation: fadeOut ease 5s;
-  }
-
-  @keyframes fadeOut {
-    0% {
-      opacity:1;
-    }
-    100% {
-      opacity:0;
-    }
-  }
-  
-  @-moz-keyframes fadeOut {
-    0% {
-      opacity:1;
-    }
-    100% {
-      opacity:0;
-    }
-  }
-  
-  @-webkit-keyframes fadeOut {
-    0% {
-      opacity:1;
-    }
-    100% {
-      opacity:0;
-    }
-  }
-  
-  @-o-keyframes fadeOut {
-    0% {
-      opacity:1;
-    }
-    100% {
-      opacity:0;
-    }
-  }
-  
-  @-ms-keyframes fadeOut {
-    0% {
-      opacity:1;
-    }
-    100% {
-      opacity:0;
-  }
-} */
-
-/* .loader-container{
-  position : absolute;
-  background: black;
-  opacity: 0.3; 
-  margin-left: 950px;
-  margin-top: 200px;
-  z-index: 99;
-
-  
-} */
-
-/************************************ login CSS ********************************/
-
-.loginimg
-  {
-height: 100%;
-width: 100%;
-  }
-.user
-{
-  font-family: "Montserrat", sans-serif;
-  color: #051B77;
-  font-size: 40pt;
-  font-weight: 800;
-  padding-top: 50px;
-}
-
-.cap
-{
-  display: block;
+/* ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
   background: #DEE5FC;
-  width: 100%;
-  
   font-size: 25pt;
   font-family: "Montserrat", sans-serif;
+  border-color: #DEE5FC;
   border-radius: 59px;
-  border-color: #DEE5FC; 
+  justify-content: center;
+} */
 
-} 
-mat-form-field {
-  display: block;
-}
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline
-{
-  background: #DEE5FC;
-   font-size: 25pt;
-   font-family: "Montserrat", sans-serif;
-   border-color: #DEE5FC;
-   border-radius: 59px;
-   justify-content: center;
-} 
-
-
+/* 
 ::ng-deep .mat-form-field-outline-start {
   border-radius: 59px 0 0 59px !important;
   min-width: 59px !important;
-}
+} */
 
-::ng-deep .mat-form-field-outline-end {
+/* ::ng-deep .mat-form-field-outline-end {
   border-radius: 0 59px 59px 0 !important;
-}
+} */
 
-::ng-deep .mat-form-field input  {
-   background-color: #DEE5FC !important;
-  /* font-size: 5pt; */
+/* ::ng-deep .mat-form-field input {
+  background-color: #DEE5FC !important;
   height: 60%;
   padding-left: 7% !important;
   width: 80% !important;
   border: #DEE5FC !important;
-}
-::ng-deep .mat-form-field-flex > .mat-form-field-infix { padding: 3% 0px !important;}
+} */
 
-.form-control{
-  background-color: #DEE5FC;
- 
-}
-.form-control:focus{
-  box-shadow: 0 0 0 0;
-}
+/* ::ng-deep .mat-form-field-flex>.mat-form-field-infix {
+  padding: 3% 0px !important;
+} */
 
-.material-icons
-{ 
-  position: absolute;
-  font-size: 250%;
-  color: #051B77;
-  bottom: 10px;
-}
 
-.keepME
-{
+
+
+.keepME {
   font-family: "Montserrat", sans-serif;
   color: black;
   font-size: 18.28pt;
+  padding-right: 140px;
 }
-
-.keepME input[type="checkbox"]
-{
-       
-width: 10%;
-height:  17.5537px;
-margin-right: 20px;
-color: #DEE5FC;
-}
-
-.error-msg {
-  color: red;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-.SignUp {
-  text-align: center;
-  margin-top: 40px;
-  color: black;
-  font-size: 38px;
-}
-
-
-.bt {
-  background-color: #051B77; 
+/* .bt {
+  background-color: #051B77;
   color: #DEE5FC;
   border: none;
   padding: 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  /* font-size: 16px; */
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 12px;
   font-family: "Montserrat", sans-serif;
   font-size: 22pt;
-}
+} */
 
-#Captcha
-{
+/* #Captcha {
   background-image: url("../../../assets/Images/cap.png");
   background-size: 200px;
   background-repeat: no-repeat;
   background-position: center;
-}
-.navlink
-{
+} */
+
+.navlink {
   font-family: "Montserrat", sans-serif;
   color: black;
   font-size: 18.28pt;
-  margin-block: 10px;
+  margin-block: 20px;
+  /* margin-top: 20px; */
 }
-.error_msg  {
+
+.login-error_msg {
   /* font-size: 18px; */
   /* top: 30px; */
   margin-left: 45px;
 }
-
-
-
-

@@ -6,20 +6,13 @@
     padding-top: 5%;
     padding-bottom: 5%;
   }
-  
-  
-  .user-PR {
+  .text-head {
     font-family: "Montserrat", sans-serif;
     color: #051B77;
-    font-size: 30pt;
+    font-size: 40pt;
     font-weight: 800;
-    padding-top: 30px;
+    padding-top: 50px;
   }
-  
-  mat-form-field {
-    display: block;
-  }
-  
   ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
     background: #DEE5FC;
     font-size: 15pt;
@@ -28,26 +21,11 @@
     border-radius: 59px;
     justify-content: center;
   }
+  
     
   ::ng-deep .mat-form-field-outline-start {
     border-radius: 40px 0 0 40px !important;
     min-width: 40px !important;
-  }
-  
-  ::ng-deep .mat-form-field-outline-end {
-    border-radius: 0 40px 40px 0 !important;
-  }
-  
-  ::ng-deep .mat-form-field input {
-    background-color: #DEE5FC;
-    font-size: 25pt;
-    padding-left: 2%;
-    width: 100%;
-    border: #DEE5FC;
-  }
-  
-  ::ng-deep .mat-form-field-flex>.mat-form-field-infix {
-    padding: 3% 0px !important;
   }
   
   .form-control {
@@ -55,10 +33,7 @@
   
   }
   
-  .form-control:focus {
-    box-shadow: 0 0 0 0;
-  }
-   input, optgroup, select, textarea {
+   /* input, optgroup, select, textarea {
     background: border-box !important; 
     border: aliceblue !important;
     margin: 0;
@@ -66,23 +41,7 @@
     font-size: inherit;
     line-height: inherit;
     width: 100% !important;
-  }
-   
-  .bt {
-    background-color: #051B77;
-    color: #DEE5FC;
-    border: none;
-    padding: 15px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 12px;
-    font-family: "Montserrat", sans-serif;
-    font-size: 25pt;
-  }
+  } */
     
   .cap
   {
@@ -94,7 +53,7 @@
     font-family: "Montserrat", sans-serif;
     border-radius: 59px;
     border-color: #DEE5FC; 
-  } 
+  }
   
   #Captcha
   {
@@ -110,19 +69,6 @@
 
       /* OTP page css -------------------------------------begiN----*/
 
-
-      .login .loginimg {
-        height: 50%;
-        width: 50%;
-      }
-      
-      .user-OTP {
-        font-family: "Montserrat", sans-serif;
-        color: #051B77;
-        font-size: 40pt;
-        font-weight: 800;
-        padding-top: 50px;
-      }
       
       .user_code {
         font-family: "Montserrat", sans-serif;
@@ -139,10 +85,9 @@
       
       .material-icons {
         position: absolute;
-        right: 0;
-        /* font-size: 350%; */
+        font-size: 250%;
         color: #051B77;
-        cursor: pointer;
+        bottom: 10px;
       }
        
       .container {
@@ -152,22 +97,23 @@
         padding: 10px;
       }
       
-      ::ng-deep .mat-form-field-outline-start {
-        /* border-radius: 40px 0 0 40px !important; */
+      /* ::ng-deep .mat-form-field-outline-start {
+        border-radius: 40px 0 0 40px !important;
         min-width: 40px !important;
-      }
+      } */
       
       ::ng-deep .mat-form-field-outline-end {
          border-radius: 0 40px 40px 0 !important;  
       }
       
       ::ng-deep .mat-form-field input {
-        background-color: #DEE5FC;
-        font-size: 25pt;
-        padding-left: 2%;
-        width: 100%;
-        border: #DEE5FC;
+        background-color: #DEE5FC !important;
+        height: 60%;
+        padding-left: 7% !important;
+        width: 80% !important;
+        border: #DEE5FC !important;
       }
+      
       
       .otpimg {
         justify-content: center;
@@ -176,11 +122,6 @@
       
       ::ng-deep .mat-form-field-flex>.mat-form-field-infix {
         padding: 3% 0px !important;
-      }
-      
-      .form-control {
-        /* background-color: #DEE5FC; */
-      
       }
       
       .form-control:focus {
@@ -206,7 +147,7 @@
         text-align: center;
       }
       
-      .navlink {
+      .resend-otp {
         font-family: "Montserrat", sans-serif;
         color: black;
         font-size: 18.28pt;
@@ -218,14 +159,15 @@
         text-decoration-style: solid;
       }
       
-      .material-icons {
+      
+      /* .material-icons {
         position: absolute;
         justify-content: center;
         align-items: center;
         font-size: 250%;
         color: #051B77;
         bottom: 8px;
-      }
+      } */
       
       
       .bt {
@@ -242,8 +184,9 @@
         border-radius: 12px;
         font-family: "Montserrat", sans-serif;
         font-size: 22pt;
-        margin-block: 60px;
+        /* margin-block: 60px; */
       }
+      
       
       .errordrop {
         color: red;
@@ -251,7 +194,9 @@
       }
       
       .error_msg {
-        margin-left: 10px;
+        /* margin-left: 10px; */
+        margin-left: 45px;
+
       }
       
       .checkuser {

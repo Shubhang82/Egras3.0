@@ -21,7 +21,7 @@ export interface LoginAcc {
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css', '../../Component/style.css']
 })
 
 export class LoginComponent implements OnInit {
@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
 
   hash: any;
   randum: any;
-
+  fieldTextType: boolean = false
   loginForm!: FormGroup;
   message!: string;
   New: any;
@@ -73,11 +73,16 @@ export class LoginComponent implements OnInit {
     this.loginForm = new FormGroup({
       userid: new FormControl('', [Val.Required]),
       password: new FormControl('', [Val.Required, Val.PasswordStrengthValidator, Val.minLength(6)]),
+      Captcha: new FormControl('', [Val.Required]),
+
     });
 
   }
   public getRandomInt(min: any, max: any) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+  oneyclick() {
+    this.fieldTextType = !this.fieldTextType
   }
   onsubmit() {
     // console.log("formmmmm__",form)
@@ -122,6 +127,9 @@ export class LoginComponent implements OnInit {
             // this.id = result.userID;
 
             sessionStorage.setItem('token', result.result.token);
+            localStorage.setItem('token', result.result.token);
+            localStorage.setItem('userId', result.result.UserId)
+            localStorage.setItem('UserType', result.result.UserType)
             // sessionStorage.setItem('loc', result.treasuryName);
             console.log(result);
             this.router.navigate(['Profile']);
@@ -178,6 +186,8 @@ export class LoginComponent implements OnInit {
 
   get userid() { return this.loginForm.get('userid') }
   get password() { return this.loginForm.get('password') }
+  get Captcha() { return this.loginForm.get('Captcha') }
+
 }
 
 

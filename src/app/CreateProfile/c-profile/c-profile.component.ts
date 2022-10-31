@@ -9,7 +9,7 @@ import * as Val from '../../Component/Utility/Validators/ValBarrel'
 
 import { ApiService } from 'src/app/Component/Service/utility.service';
 import { ApiMethods } from 'src/app/Component/Service/ApiMethods';
-
+import { ICreateProfile } from '../Interface/c-profile';
 export interface ProfileAcc {
   ProfileName: string;
 }
@@ -17,43 +17,63 @@ export interface ProfileAcc {
 @Component({
   selector: 'app-c-profile',
   templateUrl: './c-profile.component.html',
-  styleUrls: ['./c-profile.component.css']
+  styleUrls: ['./c-profile.component.css', '../../Component/style.css']
 })
 export class CProfileComponent implements OnInit {
   PDAccdata: MatTableDataSource<ProfileAcc> = new MatTableDataSource();
   displayedColumns = [
     'ProfileName'
   ];
-  Heros: any[] = [
-    { id: 12, name: 'Dr. Nice' },
-    { id: 13, name: 'Bombasto-01122' },
-    { id: 14, name: 'Celeritas' },
-    { id: 15, name: 'Magneta' },
-    { id: 16, name: 'RubberMan' },
-    { id: 17, name: 'Dynama' },
-    { id: 18, name: 'Dr. IQ' },
-    { id: 19, name: 'Magma' },
-    { id: 20, name: 'Tornado' }
-  ];
+  Heros: any = [];
   isVisible: number = 2;
-  ProfileForm!: any;
+  ProfileForm!: FormGroup;
+
   selecteditem: number
   isSelected: boolean = true;
+
+  model: ICreateProfile = {
+    Prof_Name: '',
+    Department: '',
+    MajorHead: '',
+    BudgetHead: '',
+    ipAddress: '',
+    rnd: ''
+  };
+
+
   constructor(private router: Router, private ApiService: ApiService, private ApiMethods: ApiMethods,) {
     // setTimeout(() => {  this.todaysDate = formatDate(this.today, 'dd-MM-yyyy', 'en-US', '+0530');
     // this.todaysTime = formatDate(this.today, 'hh:mm:ss a', 'en-US', '+0530');}, 1000);
-    this.filteredOptions = [...this.Heros];
+    // this.filteredOptions = [...this.Heros];
+    history.pushState(null, '', location.href);
+    window.onpopstate = function () {
+      history.go(1);
+    };
+    console.log("dataatttt______Ss");
 
   }
+
+
   selectedCar: number;
-  selectedCityName = 'Select Profile';
-  selectedDepartmentName = 'Select Department'
-  selectedServiceName = 'Select Major Head'
+  Department_lab = 'Select Department';
+  Major_lab = 'Select Major Head';
+  Selected_Department = {
+    Deptcode: '',
+    DeptName: ''
+  }
+  Selected_Major = {
+    MajorCode: '',
+    MajorName: ''
+  }
+  MoreHead: boolean = false;
+
   showtrans: boolean
   today = new Date();
   todaysDate = '';
   todaysTime = '';
   selectedHero?: '';
+  Url: string = ''
+
   compareFunction = (o1: any, o2: any) => o1.id === o2.id;
   selectedOptions = [{ id: 12, name: 'Dr. Nice' },];
   profile = [
@@ -62,17 +82,18 @@ export class CProfileComponent implements OnInit {
     { id: 3, name: 'test3' },
     { id: 4, name: 'test4' },
   ];
-  Department = [
-    { id: 1, name: 'Department1' },
-    { id: 2, name: 'tDepartment2' },
-    { id: 3, name: 'Department3Department3Department3Department3Department3Department3Department3' },
-    { id: 4, name: 'Department4' },
-  ];
-  Service = [
-    { id: 1, name: 'Service1' },
-    { id: 2, name: 'tService2tService2tService2tService2tService2tService2tService2tService2tService2tService2' },
-    { id: 3, name: 'Service3' },
-    { id: 4, name: 'Service4' },
+  // Department = [
+  //   { id: 1, name: 'Department1' },
+  //   { id: 2, name: 'tDepartment2' },
+  //   { id: 3, name: 'Department3Department3Department3Department3Department3Department3Department3' },
+  //   { id: 4, name: 'Department4' },
+  // ];
+  Department: any = []
+  MajorHead = [
+    // { id: 1, name: 'Service1' },
+    // { id: 2, name: 'tService2tService2tService2tService2tService2tService2tService2tService2tService2tService2' },
+    // { id: 3, name: 'Service3' },
+    // { id: 4, name: 'Service4' },
   ];
   students = [
     {
@@ -142,8 +163,10 @@ export class CProfileComponent implements OnInit {
   ];
   bgcolor = false
 
-  toggle = true;
-  searchbox = 2;
+  toggle = false;
+  searchbox = 1;
+  displayStyle = "none";
+
   filteredOptions: any[] = []
   enableDisableRule() {
     this.toggle = !this.toggle;
@@ -160,9 +183,15 @@ export class CProfileComponent implements OnInit {
       ProfileName: new FormControl('', [Val.Required, Val.Alphabet, Val.maxLength(25)]),
 
     });
-    // this.loginForm.addValidators(
-    //   )
-    // );
+    this.getDepartmentList()
+  }
+
+  openPopup() {
+    this.displayStyle = "block";
+    this.model.Prof_Name = this.ProfileForm.controls['ProfileName'].value;
+  }
+  closePopup() {
+    this.displayStyle = "none";
   }
   onclosetrans() {
     this.showtrans = false
@@ -176,27 +205,41 @@ export class CProfileComponent implements OnInit {
   onSearch(searchTerm: string) {
     this.filteredOptions = this.Heros.filter(item =>
       // console.log("item__",item)
-      
-      item.name.toLowerCase().includes(searchTerm)
+
+      item.schemaName.toLowerCase().includes(searchTerm)
       // item.toLowerCase().includes(searchTerm)
     );
-    console.log("fffffffffffffff",this.filteredOptions);
+    console.log("fffffffffffffff", this.filteredOptions);
 
   }
-  getvalue(val:string) {
+  getvalue(val: string) {
 
   }
   onsub(value) {
-    console.log(value);
+    console.log("final_budgethaead", value);
 
   }
-  onLogout() {
-    // localStorage.clear()
-    localStorage.removeItem('Login_ID');
-    sessionStorage.removeItem('token');
-    localStorage.removeItem('user_ID');
+  selectDept(val) {
+    this.Selected_Department.Deptcode = val.DepartCode
+    this.Selected_Department.DeptName = val.DepartName
+    this.MoreHead = false
+    this.MajorHead = []
+    this.Major_lab = 'Select Major Head';
+    this.Heros = []
+    this.filteredOptions = []
+    this.getMajorHeadList()
 
-    this.router.navigate(['']);
+  }
+  selectMajor(val) {
+    console.log("slelct_major", val)
+    this.Selected_Major.MajorCode = val.Majorheadcode
+    this.Selected_Major.MajorName = val.Majorheadname
+    this.getBudgetHead_List()
+  }
+
+  onMoreHeads() {
+    this.MoreHead = true
+    this.getMajorHeadList()
 
   }
 
@@ -204,7 +247,7 @@ export class CProfileComponent implements OnInit {
     console.log("seleleleel__", hero, index);
     // let ind = this.Heros.findIndex(x => x.name === hero.name);
     this.Heros.findIndex(function (entry, i) {
-      if (entry.name == hero.name) {
+      if (entry.schemaName == hero.schemaName) {
         this.bgcolor = true
         this.selecteditem = i
         // return true;
@@ -215,6 +258,51 @@ export class CProfileComponent implements OnInit {
   }
 
 
+  // get Department List Api
+  getDepartmentList() {
+    this.ApiMethods.getservice(this.ApiService.getDepartment).subscribe(resp => {
+      console.log("Dept__res", resp.result);
+      let response = resp.result
+      if (response && response.length > 0) {
+        this.Department = response
+      }
+    })
+  }
+
+  // get Major Head List Api
+  getMajorHeadList() {
+    this.Url = this.ApiService.GetMajorHead + this.Selected_Department.Deptcode + '/' + this.MoreHead
+    this.ApiMethods.getservice(this.Url).subscribe(resp => {
+      console.log("Major_head__res", resp.result);
+      let response = resp.result
+      if (response && response.length > 0) {
+        this.MajorHead = response
+      }
+    })
+  }
+
+  // get budget head list api 
+  getBudgetHead_List() {
+    let userType = localStorage.getItem('UserType')
+    let data = {
+      "departCode": this.Selected_Department.Deptcode,
+      "majorHead": this.Selected_Major.MajorCode,
+      "userType": userType
+    }
+    console.log("budgethead_data____", data);
+
+    this.ApiMethods.postresultservice(this.ApiService.GetBudgetHead_List, data).subscribe(resp => {
+      console.log(resp.result);
+
+      let response = resp.result
+      if (response && response.length > 0) {
+        this.Heros = response
+        this.filteredOptions = response
+
+      }
+    })
+  }
 
 
+  get ProfileName() { return this.ProfileForm.get('ProfileName') }
 }

@@ -1,16 +1,17 @@
 <div class="row">
   <div class="col-md-6 ">
-    <img src="../../../assets/Images/B (1000X1000)-01.jpg" alt="login" class="loginimg">
-  </div>
+    <img src="../../../assets/Images/B (1000X1000)-01.jpg" alt="login" class="loginimg"
+        style="height: 100%; width:100%">
+</div>
   <div class="col-md-6 col-sm-12 ">
     <form [formGroup]="loginForm">
-      <p class="user text-center">User login</p>
+      <p class="text-head text-center">User login</p>
       <div class="inputs" style="padding-top: 30px;">
         <div *ngIf="errorM">
           <p style="color: red;margin-block: 20px;font-size: 17pt;">*{{errormessage}}</p>
         </div>
         <div class="row justify-content-md-center">
-          <div class="col-md-9">
+          <div class="col-md-7 col-md-3 col-md-4">
             <mat-form-field floatLabel="never" appearance="outline">
               <!-- <mat-icon matSuffix>person</mat-icon> -->
               <i class="material-icons">account_circle</i>
@@ -19,7 +20,7 @@
               <!-- <mat-error>
                 Username is required field
               </mat-error>  -->
-              <div *ngIf="userid && userid.invalid &&  userid.touched" class="text-danger error_msg">
+              <div *ngIf="userid && userid.invalid &&  userid.touched" class="text-danger login-error_msg">
                 <div *ngIf="userid.errors?.['Required'] as error">
                   {{error}}
                 </div>
@@ -34,18 +35,27 @@
           </div>
         </div>
         <div class="row justify-content-md-center">
-          <div class="col-md-9">
+          <div class="col-md-7">
             <mat-form-field floatLabel="never" appearance="outline">
 
               <i class="material-icons">
                 lock
               </i>
-              <input matInput class="form-control" type="password" placeholder="Password" name="password" required
-                formControlName="password" />
+              <input matInput class="form-control" type="password" [type]="fieldTextType ? 'text' : 'password'"
+                placeholder="Password" name="password" required formControlName="password" />
+              <div *ngIf="!fieldTextType" style="cursor:pointer" (click)="oneyclick()" >
+                <mat-icon style="position: absolute; left:93%; top:15px; height: 100%;width: 100%;">visibility
+                </mat-icon>
+              </div>
+              <div *ngIf="fieldTextType" style="cursor:pointer" (click)="oneyclick()" >
+                <mat-icon style="position: absolute; left:93%; top:15px; height: 100%;width: 100%;">visibility_off
+                </mat-icon>
+              </div>
+
               <!-- <mat-error>
                 Username is required field
               </mat-error> -->
-              <div *ngIf="password && password.invalid &&  password.touched" class="text-danger error_msg">
+              <div *ngIf="password && password.invalid &&  password.touched" class="text-danger login-error_msg">
                 <div *ngIf="password.errors?.['Required'] as error">
                   {{error}}
                 </div>
@@ -64,11 +74,7 @@
             <div class="keepME">
               <div class="row">
                 <div class="col-sm-6">
-                  <!-- <input style="display:inline-block ;" type="checkbox" name="check" value="lsRememberMe"> <span
-                    class="checkmark"></span><label for="rememberMe">
-                    KEEP ME LOGGED IN</label> -->
                 </div>
-                <!-- <div class="col-sm-6" href="#">FORGOT YOUR PASSWORD?</div> -->
                 <div class="col-sm-6" href="#">
                   <p><a routerLink="/PasswordRecovery" routerLinkActive="active">FORGOT YOUR PASSWORD ?</a></p>
                 </div>
@@ -78,36 +84,41 @@
             </div>
           </div>
         </div>
+        <div class="row justify-content-md-center">
+          <div class="col-md-7">
+            <mat-form-field floatLabel="never" appearance="outline">
+              <input matInput class="form-control" type="text" placeholder="Enter Captcha" name="Captcha" required
+                formControlName="Captcha" />
 
-        <div class="row justify-content-md-center">
-          <div class="col-md-9 ">
-            <input class="cap" style="text-align: center; width: 100%;" name="captcha" placeholder="Enter Captcha" />
+              <div *ngIf="Captcha && Captcha.invalid &&  Captcha.touched" class="text-danger login-error_msg">
+                <div *ngIf="Captcha.errors?.['Required'] as error">
+                  {{error}}
+                </div>
+              </div>
+            </mat-form-field>
+
           </div>
         </div>
-        <br>
-        <br>
         <div class="row justify-content-md-center">
-          <div class="col-md-9">
-            <input id="Captcha" style="text-align: center; width: 100%;" class="cap" readonly>
+          <div class="col-md-7">
+            <div id="Captcha" class="cap">
+            </div>
           </div>
         </div>
-        <!-- <re-captcha (resolved)="resolved($event)" (error)="onError($event)"
-        siteKey="6LesEcsgAAAAAD96gzkRGicq9ORAwChW6L-DVHVm"></re-captcha> -->
-        <br>
-        <br>
+
       </div>
       <div class="row justify-content-md-center">
         <div class="col-md-6 text-center">
-          <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid" (click)="onsubmit()"
+          <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid" (click)="onsubmit()" style="margin-top: 50px"
             type="button" class="bt">LOGIN</button>
         </div>
       </div>
       <div class="text-center navlink">
-        <h3>
+        <h2>
           <p>New User? <a routerLink="/Signup" routerLinkActive="active">SignUp</a></p>
-        </h3>
+        </h2>
       </div>
     </form>
-    
+
   </div>
 </div>

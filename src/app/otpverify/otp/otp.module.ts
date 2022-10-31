@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {AuthGuard} from '../Guard/auth.guard'
 // Material Layout
 import { MatCardModule } from '@angular/material/card';
 // Material Form Controls
@@ -36,7 +35,7 @@ import { RecaptchaModule } from 'ng-recaptcha';
     RecaptchaModule,
     MatFormFieldModule,
   ],
-  providers: [AuthGuard], 
+  providers: [], 
   exports: [
     OtpComponent
   ]

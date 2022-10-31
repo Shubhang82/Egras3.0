@@ -2,23 +2,31 @@ import { Component, OnInit } from '@angular/core';
 import { Helper } from 'src/app/Component/Helper';
 import { Router } from '@angular/router';
 import { formatDate } from '@angular/common';
+import axios from 'axios';
 
 import { ApiService } from 'src/app/Component/Service/utility.service';
 import { ApiMethods } from 'src/app/Component/Service/ApiMethods';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css', '../../Component/style.css']
 })
 export class ProfileComponent implements OnInit {
   isVisible: number = 1;
   isSelected: boolean = true;
   constructor(private router: Router, private ApiService: ApiService, private ApiMethods: ApiMethods,) {
-    setTimeout(() => {  this.todaysDate = formatDate(this.today, 'dd-MM-yyyy', 'en-US', '+0530');
-    this.todaysTime = formatDate(this.today, 'hh:mm:ss a', 'en-US', '+0530');}, 1000);
+
+    history.pushState(null, '', location.href);
+    window.onpopstate = function () {
+      history.go(1);
+    };
+    setTimeout(() => {
+      // this.todaysDate = formatDate(this.today, 'dd-MM-yyyy', 'en-US', '+0530');
+      // this.todaysTime = formatDate(this.today, 'hh:mm:ss a', 'en-US', '+0530');
+    }, 1000);
 
     this.getProfileList()
-
+    this.getDepartmentList()
   }
 
   sayHi() {
@@ -33,24 +41,29 @@ export class ProfileComponent implements OnInit {
   today = new Date();
   todaysDate = '';
   todaysTime = '';
+  isshow: boolean = true
 
 
+  // profile = [
+  //   { id: 1, name: 'test1' },
+  //   { id: 2, name: 'test2' },
+  //   { id: 3, name: 'test3' },
+  //   { id: 4, name: 'test4' },
+  // ];
+  profile: any = []
+  Department: any = []
+  public screenWidth: any;
+  public screenHeight: any
+  // Department = [
+  //   { id: 1, name: 'Department1' },
+  //   { id: 2, name: 'tDepartment2' },
+  //   { id: 3, name: 'Department3Department3Department3Department3Department3Department3Department3' },
+  //   { id: 4, name: 'Department4' },
+  // ];
 
-  profile = [
-    { id: 1, name: 'test1' },
-    { id: 2, name: 'test2' },
-    { id: 3, name: 'test3' },
-    { id: 4, name: 'test4' },
-  ];
-  Department = [
-    { id: 1, name: 'Department1' },
-    { id: 2, name: 'tDepartment2' },
-    { id: 3, name: 'Department3Department3Department3Department3Department3Department3Department3' },
-    { id: 4, name: 'Department4' },
-  ];
   Service = [
     { id: 1, name: 'Service1' },
-    { id: 2, name: 'tService2tService2tService2tService2tService2tService2tService2tService2tService2tService2' },
+    { id: 2, name: 'ts tssslskj' },
     { id: 3, name: 'Service3' },
     { id: 4, name: 'Service4' },
   ];
@@ -121,12 +134,14 @@ export class ProfileComponent implements OnInit {
 
   ];
   ngOnInit(): void {
+    this.screenWidth = window.innerWidth;
+    this.screenHeight = window.innerHeight;
   }
   onclosetrans() {
     this.showtrans = false
   }
   onTransaction() {
-    this.showtrans = !this.showtrans
+    this.showtrans = true
   }
   onLogout() {
     // localStorage.clear()
@@ -142,20 +157,39 @@ export class ProfileComponent implements OnInit {
     this.router.navigate(['CProfile']);
   }
 
-  getProfileList() {
-    this.ApiMethods.getservice(this.ApiService.GetProfile_List).subscribe(result => {
-      console.log("result-profilelist", result);
-      // if (result) {
-      //   localStorage.setItem('user_ID', result.result.UserId);
-      //   localStorage.setItem('Login_ID', this.model.userId);
 
-      //   this.router.navigate(['OtpVerify']);
-      // }
-      // else {
-      //   alert("Something went wrong")
-      // }
+  getProfileList() {
+    let userId = localStorage.getItem('userId')
+    let userType = localStorage.getItem('UserType')
+
+    let data = {
+      "userId": userId,
+      "userPro": userType,
+      "type": "string"
+    }
+    console.log("Post_profilelist_datat__", data);
+
+    this.ApiMethods.postresultservice(this.ApiService.GetProfile_List, data).subscribe(resp => {
+      console.log("Profilelist_res", resp.result);
+      let response = resp.result
+      if (response && response.length > 0) {
+        this.profile = response
+      }
     })
   }
-  
+  getDepartmentList() {
+    this.ApiMethods.getservice(this.ApiService.getDepartment).subscribe(resp => {
+      console.log("Dept__res", resp.result);
+      let response = resp.result
+      if (response && response.length > 0) {
+        this.Department = response
+      }
+    })
+  }
+  onstatuscheck() {
+    console.log("buttonpress");
+
+    this.isshow = !this.isshow;
+  }
 
 }

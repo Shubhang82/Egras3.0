@@ -1,9 +1,10 @@
 <div class="row">
     <div class="col-md-6 ">
-        <img src="../../../assets/Images/B (1000X1000)-01.jpg" alt="login" class="loginimg">
+        <img src="../../../assets/Images/B (1000X1000)-01.jpg" alt="login" class="loginimg"
+            style="height: 100%; width:100%">
     </div>
     <div class="col-md-6 col-sm-12 ">
-        <form [formGroup]="loginForm"> 
+        <form [formGroup]="loginForm">
             <p class="user text-center">User Registration</p>
             <div class="inputs" style="padding-top: 30px;">
                 <div class="row">
@@ -14,14 +15,12 @@
                                     <input matInput class="form-control" type="text" placeholder="UserName"
                                         name="userid" required formControlName="userid" />
                                     <div *ngIf="userflag==false">
-                                        <i class="material-icons" (click)="checkUser()"
-                                            title="Check Availablity">
+                                        <i class="material-icons1" (click)="checkUser()" title="Check Availablity">
                                             check_circle
                                         </i>
                                     </div>
                                     <div *ngIf="userflag==true">
-                                        <i class="material-icons"  (click)="checkUser()"
-                                            title="Check Availablity">
+                                        <i class="material-icons" (click)="checkUser()" title="Check Availablity">
                                             cancel
                                         </i>
                                     </div>
@@ -369,7 +368,7 @@
                     <div class="row justify-content-md-center col-md-6">
                         <div class="col-md-9">
                             <div class="container">
-                                <select (change)="selectQuestion($event)" >
+                                <select (change)="selectQuestion($event)">
                                     <option value="Select Your Security Question">Select Your Security Question</option>
                                     <option *ngFor="let question of Question" value="{{question.id}}">{{question.name}}
                                     </option>
@@ -424,9 +423,9 @@
             </div>
 
             <div class="text-center navlink">
-                <h3>
+                <h2>
                     <p>Already have an account? <a routerLink="/" routerLinkActive="active">SignIn </a></p>
-                </h3>
+                </h2>
             </div>
         </form>
     </div>

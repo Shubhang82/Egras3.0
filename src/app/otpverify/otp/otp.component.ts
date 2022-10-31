@@ -115,7 +115,7 @@ export class OtpComponent implements OnInit {
             // this.LoginService.user.next(sessionStorage.getItem('token') || '{}');
             // this.LoginService.TreName.next(sessionStorage.getItem('loc') || '{}');
             // this.router.navigate(['/Home']);
-            this.router.navigate(['ChangePassword']);
+            this.router.navigate(['ResetPassword']);
 
             //alert(result.message)
 

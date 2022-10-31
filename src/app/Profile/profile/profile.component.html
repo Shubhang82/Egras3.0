@@ -1,134 +1,125 @@
-<div>
-    <p class="user text-center">Welcome: ramkumar</p>
-    <div class="row1">
-        <div class=" row1" style="margin-left:170px ;">
-            <p class="sub-text">Date: {{todaysDate}} </p>
-            <p class="sub-text">Time: {{todaysTime}}</p>
-        </div>
-        <p (click)="onLogout()" class="sub-text" style="cursor: pointer;">Logout</p>
-    </div>
+<div class="main ">
+
     <app-challan> </app-challan>
-    <div class="row1 padding-col">
-        <p class="sub-text-head">Login Info</p>
-    </div>
-    <div class="row-prof" style="  padding-left: 30px;">
-        <img src="https://cdn-icons-png.flaticon.com/512/21/21104.png" alt="login" class="userimg"
-            style="height: 4%; width:4%">
-        <p class="sub-text">ramkumar</p>
-    </div>
-    <img src="../../../assets/Images/line.png" alt="login" class="otpimg" style="height: 100%; width:100%">
-    <div style="margin-block:20px">
-        <div class="row-prof">
-            <p class="sub-text-info">Last Successful Login:-</p>
-            <p class="sub-text-info" style="padding-inline: 32px;"> 28-05-2012</p>
+    <div class="user-profile">
+        <div class="row-prof" style="height: 100%;">
+
+            <img src="https://cdn-icons-png.flaticon.com/512/21/21104.png" alt="login" class="userimg"
+                style="height: 15%; width:15%">
+            <p class="sub-text">ramkumar</p>
         </div>
-        <div class="row-prof">
-            <p class="sub-text-info">Last Failure Login:-</p>
-            <p class="sub-text-info" style="padding-inline: 68px;"> 28-05-2012</p>
-        </div>
-        <div class="row-prof">
-            <p class="sub-text-info">Last Change Password:-</p>
-            <p class="sub-text-info"> 28-05-2012</p>
+        <div>
+            <div class="row-prof">
+                <p class="sub-text-info">Last Successful Login:-</p>
+                <p class="sub-text-info" style="padding-left: 28px;"> 28-05-2012</p>
+            </div>
+            <div class="row-prof">
+                <p class="sub-text-info">Last Failure Login:-</p>
+                <p class="sub-text-info" style="padding-left: 68px;"> 28-05-2012</p>
+            </div>
+            <div class="row-prof">
+                <p class="sub-text-info">Last Change Password:-</p>
+                <p class="sub-text-info"> 28-05-2012</p>
+            </div>
         </div>
 
     </div>
-    <img src="../../../assets/Images/line.png" alt="login" class="otpimg" style="height: 100%; width:100%">
-    <div class="row1 padding-col">
+    <div style="margin-inline:35px ;">
+        <img src="../../../assets/Images/line.png" alt="login" class="otpimg" style="height: 100%; width:100%; margin-top: 10px;">
+    </div>
+
+    <!-- <img src="../../../assets/Images/line.png" alt="login" class="otpimg" style="height: 100%; width:100%"> -->
+
+    <!-- <img src="../../../assets/Images/line.png" alt="login" class="otpimg" style="height: 100%; width:100%"> -->
+    <!-- <div class="row1 padding-col">
         <p class="sub-text-head">Profile</p>
+    </div> -->
+    <div (click)="OncreateP()" style="margin-right: 25px;">
+        <p class="sub-text" style="cursor: pointer;color: #051B77;   text-decoration:underline; text-align:right;">
+            Create profile</p>
     </div>
 
-    <div style="font-size: 15pt; justify-content: space-between;align-items: center;" class="text-center">
-        <label style="margin-inline: 20px;">
+    <div class="text-center radio-hd">
+        <label class="radio-lbn">
             <input [value]="1" [(ngModel)]="isVisible" [ngModelOptions]="{standalone: true}" name="isVisible"
                 type="radio" [checked]="isSelected" /> Profile Challan
         </label>
 
-        <label style="margin-inline: 20px;">
+        <label class="radio-lbn">
             <input [value]="2" [(ngModel)]="isVisible" [ngModelOptions]="{standalone: true}" name="isVisible"
                 type="radio" [checked]="!isSelected" /> Service Challan
         </label>
     </div>
-    <!-- <ng-select [items]="fruits" appendTo="body" formControlName="fruitNames" placeholder="Select Fruits"></ng-select> -->
-
-
-
-
 
     <div class="showDiv1" *ngIf="isVisible == 1">
-        <div
-            style="display:flex; justify-content: center;align-items: center;margin-block: 30px; flex-direction: row;flex: 1;">
+        <div class="drop-div" style="flex:1">
             <label>
-                <p class="sub-text-info" style="margin-block: 30px;">Profile List:-</p>
+                <p class="sub-text-info" style="margin-block: 0px;">Profile List:-</p>
             </label>
-            <ng-select [items]="profile" bindLabel="name" bindValue="name" placeholder="Select Profile"
-                style="width: 20%;" [(ngModel)]="selectedCityName">
 
-                <ng-template ng-label-tmp let-item="item">
-                    <img height="15" width="15" [src]="item.avatar" />
-                    <b>{{item.name}}</b>
-                </ng-template>
-                <ng-template ng-option-tmp let-item="item" let-index="index">
-                    <img height="15" width="15" [src]="item.avatar" />
-                    <b>{{item.name}}</b>
-                </ng-template>
-
+            <ng-select [items]="profile" bindLabel="UserProfile" placeholder="Select city" style="width: 40%;"
+                [(ngModel)]="selectedCityName">
             </ng-select>
         </div>
-        <div (click)="OncreateP()" >
-            <p class="sub-text" style="cursor: pointer;color: #051B77;   text-decoration:underline;">Create profile</p>
-        </div>
 
-    </div>
-    <div class="showDiv1" *ngIf="isVisible == 2">
-        <div class="showDiv1" style="margin-inline: 50px;">
-            <label>
-                <p class="sub-text-info" style="margin-block: 30px;">Department:-</p>
-            </label>
-            <ng-select [items]="Department" bindLabel="name" bindValue="name" placeholder="Select Department"
-                style="width: 200%;flex: .5; " [(ngModel)]="selectedDepartmentName">
-
-                <ng-template ng-label-tmp let-item="item">
-                    <img height="15" width="15" [src]="item.avatar" />
-                    <b>{{item.name}}</b>
-                </ng-template>
-                <ng-template ng-option-tmp let-item="item" let-index="index">
-                    <img height="15" width="15" [src]="item.avatar" />
-                    <b>{{item.name}}</b>
-                </ng-template>
-
-            </ng-select>
-        </div>
-        <div class="showDiv1">
-            <label>
-                <p class="sub-text-info" style="margin-block: 30px;">Service:-</p>
-            </label>
-            <ng-select [items]="Service" bindLabel="name" bindValue="name" placeholder="Select Service"
-                style="width: 100%; flex:.9" [(ngModel)]="selectedServiceName">
-
-                <ng-template ng-label-tmp let-item="item">
-                    <img height="15" width="15" [src]="item.avatar" />
-                    <b>{{item.name}}</b>
-                </ng-template>
-                <ng-template ng-option-tmp let-item="item" let-index="index">
-                    <img height="15" width="15" [src]="item.avatar" />
-                    <b>{{item.name}}</b>
-                </ng-template>
-
-            </ng-select>
+        <div class="btnrow">
+            <button mat-raised-button color="primary" type="submit" type="button" class="bt">Continue</button>
         </div>
     </div>
-    <!-- <div class="row-prof">
-        <div class="row1 padding-col" style="cursor: pointer;">
-            <p class="sub-text-head">Show Last 10 Transaction</p>
+    <div class="showDiv1" style="margin-left: 30px;" *ngIf="isVisible == 2">
+        <div class="drop-div" style="flex:1">
+            <label>
+                <p class="sub-text-info" style="margin-block: 0px;">Department:-</p>
+            </label>
+
+            <ng-select [items]="Department" bindLabel="DepartName" placeholder="Select Department" style="width: 50%;"
+                [(ngModel)]="selectedDepartmentName">
+            </ng-select>
         </div>
-        <button mat-raised-button color="primary" type="submit" class="bt" 
-            type="button" class="bt">Continue</button>
+        <div class="drop-div" style="flex:1">
+            <label>
+                <p class="sub-text-info" style="margin-block: 0px;">Service:-</p>
+            </label>
+
+            <ng-select [items]="Service" bindLabel="name" placeholder="Select Service" style="width: 50%;"
+                [(ngModel)]="selectedServiceName">
+            </ng-select>
+        </div>
+        <div class="btnrow">
+            <button mat-raised-button color="primary" type="submit" type="button" class="bt">Continue</button>
+        </div>
+    </div>
+    <!-- <div class="btnrow">
+        <button mat-raised-button color="primary" type="submit" type="button" class="bt">Continue</button>
     </div> -->
-    <div style="margin-top: 100px;">
+    <!-- <div style="display: flex; flex-direction: row">
+        <div class="bubble_sr" style="margin-top: 5px;">
+            <label style="color: white;font-size: 25pt; font-weight: 400; padding: 22px;">
+                01 </label>
+        </div>
+        <div class="bubble_Des">
+            <div style="display: flex; flex-direction:column;padding: 10px;">
+                <label style="color: white;font-size: 12pt; font-weight: 400;  flex:.4">
+                    8443-106 testing </label>
+                <label style="color: white;font-size: 12pt; font-weight: 400;margin-block: 18px; ">
+                    Edit </label>
+            </div>
+            <div *ngIf="isshow" (click)="onstatuscheck()" >
+                <mat-icon style="color:green; margin-right: 20px;margin-top: 30px; cursor: pointer;">done_outline</mat-icon>
+            </div>
+            <div *ngIf="!isshow" (click)="onstatuscheck()">
+                <mat-icon style="color:red; margin-right: 20px;margin-top: 30px; cursor: pointer;">cancel</mat-icon>
+            </div>
+        </div>
+    </div> -->
+    <div style="margin-inline:35px ;">
+        <img src="../../../assets/Images/line.png" alt="login" class="otpimg" style="height: 100%; width:100%">
+    </div>
+    <div style="margin-top: 10px;">
         <div class="row1 padding-col" style="cursor: pointer;" (click)="onTransaction()">
             <p class="sub-text-head">Show Last 10 Transaction</p>
         </div>
-        <div *ngIf="showtrans">
+        <div *ngIf="showtrans" style="margin-inline:35px ;">
             <table>
                 <tr>
                     <th>Sr.no</th>

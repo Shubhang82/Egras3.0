@@ -28,9 +28,10 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { CProfileComponent } from './CreateProfile/c-profile/c-profile.component';
 import { TokenInterceptorService } from './Component/Service/token-interceptor.service';
-
+import { ResetPasswordComponent } from './ResetPassword/rpassword/rpassword.component';
+// import { HeaderComponent } from './Header/Header.component';
 import { MobDirective } from './Component/Matrial/Budget-head';
-
+import { SidebarModule } from './sidebar/sidebar.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +42,8 @@ import { MobDirective } from './Component/Matrial/Budget-head';
     OtpComponent,
     ProfileComponent,
     CProfileComponent,
-    MobDirective
+    MobDirective,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +62,7 @@ import { MobDirective } from './Component/Matrial/Budget-head';
     MatInputModule,
     MatRadioModule,
     MatButtonModule,
+    SidebarModule,
     MatIconModule,
     MatToolbarModule,
     MatSidenavModule,

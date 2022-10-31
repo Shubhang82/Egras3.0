@@ -1,12 +1,4 @@
-<div>
-    <p class="user text-center">Welcome: ramkumar</p>
-    <div class="row1">
-        <div class=" row1" style="margin-left:170px ;">
-            <p class="sub-text">Date: {{todaysDate}} </p>
-            <p class="sub-text">Time: {{todaysTime}}</p>
-        </div>
-        <p (click)="onLogout()" class="sub-text" style="cursor: pointer;">Logout</p>
-    </div>
+<div class="main">
     <app-challan> </app-challan>
     <div class="row1 padding-col">
         <p class="sub-text-head">Payee Profile</p>
@@ -17,56 +9,63 @@
             <label>
                 <p class="sub-text-info" style="margin-block: 20px;">Department:-</p>
             </label>
-            <ng-select [items]="Department" bindLabel="name" bindValue="name" placeholder="Select Department"
-                class="dropdiv" [(ngModel)]="selectedDepartmentName">
-
-                <ng-template ng-label-tmp let-item="item" style="background-color: red;">
-                    <img height="15" width="15" [src]="item.avatar" />
-                    <b>{{item.name}}</b>
-                </ng-template>
-                <ng-template ng-option-tmp let-item="item" let-index="index">
-                    <img height="15" width="15" [src]="item.avatar" />
-                    <b>{{item.name}}</b>
-                </ng-template>
-
+            <ng-select [items]="Department" bindLabel="DepartName" placeholder="Select Department" class="dropdiv"
+                (change)="selectDept($event)" [(ngModel)]="Department_lab">
             </ng-select>
+
         </div>
         <div class="showDiv1">
             <label>
                 <p class="sub-text-info" style="margin-block: 20px;">Major Head:-</p>
             </label>
-            <ng-select [items]="Service" bindLabel="name" bindValue="name" placeholder="Select Major Head"
-                class="dropdiv" [(ngModel)]="selectedServiceName">
-
-                <ng-template ng-label-tmp let-item="item">
-                    <img height="15" width="15" [src]="item.avatar" />
-                    <b>{{item.name}}</b>
-                </ng-template>
-                <ng-template ng-option-tmp let-item="item" let-index="index">
-                    <img height="15" width="15" [src]="item.avatar" />
-                    <b>{{item.name}}</b>
-                </ng-template>
-
+            <ng-select [items]="MajorHead" bindLabel="Majorheadname" placeholder="Select Major Head" class="dropdiv"
+                (change)="selectMajor($event)" style="margin-inline:20px" [(ngModel)]="Major_lab">
             </ng-select>
+            <button class="Heads-btn" (click)="onMoreHeads()">
+                More Heads
+            </button>
         </div>
     </div>
-    <div class="showDiv1 col-md-12">
-        <label>
-            <p class="sub-text-info" style="margin-block: 20px;">Profile Name:-</p>
-        </label>
-        <div style="margin-inline: 5px;">
-            <mat-form-field floatLabel="never" appearance="outline">
-                <input matInput type="text" placeholder="Profile Name" name="ProfileName" required
-                    formControlName="ProfileName" />
-            </mat-form-field>
-        </div>
-        <!-- <div class="col-md-9 ">
-            <input class="cap" style=" width: 50%;" name="captcha" placeholder="Enter Captcha" />
-            <input matInput class="form-control" type="text" placeholder="Enter Captcha"
-                                        name="Captcha" required formControlName="Captcha" />
-          </div> -->
+    <div class="">
+        <form [formGroup]="ProfileForm">
+            <div class="showDiv1">
+                <label>
+                    <p class="sub-text-info" style="margin-block: 20px;">Profile Name:-</p>
+                </label>
+                <div class="row justify-content-md-center">
+                    <div class="col-md-12">
+                        <mat-form-field floatLabel="never" appearance="outline">
+                            <input matInput class="input-control" type="text" placeholder="Profile" maxlength="15"
+                                name="ProfileName" required formControlName="ProfileName" />
+                            <div *ngIf="ProfileName && ProfileName.invalid &&  ProfileName.touched"
+                                class="text-danger Cprofile-error_msg">
+                                <div *ngIf="ProfileName.errors?.['Required'] as error">
+                                    {{error}}
+                                </div>
+                            </div>
+                        </mat-form-field>
+                    </div>
+                    <!-- <div class="row justify-content-md-center">
+                    <div class="col-md-11">
+                        <mat-form-field floatLabel="never" appearance="outline">
+                            <input matInput class="form-control" type="password" placeholder="Profie Name"
+                                name="ProfileName" required formControlName="ProfileName" />
+                            <div *ngIf="ProfileName && ProfileName.invalid &&  ProfileName.touched" class="text-danger login-error_msg">
+                            <div *ngIf="ProfileName.errors?.['Required'] as error">
+                                {{error}}
+                            </div>
+                            
+                        </div>
+                        </mat-form-field>
+                    </div>
+                         </div> -->
+                </div>
+            </div>
+        </form>
     </div>
-    <img src="../../../assets/Images/line.png" alt="login" class="otpimg" style="height: 100%; width:100%">
+    <div style="margin-inline:35px ;">
+        <img src="../../../assets/Images/line.png" alt="login" class="otpimg" style="height: 100%; width:100%">
+    </div>
 
     <div class="showDiv1 justify">
         <button (click)="enableDisableRule()" [ngClass]="{'green' : toggle, 'red': !toggle}" style="width: 200px;">
@@ -77,19 +76,43 @@
         </button>
     </div>
 
-    <div class="showDiv1 justify" *ngIf="searchbox == 1">
-        <label>
+    <div class="showDiv1 justify" *ngIf="searchbox == 1" style="margin-right: 220px;">
+        <!-- <label>
             <p class="sub-text-info" style="margin-block: 10px;">Search Text:-</p>
-        </label>
-        <input  class="cap" style=" width: 20%;" name="captcha" placeholder="Serach Text"  #box (keyup)="onSearch(box.value)"/>
+        </label> -->
+        <!-- <input class="cap" style=" width: 20%;" name="captcha" placeholder="Serach Text" #box
+            (keyup)="onSearch(box.value)" /> -->
+        <div class="row justify-content-md-center">
+            <div class="col-md-12">
+                <mat-form-field floatLabel="never" appearance="outline">
+                    <i class="material-icons">
+                        search
+                    </i>
+                    <input matInput class="input-control" type="text" placeholder="Search Text" #box name="ProfileName"
+                        (keyup)="onSearch(box.value)" />
+
+                </mat-form-field>
+            </div>
+        </div>
 
     </div>
-    <div class="showDiv1 justify" *ngIf="searchbox == 2">
-        <label>
+    <div class="showDiv1 justify" *ngIf="searchbox == 2" style="margin-right: 220px;">
+        <!-- <label>
             <p class="sub-text-info" style="margin-block: 10px;">Search BudgetHead:-</p>
         </label>
-        <input mobMask class="cap" style=" width: 20%;" name="captcha" placeholder="9999-99-999-99-99" #box (keyup)="onSearch(box.value)" type="tel"/>
-
+        <input mobMask class="cap" style=" width: 20%;" name="captcha" placeholder="9999-99-999-99-99" #box
+            (keyup)="onSearch(box.value)" type="tel" /> -->
+        <div class="row justify-content-md-center">
+            <div class="col-md-12">
+                <mat-form-field floatLabel="never" appearance="outline">
+                    <i class="material-icons">
+                        search
+                    </i>
+                    <input mobMask matInput class="input-control" type="tel" placeholder="9999-99-999-99-99" #box
+                        style="width:60% ;" name="ProfileName" (keyup)="onSearch(box.value)" />
+                </mat-form-field>
+            </div>
+        </div>
     </div>
     <!-- <div class="showDiv1 justify">
         <div class="col-md-4 mb-4">
@@ -132,18 +155,19 @@
         <div class="col-md-9 mb-9">
             <div class="card example-1 scrollbar-ripe-malinka">
                 <mat-selection-list>
-                    <mat-list-option *ngFor="let hero of filteredOptions" (click)="onsub(hero)" >
-                        <span>{{ hero.name }}</span>
+                    <mat-list-option *ngFor="let hero of filteredOptions" (click)="onsub(hero)">
+                        <span>{{ hero.schemaName }}</span>
                     </mat-list-option>
                 </mat-selection-list>
             </div>
         </div>
     </div>
 
-    <div class="row justify-content-md-center">
+    <div>
         <div class="row justify-content-md-center">
             <div class="col-md-3 text-center">
-                <button mat-raised-button color="primary" type="submit" type="button" class="bt">Submit</button>
+                <button mat-raised-button color="primary" type="submit" type="button" class="bt btn"
+                    (click)="openPopup()">Submit</button>
             </div>
 
             <div class="col-md-3 text-center">
@@ -155,8 +179,11 @@
         </div>
 
     </div>
+    <div style="margin-inline:35px ;">
+        <img src="../../../assets/Images/line.png" alt="login" class="otpimg" style="height: 100%; width:100%">
+    </div>
 
-    <div style="margin-top: 100px;">
+    <div style="margin-top: 100px;margin-inline: 30px;">
 
         <div>
             <div class="table-div">
@@ -166,7 +193,11 @@
 
                 <tr *ngFor="let student of students">
                     <td>{{ student.ChallanDate }}</td>
-                    <td>{{ student.Grn }}</td>
+                    <td mat-coloum style="width:8%">
+                        <button mat-icon-button title="Edit Contact" style="right:70px ;top:10px">
+                            <mat-icon style="width: 100%;height: 100%;;">edit</mat-icon>
+                        </button>
+                    </td>
                     <td>{{ student.Status }}</td>
                 </tr>
             </table>
@@ -217,6 +248,70 @@
             <span>{{ hero.name }}</span>
         </mat-list-item>
     </mat-nav-list> -->
+    <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}"
+        style="background-color:#bfbfbf ;" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
 
+                <div style="margin-inline: 60px;">
+                    <div class="modal-footer" (click)="closePopup()" style="cursor: pointer;">
+                        <mat-icon
+                            style="height: 100%; width:100%;position: absolute;top:10px; color: #051B77; right: 0px;left:90%;">
+                            cancel</mat-icon>
+                    </div>
+
+                    <div class="col-md-12 ">
+                        <img src="../../../assets/Images/popup-img.png" alt="login" class="otpimg"
+                            style="height: 100%; width:100%">
+                    </div>
+                    <div>
+                        <div class="showDiv1 justify">
+                            <div>
+                                <label style="font-size:15pt; font-weight:500;margin-left: 0px;">Departments:-</label>
+                            </div>
+                            <div style="background-color:#DEE5FC ; width: 70%;  margin-left: 40px;">
+                                <label style="font-size:15pt; font-weight:500;margin-inline: 20px;">
+                                    {{Selected_Department.DeptName}} </label>
+                            </div>
+                        </div>
+                        <div class="showDiv1 justify">
+                            <div>
+                                <label style="font-size:15pt; font-weight:500;margin-inline: 0px;">Major Head:-</label>
+                            </div>
+                            <div style="background-color:#DEE5FC ; width: 70%;  margin-left: 50px;">
+                                <label style="font-size:15pt; font-weight:500;margin-inline: 20px;">
+                                    {{Selected_Major.MajorName}} </label>
+                            </div>
+                        </div>
+                        <div class="showDiv1 justify">
+                            <div>
+                                <label style="font-size:15pt; font-weight:500;margin-inline: 0px;">Profile
+                                    Name:-</label>
+                            </div>
+                            <div style="background-color:#DEE5FC ; width: 70%;  margin-left: 40px;">
+                                <label
+                                    style="font-size:15pt; font-weight:500;margin-inline: 20px;">{{model.Prof_Name}}</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="background-color:#051B77 ;">
+                        <p class="budgethead">BUDGET
+                            HEAD</p>
+                    </div>
+                    <div style="margin-block:10px ;" *ngFor="let stu of students">
+                        <div style="background-color:#DEE5FC ; width: 87%;  margin-left: 40px;">
+                            <label style="font-size:15pt; font-weight:500;margin-inline: 20px;">{{stu.id}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-btn">
+                    <button type="button" class="bt" (click)="closePopup()">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>

@@ -12,18 +12,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field'
 
-import { ChangePasswordRoutingModule } from './change-password-routing.module';
-import { ChangePasswordComponent } from './change-password.component';
+import { SidebarComponent } from './sidebar.component';
 import { RecaptchaModule } from 'ng-recaptcha';
 
 
 @NgModule({
   declarations: [
-    ChangePasswordComponent
+    SidebarComponent
   ],
   imports: [
     CommonModule,
-    ChangePasswordRoutingModule,
     ReactiveFormsModule,
     FormsModule,
     MatInputModule,
@@ -37,7 +35,7 @@ import { RecaptchaModule } from 'ng-recaptcha';
   ],
   providers: [], 
   exports: [
-    ChangePasswordComponent
+    SidebarComponent
   ]
 })
-export class ChangePasswordModule { }
+export class SidebarModule { }

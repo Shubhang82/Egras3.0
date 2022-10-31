@@ -5,7 +5,7 @@
     </div>
     <div class="col-md-6 col-sm-6 ">
         <form [formGroup]="OtpForm">
-            <p class="user-OTP text-center">OTP Verification</p>
+            <p class="text-head text-center">OTP Verification</p>
             <p class="user_code text-center">Code is send on 935XXXXXXX </p>
             <div *ngIf="errorM">
                 <p style="color: red;margin-block: 20px;font-size: 17pt;">*{{errormessage}}</p>
@@ -23,7 +23,7 @@
                     </div>
                 </div>
             </div>
-            <div class="navlink" (click)="onResend_otp()">
+            <div class="resend-otp " (click)="onResend_otp()">
                 <h3>
                     <p>Resend Otp</p>
                 </h3>
