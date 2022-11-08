@@ -183,32 +183,79 @@
         <img src="../../../assets/Images/line.png" alt="login" class="otpimg" style="height: 100%; width:100%">
     </div>
 
+
     <div style="margin-top: 100px;margin-inline: 30px;">
 
         <div>
             <div class="table-div">
                 <label style="margin-block: 10px;">Profile</label>
             </div>
-            <table>
 
-                <tr *ngFor="let student of students">
-                    <td>{{ student.ChallanDate }}</td>
+            <table>
+                <tr *ngFor="let user of userProfile">
+                    <td>{{ user.UserProfile }}</td>
                     <td mat-coloum style="width:8%">
-                        <button mat-icon-button title="Edit Contact" style="right:70px ;top:10px">
-                            <mat-icon style="width: 100%;height: 100%;;">edit</mat-icon>
+                        <button mat-icon-button title="Edit User" style="right:70px ;top:10px;">
+                            <mat-icon style="width: 100%;height: 60%;;">edit</mat-icon>
                         </button>
                     </td>
-                    <td>{{ student.Status }}</td>
+                    <td mat-coloum style="width:10%">
+                        <button mat-icon-button title="Acitve User" style="right:70px ;top:10px"
+                            *ngIf="user.Flag == 'Y'" (click)="setuser_Status(user,'N')">
+                            <mat-icon style="width: 100%;height: 100%;color: green;">check_circle_outline</mat-icon>
+                        </button>
+                        <button mat-icon-button title="Deactive User" style="right:70px ;top:10px"
+                            *ngIf="user.Flag == 'N'" (click)="setuser_Status(user,'Y')">
+                            <mat-icon style="width: 100%;height: 100%;color: red;">cancel</mat-icon>
+                        </button>
+                    </td>
+
                 </tr>
             </table>
-            <!-- <div style="width: 100%; " (click)="onclosetrans()">
-                <p
-                    style="cursor: pointer; text-align: center; height: 50%; font-size: 10pt; background-color: #DEE5FC;">
-                    Click here to hide</p>
-            </div> -->
+
         </div>
 
     </div>
+    <!-- <div style="  display:grid;
+    grid-auto-flow: row;
+    grid-gap: 20px; 
+    grid-template-rows: 100px 100px ;
+    grid-template-columns: 100px 100px ;
+    justify-content: space-between;
+    margin-right: 300px;
+    ">
+        <div style="display: flex; flex-direction: row;  " *ngFor="let user of userProfile">
+            <div class="bubble_sr" style="margin-top: 5px;">
+                <label style="color: white;font-size: 25pt; font-weight: 400; padding: 22px; text-align: center;">
+                    {{ user.Sr }} </label>
+            </div>
+            <div class="bubble_Des">
+                <div style="display: flex; flex-direction:column;padding: 10px;">
+                    <label style="color: white;font-size: 12pt; font-weight: 400; flex: 1;">
+                        {{ user.UserProfile }} </label>
+                    <button mat-icon-button title="Edit User" style="right:70px ;top:10px; ">
+                        <mat-icon style="width: 70%;height: 60%;color: white;;">edit</mat-icon>
+                    </button>
+                </div>
+                <div style="margin-inline:5px">
+                    <div>
+                        <button mat-icon-button title="Acitve User" style="right:70px ;top:15px"
+                            *ngIf="user.Flag == 'Y'" (click)="setuser_Status(user,'N')">
+                            <mat-icon style="width: 100%;height: 100%;color: green;margin-block: 5px;">check_circle_outline</mat-icon>
+                        </button>
+
+                    </div>
+                    <div>
+                        <button mat-icon-button title="Deactive User" style="right:70px ;top:15px"
+                            *ngIf="user.Flag == 'N'" (click)="setuser_Status(user,'Y')">
+                            <mat-icon style="width: 100%;height: 100%;color: red;">cancel</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
 
     <!-- <div class="heroes">
         <div *ngFor="let hero of Heros; let indexOfelement=index;">
@@ -299,19 +346,22 @@
                         <p class="budgethead">BUDGET
                             HEAD</p>
                     </div>
-                    <div style="margin-block:10px ;" *ngFor="let stu of students">
+                    <div style="margin-block:10px ;" *ngFor="let BudegetHead of final_BudgetHead">
                         <div style="background-color:#DEE5FC ; width: 87%;  margin-left: 40px;">
-                            <label style="font-size:15pt; font-weight:500;margin-inline: 20px;">{{stu.id}}</label>
+                            <label
+                                style="font-size:15pt; font-weight:500;margin-inline: 20px;">{{BudegetHead.budgetHead}}</label>
                         </div>
                     </div>
                 </div>
                 <div class="modal-btn">
-                    <button type="button" class="bt" (click)="closePopup()">
+                    <button type="button" class="bt" (click)="onSubmit()">
                         Submit
                     </button>
                 </div>
             </div>
         </div>
     </div>
+
+
 
 </div>

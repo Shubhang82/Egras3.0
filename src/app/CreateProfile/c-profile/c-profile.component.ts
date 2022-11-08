@@ -66,6 +66,7 @@ export class CProfileComponent implements OnInit {
     MajorName: ''
   }
   MoreHead: boolean = false;
+  isshow: boolean = true
 
   showtrans: boolean
   today = new Date();
@@ -82,12 +83,6 @@ export class CProfileComponent implements OnInit {
     { id: 3, name: 'test3' },
     { id: 4, name: 'test4' },
   ];
-  // Department = [
-  //   { id: 1, name: 'Department1' },
-  //   { id: 2, name: 'tDepartment2' },
-  //   { id: 3, name: 'Department3Department3Department3Department3Department3Department3Department3' },
-  //   { id: 4, name: 'Department4' },
-  // ];
   Department: any = []
   MajorHead = [
     // { id: 1, name: 'Service1' },
@@ -159,14 +154,15 @@ export class CProfileComponent implements OnInit {
       Amount: "16.00",
       Verify: ""
     },
-
   ];
+  final_BudgetHead: any = []
+
+  userProfile = [];
   bgcolor = false
 
   toggle = false;
   searchbox = 1;
   displayStyle = "none";
-
   filteredOptions: any[] = []
   enableDisableRule() {
     this.toggle = !this.toggle;
@@ -179,11 +175,10 @@ export class CProfileComponent implements OnInit {
   ngOnInit() {
 
     this.ProfileForm = new FormGroup({
-
       ProfileName: new FormControl('', [Val.Required, Val.Alphabet, Val.maxLength(25)]),
-
     });
     this.getDepartmentList()
+    this.getUserProfileList()
   }
 
   openPopup() {
@@ -217,6 +212,19 @@ export class CProfileComponent implements OnInit {
   }
   onsub(value) {
     console.log("final_budgethaead", value);
+    const { length } = this.final_BudgetHead;
+    const found = this.final_BudgetHead.some(el => el.scheCode === value.scheCode);
+
+    if (!found) {
+      this.final_BudgetHead.push({ budgetHead: value.schemaName, scheCode: value.scheCode });
+    }
+    else {
+      //remove item
+      const itemToBeRemoved = value
+      this.final_BudgetHead.splice(this.final_BudgetHead.findIndex(a => a.scheCode === itemToBeRemoved.scheCode), 1)
+    }
+    // return this.final_BudgetHead;
+    console.log("newww__arrrr_", this.final_BudgetHead);
 
   }
   selectDept(val) {
@@ -243,19 +251,19 @@ export class CProfileComponent implements OnInit {
 
   }
 
-  onSelect(hero, index): void {
-    console.log("seleleleel__", hero, index);
-    // let ind = this.Heros.findIndex(x => x.name === hero.name);
-    this.Heros.findIndex(function (entry, i) {
-      if (entry.schemaName == hero.schemaName) {
-        this.bgcolor = true
-        this.selecteditem = i
-        // return true;
-      }
-    });
-    // console.log(ind);
+  // onSelect(hero, index): void {
+  //   console.log("seleleleel__", hero, index);
+  //   // let ind = this.Heros.findIndex(x => x.name === hero.name);
+  //   this.Heros.findIndex(function (entry, i) {
+  //     if (entry.schemaName == hero.schemaName) {
+  //       this.bgcolor = true
+  //       this.selecteditem = i
+  //       // return true;
+  //     }
+  //   });
+  //   // console.log(ind);
 
-  }
+  // }
 
 
   // get Department List Api
@@ -303,6 +311,77 @@ export class CProfileComponent implements OnInit {
     })
   }
 
+  // get user_profile List Api
+  getUserProfileList() {
+    let userid = localStorage.getItem('userId')
+    this.Url = this.ApiService.GetUserProfile + userid
+    this.ApiMethods.getservice(this.Url).subscribe(resp => {
+      console.log("User_profile__res", resp.result);
+      let response = resp.result
+      if (response && response.length > 0) {
+        // this.userProfile = response
+        // Our sorting function
+        this.userProfile = response.sort(
+          (p1, p2) =>
+            (p1.Sr > p2.Sr) ? 1 : (p1.Sr < p2.Sr) ? -1 : 0);
+      }
+    })
+  }
+
+  // get user active/deactive status
+  setuser_Status(value, flag) {
+    let UserId = localStorage.getItem('userId')
+    let data = {
+      "userId": UserId,
+      "userPro": value.UserPro,
+      "type": flag
+    }
+    console.log("Profilestatus_data____", value, flag, data);
+
+    this.ApiMethods.postresultservice(this.ApiService.ProfileActive_Deactive, data).subscribe(resp => {
+      console.log(resp.result);
+
+      let response = resp.result
+      if (response) {
+        this.getUserProfileList()
+      }
+    })
+  }
+
+  //post create profile api
+  onSubmit() {
+    let userId = localStorage.getItem('userId')
+    // let data = {
+    //   "departCode": this.Selected_Department.Deptcode,
+    //   "majorHead": this.Selected_Major.MajorCode,
+    //   "userType": userType
+    // }
+    let data = {
+      "deptCode": this.Selected_Department.Deptcode,
+      "userId": userId,
+      "userPro": 0,
+      "profileName": this.model.Prof_Name,
+      "budgetHead": this.final_BudgetHead
+    }
+    console.log("budgethead_data____", data);
+
+    this.ApiMethods.postresultservice(this.ApiService.ProfileCreate, data).subscribe(resp => {
+      console.log(resp.result);
+
+      let response = resp.result
+      if (response) {
+        this.router.navigate(['Profile']);
+
+      }
+    })
+  }
+
 
   get ProfileName() { return this.ProfileForm.get('ProfileName') }
+
+  onstatuscheck() {
+    console.log("buttonpress");
+
+    this.isshow = !this.isshow;
+  }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -14,11 +14,13 @@ export class AppComponent {
       //   sessionStorage.clear();
       // }
       sessionStorage.clear();
-
       console.log("page reloadd");
-
     }
-    
   }
 
+  // disable the mouse right click functionality
+  // @HostListener('contextmenu', ['$event'])
+  // onRightClick(event) {
+  //   event.preventDefault();
+  // }
 }

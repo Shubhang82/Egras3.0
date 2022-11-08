@@ -1,4 +1,4 @@
-<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed': '' ">
+<!-- <div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed': '' ">
     <div class="logo-container">
         <button class="logo" (click)="togglecoll()">A</button>
         <div class="logo-text">Angular</div>
@@ -12,7 +12,6 @@
     <ul class="sidenav-nav">
         <li class="side-nav-item" *ngFor="let data of navData">
             <a  class="sidenav-nav-link">
-                <!-- <i class="sidenav-link-icon" [class]="data.icon">{{data.icon}} </i> -->
                 <span class="material-icons">
                     {{data.icon}}
                 </span>
@@ -20,4 +19,92 @@
             </a>
         </li>
     </ul>
-</div>
+</div> -->
+
+<section class="app-component main ">
+    <div class="row">
+        <div class="col-lg-2">
+            <div class="menu-box">
+
+                <div class="side-menu-list">
+                    <ul class="menu-items">
+                        <li (click)="goTo('Home')" [ngClass]="{ 'onActive' :selectedMenu == 'Home'}">
+                            <i class="material-icons">
+                                home
+                            </i>Home
+                        </li>
+                        <li (click)="goTo('Profile')" [ngClass]="{ 'onActive' :selectedMenu == 'Profile'}">
+                            <i class="material-icons">
+                                account_circle
+
+                            </i> Profile
+                        </li>
+                        <li (click)="goTo('Contact')" [ngClass]="{ 'onActive' :selectedMenu == 'Contact'}">
+                            <!-- <label> -->
+                            <i class="material-icons">
+                                phone_in_talk
+                            </i> Contact
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-10 main">
+
+            <div class="side-menu-content">
+                <div class="tabs" *ngIf="selectedMenu=='Home' ">
+
+                    <!-- <div>
+                        <img src="../../../assets/Images/services-01.png" alt="login" class="otpimg"
+                            style="height: 30%; width:30%; margin-top: 10px; " ng-click="myFunction()">
+                        <div class="bord">
+
+                            <label style="font-size:10px; text-align: center; ">10 transaction
+                            </label>
+                        </div>
+
+                    </div> -->
+                    <!-- <div
+                        style="background-color: '#051B77'; color:white; padding: 10px;position: absolute;margin-left:150pt ">
+                        <label> Transaction Mode</label>
+                    </div> -->
+                    <div>
+                        <img src="../../../assets/Images/line.png" alt="login" class=""
+                            style="height: 130%; width:140%; margin-top: 0px;">
+                    </div>
+                    <div style="display: flex;flex-direction:row ; ">
+                        <div *ngFor="let mode of paymode" (click)="onchg_status(mode)"
+                            style="flex-direction: row; display:flex; width: 100%;position: relative;">
+
+                            <img src="../../../assets/Images/home_screen/Paymode.png" alt="login" class=""
+                                style="height: 115%;
+                                width: 100%;
+                                margin-left: 60px;">
+                            <label class="pay_title"> {{mode.type}}
+                            </label>
+                            <img [src]="mode.img" alt="login" class="pay_img">
+                            <div *ngIf="mode.status">
+                                <i class="material-icons pay_Status">
+                                    done_all
+                                </i>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="side-menu-content">
+                <div class="tabs" *ngIf="selectedMenu=='Profile' ">this is Profile</div>
+            </div>
+            <div class="side-menu-content">
+                <!-- <div style="margin-inline:35px ;">
+                    <img src="../../../assets/Images/line.png" alt="login" class="otpimg" style="height: 100%; width:100%; margin-top: 10px;">
+                </div> -->
+                <div class="tabs" *ngIf="selectedMenu=='Contact' ">Transaction Mode</div>
+            </div>
+        </div>
+    </div>
+</section>
+<i class="material-icons">

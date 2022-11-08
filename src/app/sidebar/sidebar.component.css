@@ -1,4 +1,4 @@
-.sidenav {
+/* .sidenav {
     background-color: #263238;
     transition: all .5s ease;
     position: fixed;
@@ -45,13 +45,16 @@
     background-color: transparent;
     border: none;
 }
+
 .fa-times {
     color: #fff;
     font-size: 24px;
 }
+
 .sidenav-collapsed {
     width: 16.5625ren;
 }
+
 .sidenav-nav {
     list-style: none;
     padding: 0.938rem;
@@ -62,10 +65,12 @@
     height: calc(100%- 3.65rem);
     cursor: pointer;
 }
+
 .sidenav-nav-item {
     width: 100%;
     margin-bottom: 0.625rem;
 }
+
 .sidenav-nav-link {
     display: flex;
     align-items: center;
@@ -74,6 +79,7 @@
     text-decoration: none;
     transition: color .3s ease;
 }
+
 .sidenav-link-icon {
     font-size: 22px;
     width: 2rem;
@@ -81,6 +87,431 @@
     margin: 0 0.5rem;
     text-align: center;
 }
+
 .sidenav-link-text {
     margin-left: 1.5rem;
+} */
+
+
+/*.....side nav css ...*/
+.sidebar-component {
+    width: 98%;
+}
+
+.mr-2 {
+    margin-left: 25px;
+}
+
+.menu-box {
+    height: 650px;
+    background-color: grey;
+    width: 65px;
+    overflow: hidden;
+}
+
+
+
+.menu-box:hover {
+    width: 215px;
+    transition: 0.3s;
+}
+
+
+.menu-items {
+    line-height: 60px;
+    list-style: none;
+    padding-left: 0px;
+    height: 100%;
+}
+
+
+
+.menu-items li {
+    font-size: 18px;
+    font-weight: 600;
+    padding-left: 25px;
+    cursor: pointer;
+    display: flex;
+}
+
+.menu-items li:hover {
+    background-color: white;
+    color: #7d7d7d;
+}
+
+.menu-items li i {
+    margin-left: 25px;
+    font-size: 26px;
+    margin: 0px 20px 0px 0px;
+    position: relative;
+    top: 15px;
+}
+
+.icon-fax {
+    top: 90px;
+}
+
+.onActive {
+    color: #fcfcfc;
+    background-color: rgba(50, 150, 233, 0.692);
+    -webkit-box-shadow: 9px 9px 11px -5px rgba(0, 0, 0, 0.48);
+    -moz-box-shadow: 9px 9px 11px -5px rgba(0, 0, 0, 0.48);
+    box-shadow: 9px 9px 11px -5px rgba(0, 0, 0, 0.48);
+}
+
+.onActive:hover {
+    color: #fcfcfc !important;
+    background-color: rgba(50, 150, 233, 0.692) !important;
+}
+
+/* .mat-css {
+   margin-left: 25px;
+   font-size: 26px;
+   margin: 0px 40px 0px 0px;
+   position: relative;
+   top: 18px;
+
+} */
+
+.mat-icon {
+    -webkit-user-select: none;
+    user-select: none;
+    background-repeat: no-repeat;
+    display: inline-block;
+    fill: currentColor;
+    height: 24px;
+    width: 24px;
+    overflow: visible;
+}
+
+.tabs {
+    font-size: 18pt;
+    /* font-family:'Montserrat", sans-serif'; */
+    font-weight: 400;
+    text-transform: capitalize;
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+
+}
+
+/* ............. Home page css ...........*/
+.main {
+    /* background-color: red; */
+
+    width: 60%;
+    height: 100%;
+    /* flex: 1; */
+    margin-left: auto;
+    margin-right: auto;
+    background-size: auto;
+}
+
+.user {
+    font-family: "Montserrat", sans-serif;
+    color: #051B77;
+    font-size: 20pt;
+    font-weight: 600;
+    padding-top: 50px;
+    text-align: right;
+}
+
+.sub-text {
+    font-family: "Montserrat", sans-serif;
+    color: black;
+    font-size: 18pt;
+    font-weight: 400;
+    padding-top: 35px;
+    /* text-align: right; */
+    margin-inline: 20px;
+}
+
+.sub-text-head {
+    font-family: "Montserrat", sans-serif;
+    color: black;
+    font-size: 25pt;
+    font-weight: 400;
+    margin-inline: 30px;
+    color: white;
+    padding-block: 15px;
+    padding-inline: 20px;
+    background-color: #051B77;
+}
+
+.sub-text-info {
+    font-family: "Montserrat", sans-serif;
+    color: black;
+    font-size: 15pt;
+    font-weight: 700;
+    /* margin-inline: 30px; */
+    /* padding-block: 15px; */
+    padding-inline: 20px;
+}
+
+.radio-lbn {
+    margin-inline: 20px;
+    font-weight: 600;
+    font-family: "Montserrat", sans-serif;
+    font-size: 16pt;
+}
+
+.radio-hd {
+    font-size: 15pt;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.user-profile {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: space-between;
+    /* margin-block: 20px; */
+    padding-inline: 30px;
+    padding-top: 50px;
+}
+
+.drop-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-block: 30px;
+    flex-direction: row;
+}
+
+.userimg {
+    border-radius: 50px;
+    /* border-width: 30px; */
+    /* border-color:#DEE5FC; */
+    border: 1px solid #051B77;
+}
+
+.row1 {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.btnrow {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    margin-inline: 40px;
+    /* justify-content:flex-end;
+    align-items: flex-end; */
+}
+
+.padding-col {
+    padding-block: 30px;
+}
+
+.row-prof {
+    flex-direction: row;
+    display: flex;
+}
+
+.showDiv1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-block: 30px;
+    flex-direction: row;
+}
+
+::ng-deep .ng-select .ng-select-container {
+    color: #333;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    min-height: 40px;
+    align-items: center;
+    background-color: #DEE5FC;
+    font-weight: 400;
+}
+
+.bt {
+    background-color: #051B77;
+    color: #DEE5FC;
+    border: none;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    /* font-size: 16px; */
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 22pt;
+}
+
+.btnrow {
+    display: flex;
+    flex-direction: row;
+    /* flex: 1; */
+    margin-inline: 40px;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+/*-------------------  table css-----------*/
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    background-color: #051B77;
+    border: 1px solid #051B77;
+}
+
+td {
+    border: 1px solid #051B77;
+}
+
+td,
+th {
+    text-align: center;
+    padding: 8px;
+    color: black;
+}
+
+tr,
+th {
+    text-align: center;
+    padding: 8px;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #DEE5FC;
+}
+
+tr:nth-child(odd) {
+    background-color: #DEE5FC;
+}
+
+
+.bubble_sr {
+    width: 85px;
+    height: 65px;
+    background: #0B41A0;
+    position: relative;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    border-top-left-radius: 0px;
+    margin-left: 80px;
+}
+
+.bubble_sr:before {
+    content: "";
+    position: absolute;
+    right: -13%;
+    /* left:0px; */
+    top: 50px;
+    width: 0;
+    height: 0;
+    z-index: -20;
+    border-top: 13px solid transparent;
+    border-right: 13px solid transparent;
+    border-bottom: 50px solid transparent;
+    border-left: 50px solid #001E6C
+}
+
+.bubble_Des {
+    width: 200px;
+    height: 75px;
+    background: #0B41A0;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 20px;
+    border-top-right-radius: 30px;
+}
+
+.bubble_Des:before {
+    content: "";
+    position: absolute;
+    right: 65%;
+    /* top: 26px; */
+    width: 0;
+    height: 0;
+    z-index: -20;
+    border-top: 10px solid #0B41A0;
+    border-right: 70px solid transparent;
+    border-bottom: 13px solid transparent;
+    border-left: 16px solid transparent;
+}
+
+.justone {
+    border-color: red;
+}
+
+.bord {
+    border: solid 0.1em;
+    width: 80px;
+    height: 80px;
+    border-width: 5px;
+    margin: 0.5em;
+    border-color: #0B41A0;
+    padding: 0.5em;
+    border-radius: 200px;
+
+    position: absolute;
+    top: 100px;
+    left: 550px;
+    top: 190px;
+    bottom: 100px;
+    right: 50px;
+
+}
+
+.otpimg {
+    margin-left: 100px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: flex;
+}
+
+.paymodeimg {
+    /* background-image: url(../../assets/Images/home_screen/Paymode.png); */
+    height: 20%;
+    width: 20%;
+    margin-top: 0px;
+    background-image: url(../../assets/Images/background_img.jpg);
+
+}
+
+.pay_img {
+    height: 30%;
+    width: 30%;
+    position: absolute;
+    top: 77px;
+    left: 108px;
+}
+
+.pay_title {
+    font-size: 11pt;
+    position: absolute;
+    left: 78px;
+    top: 35px;
+    width: 100px;
+    text-align: center;
+}
+
+.pay_Status {
+    color: white;
+    position: absolute;
+    top: 17px;
+    left: 65px;
+    cursor: pointer;
+    background-color: red;
 }

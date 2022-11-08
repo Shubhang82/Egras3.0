@@ -1,4 +1,4 @@
-<!-- <mat-toolbar>
+<!-- <mat-toolbar style="justify-content: center;align-item:center">
   <span class="fill-remaining-space">
     <button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger" (mouseover)="menuTrigger.openMenu()">
       Home
@@ -171,12 +171,12 @@
   </div>
 </div>  -->
 
-<div>
+<!-- <div>
   <p class="user ">Hi,ramkumar</p>
-  <!-- <div class="">
+  <div class="">
     <p class="sub-text">{{todaysDate}} </p>
     <p class="sub-text"> {{todaysTime}}</p>
-  </div> -->
+  </div>
   <div class=" btnrow " style="justify-content:flex-end; ">
     <button mat-raised-button type="submit" type="button" class="logout-btn" title="SignOut" (click)="onLogout()">
       <mat-icon>power_settings_new</mat-icon>
@@ -191,7 +191,7 @@
       </button>
       <mat-menu class="drop-container" #menu1="matMenu" overlapTrigger="false">
         <span (mouseleave)="closeMyMenu()">
-          <button mat-menu-item (click)="onclick('CProfile')" >Create Profile</button>
+          <button mat-menu-item (click)="onclick('CProfile')">Create Profile</button>
           <button mat-menu-item>Multiple Head</button>
           <button mat-menu-item>Multiple Head Service For Service</button>
           <button mat-menu-item>New Challan</button>
@@ -226,4 +226,21 @@
       </mat-menu>
     </div>
   </div>
-</div>
+</div> -->
+
+<!-- <button mat-button [matMenuTriggerFor]="main_menu">My menu</button>
+
+<mat-menu #main_menu="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="main1">main1</button>
+  <button mat-menu-item [matMenuTriggerFor]="main2">main2</button>
+</mat-menu>
+
+<mat-menu #main1="matMenu">
+  <button mat-menu-item>sub1</button>
+  <button mat-menu-item>sub2</button>
+</mat-menu>
+
+<mat-menu #main2="matMenu">
+  <button mat-menu-item>sub1</button>
+  <button mat-menu-item>sub2</button>
+</mat-menu> -->

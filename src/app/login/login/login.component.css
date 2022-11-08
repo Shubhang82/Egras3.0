@@ -36,8 +36,9 @@
 .keepME {
   font-family: "Montserrat", sans-serif;
   color: black;
-  font-size: 18.28pt;
-  padding-right: 140px;
+  font-size: 14.28pt;
+  padding-left: 300px;
+  text-align:right;
 }
 /* .bt {
   background-color: #051B77;

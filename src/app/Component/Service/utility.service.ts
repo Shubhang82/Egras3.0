@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 
-// const Baseurl = 'http://172.22.32.105:8082/';
-const Baseurl = 'http://172.22.32.105:8081/';
+const Baseurl = 'http://172.22.32.105:8082/';
+// const Baseurl = 'http://172.22.32.105:8081/';
 
 
 @Injectable({
     providedIn: 'root'
 })
 export class ApiService {
-
     public loginurl: string = Baseurl + "login";
     public signupurl: string = Baseurl + "user/save";
     public PasswordRecoveryurl: string = Baseurl + "user/forgot";
@@ -24,4 +23,8 @@ export class ApiService {
     public GetProfile_List: string = Baseurl + 'profile/list'
     public GetMajorHead: string = Baseurl + 'getMajorHeadList/'
     public GetBudgetHead_List: string = Baseurl + 'budgetHeadList'
+    public GetUserProfile: string = Baseurl + 'profile/allList/'
+    public ProfileActive_Deactive: string = Baseurl + 'profile/active'
+
+    public ProfileCreate: string = Baseurl + 'profile/create'
 }

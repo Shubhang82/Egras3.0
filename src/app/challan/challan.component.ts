@@ -5,17 +5,24 @@ import { Router } from '@angular/router';
 import { formatDate } from '@angular/common';
 import { MatSidenav } from '@angular/material/sidenav';
 @Component({
-      selector: 'app-challan',
-      templateUrl: './challan.component.html',
-      styleUrls: ['./challan.component.css']
-    })
-export class ChallanComponent  {
+  selector: 'app-challan',
+  templateUrl: './challan.component.html',
+  styleUrls: ['./challan.component.css']
+})
+export class ChallanComponent {
   name = 'Angular 6';
   isLoggedIn = false;
   today = new Date();
   todaysDate = '';
   todaysTime = '';
   // @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
+
+  data = [
+    {
+      'main1': ['sub1', 'sub2'],
+      'main2': ['sub1', 'sub2'],
+    }
+  ]
 
   @ViewChild('menuBtn1', { read: MatMenuTrigger, static: true }) trigger: MatMenuTrigger;
   @ViewChild('menuBtn2', { read: MatMenuTrigger, static: true }) menu2: MatMenuTrigger;

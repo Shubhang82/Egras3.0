@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-md-6 ">
     <img src="../../../assets/Images/B (1000X1000)-01.jpg" alt="login" class="loginimg"
-        style="height: 100%; width:100%">
-</div>
+      style="height: 100%; width:100%">
+  </div>
   <div class="col-md-6 col-sm-12 ">
     <form [formGroup]="loginForm">
       <p class="text-head text-center">User login</p>
@@ -43,12 +43,12 @@
               </i>
               <input matInput class="form-control" type="password" [type]="fieldTextType ? 'text' : 'password'"
                 placeholder="Password" name="password" required formControlName="password" />
-              <div *ngIf="!fieldTextType" style="cursor:pointer" (click)="oneyclick()" >
-                <mat-icon style="position: absolute; left:93%; top:15px; height: 100%;width: 100%;">visibility
+              <div *ngIf="!fieldTextType" style="cursor:pointer" (click)="oneyclick()">
+                <mat-icon style="position: absolute; left:93%; top:10px; height: 100%;width: 100%;">visibility
                 </mat-icon>
               </div>
-              <div *ngIf="fieldTextType" style="cursor:pointer" (click)="oneyclick()" >
-                <mat-icon style="position: absolute; left:93%; top:15px; height: 100%;width: 100%;">visibility_off
+              <div *ngIf="fieldTextType" style="cursor:pointer" (click)="oneyclick()">
+                <mat-icon style="position: absolute; left:93%; top:10px; height: 100%;width: 100%;">visibility_off
                 </mat-icon>
               </div>
 
@@ -69,21 +69,13 @@
             </mat-form-field>
           </div>
         </div>
-        <div class="row justify-content-md-center">
-          <div class="col-md-10">
-            <div class="keepME">
-              <div class="row">
-                <div class="col-sm-6">
-                </div>
-                <div class="col-sm-6" href="#">
-                  <p><a routerLink="/PasswordRecovery" routerLinkActive="active">FORGOT YOUR PASSWORD ?</a></p>
-                </div>
-
-
-              </div>
-            </div>
+        
+        <div class="keepME">
+          <div class="col-sm-8" href="#">
+            <p><a routerLink="/PasswordRecovery" routerLinkActive="active">FORGOT YOUR PASSWORD ?</a></p>
           </div>
         </div>
+
         <div class="row justify-content-md-center">
           <div class="col-md-7">
             <mat-form-field floatLabel="never" appearance="outline">
@@ -109,8 +101,8 @@
       </div>
       <div class="row justify-content-md-center">
         <div class="col-md-6 text-center">
-          <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid" (click)="onsubmit()" style="margin-top: 50px"
-            type="button" class="bt">LOGIN</button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid" (click)="onsubmit()"
+            style="margin-top: 50px" type="button" class="bt">LOGIN</button>
         </div>
       </div>
       <div class="text-center navlink">
