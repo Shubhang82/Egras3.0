@@ -11,7 +11,9 @@ import { CProfileComponent } from './CreateProfile/c-profile/c-profile.component
 import { ResetPasswordComponent } from './ResetPassword/rpassword/rpassword.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 const routes: Routes = [
-  { path: '', loadChildren: () => import('./login/login/login-routing.module').then(m => m.LoginRoutingModule) },
+  // { path: '', loadChildren: () => import('./login/login/login-routing.module').then(m => m.LoginRoutingModule) },
+  { path: '',component: SidebarComponent},
+
   { path: 'Challan', component: ChallanComponent },
   { path: 'Signup', component: SignupComponent },
   {path: 'PasswordRecovery', component: PasswordRecoveryComponent},

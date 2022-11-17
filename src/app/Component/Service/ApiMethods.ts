@@ -84,7 +84,8 @@ export class ApiMethods {
 
 
   postresultservice(url: any, data: any) {
-    let token = localStorage.getItem('token');
+    // let token = localStorage.getItem('token');
+    let token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3MTAiLCJVc2VySWQiOiI3MTAiLCJleHAiOjE2Njk0OTE2ODAsIlVzZXJUeXBlIjoiMTAiLCJpYXQiOjE2Njg1OTE2ODB9._u0EBF5hj2OqJNFZSaxEMm9uHqZ-HBj3_fo6QZ9OPY-f5o-9DiL3vtSs-UFxi9euLfGclkXkhDablQNteUWLoA';
 
     let Options = {
       headers: new HttpHeaders({
@@ -104,8 +105,8 @@ export class ApiMethods {
 
 
   getservice(url: any) {
-    // let token = sessionStorage.getItem('token');
-    let token = localStorage.getItem('token');
+    let token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3MTAiLCJVc2VySWQiOiI3MTAiLCJleHAiOjE2Njk0OTE2ODAsIlVzZXJUeXBlIjoiMTAiLCJpYXQiOjE2Njg1OTE2ODB9._u0EBF5hj2OqJNFZSaxEMm9uHqZ-HBj3_fo6QZ9OPY-f5o-9DiL3vtSs-UFxi9euLfGclkXkhDablQNteUWLoA';
+    // let token = localStorage.getItem('token');
 
     console.log("token_____", token);
     let httpOptions = {

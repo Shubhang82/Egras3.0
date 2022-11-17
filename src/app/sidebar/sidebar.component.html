@@ -21,39 +21,132 @@
     </ul>
 </div> -->
 
-<section class="app-component main ">
+<div class="container">
+
+
     <div class="row">
-        <div class="col-lg-2">
+        <div class="col-md-2">
             <div class="menu-box">
 
                 <div class="side-menu-list">
                     <ul class="menu-items">
-                        <li (click)="goTo('Home')" [ngClass]="{ 'onActive' :selectedMenu == 'Home'}">
-                            <i class="material-icons">
-                                home
-                            </i>Home
-                        </li>
                         <li (click)="goTo('Profile')" [ngClass]="{ 'onActive' :selectedMenu == 'Profile'}">
                             <i class="material-icons">
                                 account_circle
-
-                            </i> Profile
+                            </i>Dept.Map
                         </li>
-                        <li (click)="goTo('Contact')" [ngClass]="{ 'onActive' :selectedMenu == 'Contact'}">
+                        <li (click)="goTo('Services')" [ngClass]="{ 'onActive' :selectedMenu == 'Services'}">
+                            <i class="material-icons">
+                                assignment
+
+                            </i> Services
+                        </li>
+                        <li (click)="goTo('Transaction')" [ngClass]="{ 'onActive' :selectedMenu == 'Transaction'}">
                             <!-- <label> -->
                             <i class="material-icons">
-                                phone_in_talk
-                            </i> Contact
+                                swap_horiz
+                            </i> Transaction
                         </li>
                     </ul>
                 </div>
             </div>
-
         </div>
-        <div class="col-lg-10 main">
+
+        <div class="col-md-10">
 
             <div class="side-menu-content">
-                <div class="tabs" *ngIf="selectedMenu=='Home' ">
+                <div class="" style=" flex-direction: row;display: flex;">
+
+                    <img src="https://cdn-icons-png.flaticon.com/512/21/21104.png" alt="login" class="userimg" style="height: 15%;
+                        width: 5%; margin-top: 21px;">
+                    <p class="sub-text">ramkumar</p>
+                </div>
+                <div class="tabs" *ngIf="selectedMenu=='Transaction' ">
+                    <div class="line-h">
+                        <label style="color:white; padding: 10px;justify-content: center;
+                        align-items: center;
+                        display: flex; "> Transaction Mode</label>
+                    </div>
+                    <div>
+                        <img src="../../../assets/Images/line.png" alt="login" class=""
+                            style=" width:100%; margin-top: 0px;">
+                    </div>
+                    <div class="row" style="margin-top: 40px;">
+                        <div *ngFor="let mode of paymode" (click)="onchg_status(mode)" class="col-md-2 col-sm-6 fulb">
+                            <div class="boxc">
+                                <!-- <img src="../../../assets/Images/home_screen/Paymode.png" alt="login" class="" style="height: 115%;    width: 100%;  margin-left: 60px;"> -->
+                                <div class="b1"> <label class="boxt"> {{mode.type}}
+                                    </label></div>
+                                <div class="b2"> <img [src]="mode.img" alt="login" class="boxi"></div>
+                                <div *ngIf="mode.status" class="b3">
+                                    <i class="material-icons boxic">
+                                        done_outline
+                                    </i>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class=" " style="margin-top: 30px;">
+
+                        <div *ngIf="showtrans" style="">
+                            <table>
+                                <tr>
+                                    <th>Sr.no</th>
+                                    <th>Challan Date</th>
+                                    <th>GRN</th>
+                                    <th>Status</th>
+                                    <th>Payment Type</th>
+                                    <th>Amount</th>
+                                </tr>
+                                <tr *ngFor="let student of students">
+                                    <td>{{ student.id }}</td>
+                                    <td>{{ student.ChallanDate }}</td>
+                                    <td>{{ student.Grn }}</td>
+                                    <td>{{ student.Status }}</td>
+                                    <td>{{ student.PaymentType }}</td>
+                                    <td>{{ student.Amount }}</td>
+                                    <div style="background-color: #051B77;
+                                    margin-top: 15px;
+                                    height: 29px;
+                                    margin-inline: 24px;
+                                    width: 34px;" (click)="onchg_transaction(student)">
+                                        <i class="material-icons " style="background-color:#051B77; "
+                                            *ngIf="student.status">
+                                            done_outline
+                                        </i>
+                                        <i class="material-icons " style="background-color:#051B77; "
+                                            *ngIf="!student.status">
+                                        </i>
+                                    </div>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="row" style="margin-top: 40px;">
+
+
+                            <div *ngFor="let mode of pay_opt" class="col-md-4 col-sm-8 fulbt">
+                                <div class="boxct" style="cursor: pointer;">
+                                    <!-- <img src="../../../assets/Images/home_screen/Paymode.png" alt="login" class="" style="height: 115%;    width: 100%;  margin-left: 60px;"> -->
+                                    <div class="b2">
+                                        <!-- <i class="material-icons boxit">
+                                            </i> -->
+                                        <img [src]="mode.img" alt="login" class="boxit">
+                                    </div>
+                                </div>
+                                <div class="b1"> <label class="boxtt"> {{mode.type}}
+                                    </label></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="side-menu-content">
+                <!-- <div class="tabs" *ngIf="selectedMenu=='Profile' ">this is Profile</div> -->
+                <div class="tabs" *ngIf="selectedMenu=='Profile' ">
 
                     <!-- <div>
                         <img src="../../../assets/Images/services-01.png" alt="login" class="otpimg"
@@ -65,46 +158,323 @@
                         </div>
 
                     </div> -->
-                    <!-- <div
-                        style="background-color: '#051B77'; color:white; padding: 10px;position: absolute;margin-left:150pt ">
-                        <label> Transaction Mode</label>
-                    </div> -->
+                    <div class="line-h">
+                        <label style="color:white; padding: 10px;justify-content: center;
+                        align-items: center;
+                        display: flex; ">Department Map</label>
+                    </div>
                     <div>
                         <img src="../../../assets/Images/line.png" alt="login" class=""
-                            style="height: 130%; width:140%; margin-top: 0px;">
+                            style=" width:100%; margin-top: 0px;">
                     </div>
-                    <div style="display: flex;flex-direction:row ; ">
-                        <div *ngFor="let mode of paymode" (click)="onchg_status(mode)"
-                            style="flex-direction: row; display:flex; width: 100%;position: relative;">
+                    <!-- <div class="row" style="margin-top: 40px;">
 
-                            <img src="../../../assets/Images/home_screen/Paymode.png" alt="login" class=""
-                                style="height: 115%;
-                                width: 100%;
-                                margin-left: 60px;">
-                            <label class="pay_title"> {{mode.type}}
-                            </label>
-                            <img [src]="mode.img" alt="login" class="pay_img">
-                            <div *ngIf="mode.status">
-                                <i class="material-icons pay_Status">
-                                    done_all
+
+                        <div *ngFor="let mode of paymode" (click)="onchg_status(mode)" class="col-md-2 col-sm-6 fulb">
+                            <div class="boxc">
+                                <div class="b1"> <label class="boxt"> {{mode.type}}
+                                    </label></div>
+                                <div class="b2"> <img [src]="mode.img" alt="login" class="boxi"></div>
+                                <div *ngIf="mode.status" class="b3">
+                                    <i class="material-icons boxic">
+                                        done_outline
+                                    </i>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div> -->
+                    <div class=" " style="margin-top: 30px;">
+
+                        <div *ngIf="showtrans" style="">
+                            <table>
+                                <tr>
+                                    <th>Sr.no</th>
+                                    <th>Challan Date</th>
+                                    <th>GRN</th>
+                                    <th>Status</th>
+                                    <th>Payment Type</th>
+                                    <th>Amount</th>
+                                </tr>
+                                <tr *ngFor="let transaction of Latest_trans">
+                                    <td>{{ transaction.id }}</td>
+                                    <td>{{ transaction.ChallanDate }}</td>
+                                    <td>{{ transaction.Grn }}</td>
+                                    <td>{{ transaction.Status }}</td>
+                                    <td>{{ transaction.PaymentType }}</td>
+                                    <td>{{ transaction.Amount }}</td>
+
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- <div class="row" style="margin-top: 40px; justify-content: flex-end;align-items: flex-end;">
+
+
+                            <div *ngFor="let mode of pay_opt1" class="col-md-4 col-sm-8 fulbt">
+                                <div class="Pboxct" style="cursor: pointer;">
+                                    <div class="b2">
+                                        <img [src]="mode.img" alt="login" class="Pboxit">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div> -->
+                        <div class="row" style="margin-top: 40px; justify-content: flex-end;align-items: flex-end;">
+                            <div *ngFor="let mode of pay_opt1" class="col-md-4 col-sm-8 fullbtimg">
+                                <div class="" style="cursor: pointer;">
+                                    <!-- <img src="../../../assets/Images/home_screen/Paymode.png" alt="login" class="" style="height: 115%;    width: 100%;  margin-left: 60px;"> -->
+                                    <div class="imgbt">
+                                        <!-- <i class="material-icons boxit">
+                                            </i> -->
+                                        <img [src]="mode.img" alt="login" class="Pboxit">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="showDiv1" style="margin-left: 30px; ">
+                            <div class="drop-div" style="flex:1">
+
+                                <!-- <ng-select [items]="purpose" bindLabel="name" placeholder="Select Search For"
+                                    style="width: 90%;" [(ngModel)]="selectPurpose">
+                                </ng-select> -->
+                                <select style="width: 96%; border-radius: 50px; padding: 5px;"
+                                    (change)="SearchFor($event)">
+                                    <option value="Select Search For..">Select Search For..</option>
+                                    <option *ngFor="let state of purpose" value="{{state.name}}">{{state.name}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="drop-div" style="flex:1">
+
+                                <ng-select [items]="GlobalSearch" bindLabel="DepartName" placeholder="Search"
+                                    style="width: 90%;" [(ngModel)]="Search">
+                                </ng-select>
+                                <i class="material-icons " style="margin-top: 10px;margin-left: 5px;">search
                                 </i>
                             </div>
 
                         </div>
+                        <div class="row">
+
+                            <div class="row" class="bg-color">
+                                <label style="
+                                font-size: 18pt;
+                                font-weight: 400;
+                                margin-inline: 113px;
+                                margin-block: 10px;">Department List
+                                </label>
+                                <div *ngFor="let purpose of purpose_list" (click)="onchg_Dept(purpose)">
+                                    <i class="material-icons "
+                                        style="color: white; margin-block: 10px; background-color: #051B77; width: 8%;height: 10%;padding: 5px; "
+                                        *ngIf="purpose.status">
+                                        done_outline
+                                    </i>
+                                    <i class="material-icons "
+                                        style="color: white;background-color: #051B77; width: 8%; padding: 16px;margin-top: 10px;"
+                                        *ngIf="!purpose.status">
+                                    </i>
+                                    <label
+                                        style=" font-size:18pt; font-weight: 400; margin-inline: 5px;">{{purpose.name}}
+                                    </label>
+                                </div>
+
+                            </div>
+                            <div class="row" class="bg-color">
+                                <label style="font-size: 16pt;
+                                font-weight: 400;
+                                margin-inline: 113px;
+                                margin-block: 10px;">Major Head
+                                </label>
+
+                                <div *ngFor="let Major of Major_list" (click)="onchg_Major(Major)">
+                                    <i class="material-icons "
+                                        style="color: white; margin-block: 10px; background-color: #051B77; width: 8%;height: 10%;padding: 5px; "
+                                        *ngIf="Major.status">
+                                        done_outline
+                                    </i>
+                                    <i class="material-icons "
+                                        style="color: white;background-color: #051B77; width: 8%; padding: 16px;margin-top: 10px;"
+                                        *ngIf="!Major.status">
+                                    </i>
+                                    <label style=" font-size:18pt; font-weight: 400; margin-inline: 5px;">{{Major.name}}
+                                    </label>
+                                </div>
+                            </div>
+
+
+
+                            <div class="btnrow">
+                                <button mat-raised-button color="primary" type="submit" type="text" class="bt">Create
+                                    Profile</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="side-menu-content">
+                    <div class="tabs" *ngIf="selectedMenu=='Services' ">
+
+                        <div class="line-h">
+                            <label style="color:white; padding: 10px;justify-content: center;
+                    align-items: center;
+                    display: flex; "> Service Mode</label>
+                        </div>
+                        <div>
+                            <img src="../../assets/Images/line.png" alt="login" class=""
+                                style=" width:100%; margin-top: 0px;">
+                        </div>
+                        <div class="tabs1">
+
+                            <div class="col-md-2 col-sm-6 fulb" style="margin-left: 120px;margin-top: 90px;">
+                                <div>
+                                    <img src="../../assets/Images/services-01.png" alt="login" class="" style="height: 32%;
+                                width: 140%;
+                                position: relative;
+                                margin-left: 8px;
+                                margin-top: -43px;
+                     ">
+                                </div>
+
+                                <div>
+                                    <label class="D_title">Department Service</label>
+
+                                    <img src="../../assets/Images/home_screen/service9-01.png" alt="login" class="Pbox"
+                                        (click)="option_select(1)">
+                                </div>
+                                <div>
+                                    <label class="P_title">Profile Service</label>
+
+                                    <img src="../../assets/Images/home_screen/service9-02.png" alt="login" class="Dbox"
+                                        (click)="option_select(2)">
+                                </div>
+
+                                <div>
+
+                                    <img src="../../assets/Images/home_screen/service9-03.png" alt="login" class="Tbox"
+                                        (click)="option_select(3)">
+                                </div>
+                                <div class="T_title">Tender Service</div>
+
+                                <div class="centerbox">
+                                    <label style="font-size:10px; text-align: center; font-weight: 600;">10 transaction
+                                    </label>
+                                </div>
+
+                            </div>
+                            <!-- <div class="extraback">
+                        </div> -->
+                            <!-- <div class="row">
+                            <div style="    background-color: #051b77;
+                                            height: 11%;
+                                         width: 15%;
+                                          border-radius: 100px;">
+                                <img src="../../assets/Images/home_screen/tender.png" alt="login" style="    background-color: #06adef;
+                                    height: 75%;
+                                    width: 75%;
+                                    padding: 29px;
+                                    margin-left: 20px;
+                                    margin-top: 21px;
+                                    border-radius: 66px;">
+                            </div>
+                            <div style="    background-color: #051b77;
+                                            height: 11%;
+                                         width: 15%;
+                                          border-radius: 100px;">
+                                <img src="../../assets/Images/home_screen/tender.png" alt="login" style="    background-color: #06adef;
+                                    height: 75%;
+                                    width: 75%;
+                                    padding: 29px;
+                                    margin-left: 20px;
+                                    margin-top: 21px;
+                                    border-radius: 66px;">
+                            </div>
+                            <div style="    background-color: #051b77;
+                                            height: 11%;
+                                         width: 15%;
+                                          border-radius: 100px;">
+                                <img src="../../assets/Images/home_screen/tender.png" alt="login" style="    background-color: #06adef;
+                                    height: 75%;
+                                    width: 75%;
+                                    padding: 29px;
+                                    margin-left: 20px;
+                                    margin-top: 21px;
+                                    border-radius: 66px;">
+                            </div>
+                            <img src="../../assets/Images/home_screen/Centerextra.png" alt="login" class="" style="
+                            height: 50%;
+                            width: 100%;
+                            position: relative;
+                            margin-left: 8px;
+                            margin-top: -35px;
+                             ">
+
+                        </div> -->
+
+
+                            <div class="col-md-10 col-sm-6 " style="">
+                                <div class="showDiv1" style="margin-left: 150px; " *ngIf="options== 2">
+                                    <div class="drop-div2" style="flex:.7">
+
+                                        <ng-select [items]="Department" bindLabel="DepartName" (change)="changeDepartment(selectedDepartmentName)" 
+                                            placeholder="Select Department" style="width: 90%;"
+                                            [(ngModel)]="selectedDepartmentName">
+                                        </ng-select>
+
+                                    </div>
+                                    <div class="drop-div2" style="flex:.7">
+
+                                        <ng-select [items]="Service" bindLabel="name" placeholder="Select Service"
+                                            (change)="changeService(selectedServiceName)" style="width: 90%;"
+                                            [(ngModel)]="selectedServiceName">
+                                        </ng-select>
+                                    </div>
+
+                                </div>
+                                <div class="drop-div1" style="flex:1" *ngIf="options==1 ">
+                                    <ng-select [items]="profile" bindLabel="UserProfile" placeholder="Select Profile"
+                                        (change)="changeProfile(selectedProfileeName)" style="width: 90%;" [(ngModel)]="selectedProfileeName">
+                                    </ng-select>
+                                </div>
+                                <div class="drop-div1" style="flex:1" *ngIf="options== 3">
+                                    <ng-select [items]="Department" bindLabel="DepartName" placeholder="Select Tender"
+                                        (change)="changeTender(selectedTenderName)" style="width: 90%;" [(ngModel)]="selectedTenderName">
+                                    </ng-select>
+                                </div>
+                                <!-- <div class=" drop-div1" style="flex:1" *ngIf="options == 2">
+
+                                    <ng-select [items]="Department" bindLabel="DepartName" placeholder="Select Profile"
+                                        style="width: 90%;" [(ngModel)]="selectedDepartmentName">
+                                    </ng-select>
+                                          </div>
+                                         <div class="drop-div1" style="flex:1" *ngIf="options==3">
+
+                                <ng-select [items]="Department" bindLabel="DepartName" placeholder="Select Tender"
+                                    style="width: 90%;" [(ngModel)]="selectedDepartmentName">
+                                </ng-select>
+                                         </div> -->
+                                <!-- <div class="drop-div" style="flex:1">
+
+                                      <ng-select [items]="Service" bindLabel="name" placeholder="Select Service"
+                                style="width: 90%;" [(ngModel)]="selectedServiceName">
+                                  </ng-select>
+                                 <i class="material-icons " style="margin-top: 10px;margin-left: 5px;">search
+                                  </i>
+                                 </div> -->
+
+                            </div>
+                        </div>
+                        <div class="btnrow">
+                            <button mat-raised-button color="primary" type="submit" type="text" class="bt" (click)="onSubmit()" >
+                                Continue</button>
+                        </div>
                     </div>
                 </div>
 
+
             </div>
-            <div class="side-menu-content">
-                <div class="tabs" *ngIf="selectedMenu=='Profile' ">this is Profile</div>
-            </div>
-            <div class="side-menu-content">
-                <!-- <div style="margin-inline:35px ;">
-                    <img src="../../../assets/Images/line.png" alt="login" class="otpimg" style="height: 100%; width:100%; margin-top: 10px;">
-                </div> -->
-                <div class="tabs" *ngIf="selectedMenu=='Contact' ">Transaction Mode</div>
-            </div>
+
+
         </div>
-    </div>
-</section>
-<i class="material-icons">
